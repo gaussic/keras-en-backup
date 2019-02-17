@@ -47,8 +47,8 @@ Tensor, output of softmax transformation.
 
 __Raises__
 
-ValueError: In case `dim(x) == 1`.
-
+- __ValueError__: In case `dim(x) == 1`.
+    
 ----
 
 ### elu
@@ -74,8 +74,9 @@ The exponential linear activation: `x` if `x > 0` and
 __References__
 
 - [Fast and Accurate Deep Network Learning by Exponential
-Linear Units (ELUs)](https://arxiv.org/abs/1511.07289)
 
+Linear Units (ELUs)](https://arxiv.org/abs/1511.07289)
+    
 ----
 
 ### selu
@@ -111,7 +112,7 @@ __Note__
 __References__
 
 - [Self-Normalizing Neural Networks](https://arxiv.org/abs/1706.02515)
-
+    
 ----
 
 ### softplus
@@ -131,7 +132,7 @@ __Arguments__
 __Returns__
 
 The softplus activation: `log(exp(x) + 1)`.
-
+    
 ----
 
 ### softsign
@@ -151,7 +152,7 @@ __Arguments__
 __Returns__
 
 The softplus activation: `x / (abs(x) + 1)`.
-
+    
 ----
 
 ### relu
@@ -181,7 +182,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### tanh

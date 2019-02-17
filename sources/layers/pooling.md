@@ -34,12 +34,12 @@ __Input shape__
 __Output shape__
 
 - If `data_format='channels_last'`:
-3D tensor with shape:
-`(batch_size, downsampled_steps, features)`
+    3D tensor with shape:
+    `(batch_size, downsampled_steps, features)`
 - If `data_format='channels_first'`:
-3D tensor with shape:
-`(batch_size, features, downsampled_steps)`
-
+    3D tensor with shape:
+    `(batch_size, features, downsampled_steps)`
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L217)</span>
@@ -85,12 +85,12 @@ __Input shape__
 __Output shape__
 
 - If `data_format='channels_last'`:
-4D tensor with shape:
-`(batch_size, pooled_rows, pooled_cols, channels)`
+    4D tensor with shape:
+    `(batch_size, pooled_rows, pooled_cols, channels)`
 - If `data_format='channels_first'`:
-4D tensor with shape:
-`(batch_size, channels, pooled_rows, pooled_cols)`
-
+    4D tensor with shape:
+    `(batch_size, channels, pooled_rows, pooled_cols)`
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L386)</span>
@@ -132,12 +132,12 @@ __Input shape__
 __Output shape__
 
 - If `data_format='channels_last'`:
-5D tensor with shape:
-`(batch_size, pooled_dim1, pooled_dim2, pooled_dim3, channels)`
+    5D tensor with shape:
+    `(batch_size, pooled_dim1, pooled_dim2, pooled_dim3, channels)`
 - If `data_format='channels_first'`:
-5D tensor with shape:
-`(batch_size, channels, pooled_dim1, pooled_dim2, pooled_dim3)`
-
+    5D tensor with shape:
+    `(batch_size, channels, pooled_dim1, pooled_dim2, pooled_dim3)`
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L117)</span>
@@ -176,12 +176,12 @@ __Input shape__
 __Output shape__
 
 - If `data_format='channels_last'`:
-3D tensor with shape:
-`(batch_size, downsampled_steps, features)`
+    3D tensor with shape:
+    `(batch_size, downsampled_steps, features)`
 - If `data_format='channels_first'`:
-3D tensor with shape:
-`(batch_size, features, downsampled_steps)`
-
+    3D tensor with shape:
+    `(batch_size, features, downsampled_steps)`
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L272)</span>
@@ -227,12 +227,12 @@ __Input shape__
 __Output shape__
 
 - If `data_format='channels_last'`:
-4D tensor with shape:
-`(batch_size, pooled_rows, pooled_cols, channels)`
+    4D tensor with shape:
+    `(batch_size, pooled_rows, pooled_cols, channels)`
 - If `data_format='channels_first'`:
-4D tensor with shape:
-`(batch_size, channels, pooled_rows, pooled_cols)`
-
+    4D tensor with shape:
+    `(batch_size, channels, pooled_rows, pooled_cols)`
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L436)</span>
@@ -274,12 +274,12 @@ __Input shape__
 __Output shape__
 
 - If `data_format='channels_last'`:
-5D tensor with shape:
-`(batch_size, pooled_dim1, pooled_dim2, pooled_dim3, channels)`
+    5D tensor with shape:
+    `(batch_size, pooled_dim1, pooled_dim2, pooled_dim3, channels)`
 - If `data_format='channels_first'`:
-5D tensor with shape:
-`(batch_size, channels, pooled_dim1, pooled_dim2, pooled_dim3)`
-
+    5D tensor with shape:
+    `(batch_size, channels, pooled_dim1, pooled_dim2, pooled_dim3)`
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L557)</span>
@@ -314,7 +314,7 @@ __Output shape__
 
 2D tensor with shape:
 `(batch_size, features)`
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L511)</span>
@@ -349,7 +349,7 @@ __Output shape__
 
 2D tensor with shape:
 `(batch_size, features)`
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L647)</span>
@@ -387,7 +387,7 @@ __Output shape__
 
 2D tensor with shape:
 `(batch_size, channels)`
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L612)</span>
@@ -425,7 +425,7 @@ __Output shape__
 
 2D tensor with shape:
 `(batch_size, channels)`
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L742)</span>
@@ -463,7 +463,7 @@ __Output shape__
 
 2D tensor with shape:
 `(batch_size, channels)`
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/pooling.py#L707)</span>
@@ -501,3 +501,4 @@ __Output shape__
 
 2D tensor with shape:
 `(batch_size, channels)`
+    

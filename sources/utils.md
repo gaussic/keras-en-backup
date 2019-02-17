@@ -60,7 +60,7 @@ __Arguments__
 __Returns__
 
 An array-like HDF5 dataset.
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/utils/data_utils.py#L302)</span>
@@ -111,7 +111,7 @@ class CIFAR10Sequence(Sequence):
             resize(imread(file_name), (200, 200))
                for file_name in batch_x]), np.array(batch_y)
 ```
-
+    
 ----
 
 ### to_categorical
@@ -138,7 +138,7 @@ __Returns__
 
 A binary matrix representation of the input. The classes axis
 is placed last.
-
+    
 ----
 
 ### normalize
@@ -160,7 +160,7 @@ __Arguments__
 __Returns__
 
 A normalized copy of the array.
-
+    
 ----
 
 ### get_file
@@ -211,7 +211,7 @@ __Arguments__
 __Returns__
 
 Path to the downloaded file
-
+    
 ----
 
 ### print_summary
@@ -226,18 +226,18 @@ Prints a summary of a model.
 
 __Arguments__
 
-model: Keras model instance.
-line_length: Total length of printed lines
-(e.g. set this to adapt the display to different
-terminal window sizes).
-positions: Relative or absolute positions of log elements in each line.
-If not provided, defaults to `[.33, .55, .67, 1.]`.
-print_fn: Print function to use.
-It will be called on each line of the summary.
-You can set it to a custom function
-in order to capture the string summary.
-It defaults to `print` (prints to stdout).
-
+- __model__: Keras model instance.
+- __line_length__: Total length of printed lines
+    (e.g. set this to adapt the display to different
+    terminal window sizes).
+- __positions__: Relative or absolute positions of log elements in each line.
+    If not provided, defaults to `[.33, .55, .67, 1.]`.
+- __print_fn__: Print function to use.
+    It will be called on each line of the summary.
+    You can set it to a custom function
+    in order to capture the string summary.
+    It defaults to `print` (prints to stdout).
+    
 ----
 
 ### plot_model
@@ -252,15 +252,15 @@ Converts a Keras model to dot format and save to a file.
 
 __Arguments__
 
-model: A Keras model instance
-to_file: File name of the plot image.
-show_shapes: whether to display shape information.
-show_layer_names: whether to display layer names.
-rankdir: `rankdir` argument passed to PyDot,
-a string specifying the format of the plot:
-'TB' creates a vertical plot;
-'LR' creates a horizontal plot.
-
+- __model__: A Keras model instance
+- __to_file__: File name of the plot image.
+- __show_shapes__: whether to display shape information.
+- __show_layer_names__: whether to display layer names.
+- __rankdir__: `rankdir` argument passed to PyDot,
+    a string specifying the format of the plot:
+    'TB' creates a vertical plot;
+    'LR' creates a horizontal plot.
+    
 ----
 
 ### multi_gpu_model
@@ -394,3 +394,4 @@ __On model saving__
 To save the multi-gpu model, use `.save(fname)` or `.save_weights(fname)`
 with the template model (the argument you passed to `multi_gpu_model`),
 rather than the model returned by `multi_gpu_model`.
+    

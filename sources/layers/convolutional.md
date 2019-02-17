@@ -84,7 +84,7 @@ __Output shape__
 
 3D tensor with shape: `(batch, new_steps, filters)`
 `steps` value might have changed due to padding or strides.
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L367)</span>
@@ -183,7 +183,7 @@ or 4D tensor with shape:
 `(batch, new_rows, new_cols, filters)`
 if `data_format` is `"channels_last"`.
 `rows` and `cols` values might have changed due to padding.
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L1420)</span>
@@ -281,7 +281,7 @@ or 3D tensor with shape:
 `(batch, new_steps, filters)`
 if `data_format` is `"channels_last"`.
 `new_steps` values might have changed due to padding or strides.
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L1552)</span>
@@ -387,7 +387,7 @@ or 4D tensor with shape:
 `(batch, new_rows, new_cols, filters)`
 if `data_format` is `"channels_last"`.
 `rows` and `cols` values might have changed due to padding.
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L1693)</span>
@@ -474,7 +474,7 @@ or 4D tensor with shape:
 `(batch, new_rows, new_cols, filters)`
 if `data_format` is `"channels_last"`.
 `rows` and `cols` values might have changed due to padding.
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L627)</span>
@@ -591,10 +591,10 @@ new_cols = ((cols - 1) * strides[1] + kernel_size[1]
 __References__
 
 - [A guide to convolution arithmetic for deep learning]
-(https://arxiv.org/abs/1603.07285v1)
+  (https://arxiv.org/abs/1603.07285v1)
 - [Deconvolutional Networks]
-(http://www.matthewzeiler.com/pubs/cvpr2010/cvpr2010.pdf)
-
+  (http://www.matthewzeiler.com/pubs/cvpr2010/cvpr2010.pdf)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L498)</span>
@@ -691,7 +691,7 @@ or 5D tensor with shape:
 if `data_format` is `"channels_last"`.
 `new_conv_dim1`, `new_conv_dim2` and `new_conv_dim3` values might have
 changed due to padding.
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L900)</span>
@@ -810,10 +810,10 @@ new_cols = ((cols - 1) * strides[2] + kernel_size[2]
 __References__
 
 - [A guide to convolution arithmetic for deep learning]
-(https://arxiv.org/abs/1603.07285v1)
+  (https://arxiv.org/abs/1603.07285v1)
 - [Deconvolutional Networks]
-(http://www.matthewzeiler.com/pubs/cvpr2010/cvpr2010.pdf)
-
+  (http://www.matthewzeiler.com/pubs/cvpr2010/cvpr2010.pdf)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2375)</span>
@@ -842,7 +842,7 @@ __Input shape__
 __Output shape__
 
 3D tensor with shape `(batch, cropped_axis, features)`
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2407)</span>
@@ -908,7 +908,7 @@ model.add(Conv2D(64, (3, 3), padding='same'))
 model.add(Cropping2D(cropping=((2, 2), (2, 2))))
 # now model.output_shape == (None, 20, 16, 64)
 ```
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2490)</span>
@@ -959,12 +959,12 @@ __Output shape__
 
 5D tensor with shape:
 - If `data_format` is `"channels_last"`:
-`(batch, first_cropped_axis, second_cropped_axis, third_cropped_axis,
-depth)`
+    `(batch, first_cropped_axis, second_cropped_axis, third_cropped_axis,
+      depth)`
 - If `data_format` is `"channels_first"`:
-`(batch, depth,
-first_cropped_axis, second_cropped_axis, third_cropped_axis)`
-
+    `(batch, depth,
+      first_cropped_axis, second_cropped_axis, third_cropped_axis)`
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L1943)</span>
@@ -989,7 +989,7 @@ __Input shape__
 __Output shape__
 
 3D tensor with shape: `(batch, upsampled_steps, features)`.
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L1973)</span>
@@ -1034,10 +1034,10 @@ __Output shape__
 
 4D tensor with shape:
 - If `data_format` is `"channels_last"`:
-`(batch, upsampled_rows, upsampled_cols, channels)`
+    `(batch, upsampled_rows, upsampled_cols, channels)`
 - If `data_format` is `"channels_first"`:
-`(batch, channels, upsampled_rows, upsampled_cols)`
-
+    `(batch, channels, upsampled_rows, upsampled_cols)`
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2031)</span>
@@ -1079,10 +1079,10 @@ __Output shape__
 
 5D tensor with shape:
 - If `data_format` is `"channels_last"`:
-`(batch, upsampled_dim1, upsampled_dim2, upsampled_dim3, channels)`
+    `(batch, upsampled_dim1, upsampled_dim2, upsampled_dim3, channels)`
 - If `data_format` is `"channels_first"`:
-`(batch, channels, upsampled_dim1, upsampled_dim2, upsampled_dim3)`
-
+    `(batch, channels, upsampled_dim1, upsampled_dim2, upsampled_dim3)`
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2123)</span>
@@ -1114,7 +1114,7 @@ __Input shape__
 __Output shape__
 
 3D tensor with shape `(batch, padded_axis, features)`
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2158)</span>
@@ -1164,10 +1164,10 @@ __Output shape__
 
 4D tensor with shape:
 - If `data_format` is `"channels_last"`:
-`(batch, padded_rows, padded_cols, channels)`
+    `(batch, padded_rows, padded_cols, channels)`
 - If `data_format` is `"channels_first"`:
-`(batch, channels, padded_rows, padded_cols)`
-
+    `(batch, channels, padded_rows, padded_cols)`
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2234)</span>
@@ -1218,8 +1218,9 @@ __Output shape__
 
 5D tensor with shape:
 - If `data_format` is `"channels_last"`:
-`(batch, first_padded_axis, second_padded_axis, third_axis_to_pad,
-depth)`
+    `(batch, first_padded_axis, second_padded_axis, third_axis_to_pad,
+      depth)`
 - If `data_format` is `"channels_first"`:
-`(batch, depth,
-first_padded_axis, second_padded_axis, third_axis_to_pad)`
+    `(batch, depth,
+      first_padded_axis, second_padded_axis, third_axis_to_pad)`
+    

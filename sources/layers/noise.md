@@ -27,7 +27,7 @@ when using this layer as the first layer in a model.
 __Output shape__
 
 Same shape as input.
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/noise.py#L58)</span>
@@ -60,8 +60,8 @@ Same shape as input.
 __References__
 
 - [Dropout: A Simple Way to Prevent Neural Networks from Overfitting]
-(http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)
-
+  (http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/noise.py#L106)</span>
@@ -99,3 +99,4 @@ Same shape as input.
 __References__
 
 - [Self-Normalizing Neural Networks](https://arxiv.org/abs/1706.02515)
+    

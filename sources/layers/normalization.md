@@ -49,4 +49,5 @@ Same shape as input.
 __References__
 
 - [Batch Normalization: Accelerating Deep Network Training by
-Reducing Internal Covariate Shift](https://arxiv.org/abs/1502.03167)
+   Reducing Internal Covariate Shift](https://arxiv.org/abs/1502.03167)
+    

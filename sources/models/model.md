@@ -82,9 +82,9 @@ __Arguments__
 
 __Raises__
 
-ValueError: In case of invalid arguments for
-`optimizer`, `loss`, `metrics` or `sample_weight_mode`.
-
+- __ValueError__: In case of invalid arguments for
+    `optimizer`, `loss`, `metrics` or `sample_weight_mode`.
+    
 ----
 
 ### fit
@@ -186,10 +186,10 @@ and validation metrics values (if applicable).
 
 __Raises__
 
-RuntimeError: If the model was never compiled.
-ValueError: In case of mismatch between the provided input data
-and what the model expects.
-
+- __RuntimeError__: If the model was never compiled.
+- __ValueError__: In case of mismatch between the provided input data
+    and what the model expects.
+    
 ----
 
 ### evaluate
@@ -246,7 +246,7 @@ Scalar test loss (if the model has a single output and no metrics)
 or list of scalars (if the model has multiple outputs
 and/or metrics). The attribute `model.metrics_names` will give you
 the display labels for the scalar outputs.
-
+    
 ----
 
 ### predict
@@ -277,11 +277,11 @@ Numpy array(s) of predictions.
 
 __Raises__
 
-ValueError: In case of mismatch between the provided
-input data and the model's expectations,
-or in case a stateful model receives a number of samples
-that is not a multiple of the batch size.
-
+- __ValueError__: In case of mismatch between the provided
+    input data and the model's expectations,
+    or in case a stateful model receives a number of samples
+    that is not a multiple of the batch size.
+    
 ----
 
 ### train_on_batch
@@ -327,7 +327,7 @@ Scalar training loss
 or list of scalars (if the model has multiple outputs
 and/or metrics). The attribute `model.metrics_names` will give you
 the display labels for the scalar outputs.
-
+    
 ----
 
 ### test_on_batch
@@ -366,7 +366,7 @@ Scalar test loss (if the model has a single output and no metrics)
 or list of scalars (if the model has multiple outputs
 and/or metrics). The attribute `model.metrics_names` will give you
 the display labels for the scalar outputs.
-
+    
 ----
 
 ### predict_on_batch
@@ -386,7 +386,7 @@ __Arguments__
 __Returns__
 
 Numpy array(s) of predictions.
-
+    
 ----
 
 ### fit_generator
@@ -518,7 +518,7 @@ def generate_arrays_from_file(path):
 model.fit_generator(generate_arrays_from_file('/my_file.txt'),
                     steps_per_epoch=10000, epochs=10)
 ```
-
+    
 ----
 
 ### evaluate_generator
@@ -568,9 +568,9 @@ the display labels for the scalar outputs.
 
 __Raises__
 
-ValueError: In case the generator yields
-data in an invalid format.
-
+- __ValueError__: In case the generator yields
+    data in an invalid format.
+    
 ----
 
 ### predict_generator
@@ -616,9 +616,9 @@ Numpy array(s) of predictions.
 
 __Raises__
 
-ValueError: In case the generator yields
-data in an invalid format.
-
+- __ValueError__: In case the generator yields
+    data in an invalid format.
+    
 ----
 
 ### get_layer
@@ -646,5 +646,5 @@ A layer instance.
 
 __Raises__
 
-ValueError: In case of invalid layer name or index.
-
+- __ValueError__: In case of invalid layer name or index.
+    

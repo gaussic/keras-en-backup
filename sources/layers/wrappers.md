@@ -47,8 +47,8 @@ model.add(TimeDistributed(Conv2D(64, (3, 3)),
 
 __Arguments__
 
-layer: a layer instance.
-
+- __layer__: a layer instance.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/wrappers.py#L333)</span>
@@ -85,3 +85,4 @@ model.add(Dense(5))
 model.add(Activation('softmax'))
 model.compile(loss='categorical_crossentropy', optimizer='rmsprop')
 ```
+    

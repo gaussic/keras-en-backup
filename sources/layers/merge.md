@@ -27,7 +27,7 @@ added = keras.layers.Add()([x1, x2])
 out = keras.layers.Dense(4)(added)
 model = keras.models.Model(inputs=[input1, input2], outputs=out)
 ```
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L231)</span>
@@ -59,7 +59,7 @@ subtracted = keras.layers.Subtract()([x1, x2])
 out = keras.layers.Dense(4)(subtracted)
 model = keras.models.Model(inputs=[input1, input2], outputs=out)
 ```
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L268)</span>
@@ -107,6 +107,21 @@ a single tensor (also of the same shape).
 
 ----
 
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L313)</span>
+### Minimum
+
+```python
+keras.layers.Minimum()
+```
+
+Layer that computes the minimum (element-wise) a list of inputs.
+
+It takes as input a list of tensors,
+all of the same shape, and returns
+a single tensor (also of the same shape).
+
+----
+
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L328)</span>
 ### Concatenate
 
@@ -122,9 +137,9 @@ and returns a single tensor, the concatenation of all inputs.
 
 __Arguments__
 
-axis: Axis along which to concatenate.
-**kwargs: standard layer keyword arguments.
-
+- __axis__: Axis along which to concatenate.
+- __**kwargs__: standard layer keyword arguments.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/merge.py#L416)</span>
@@ -143,14 +158,14 @@ where each entry `i` will be the dot product between
 
 __Arguments__
 
-axes: Integer or tuple of integers,
-axis or axes along which to take the dot product.
-normalize: Whether to L2-normalize samples along the
-dot product axis before taking the dot product.
-If set to True, then the output of the dot product
-is the cosine proximity between the two samples.
-**kwargs: Standard layer keyword arguments.
-
+- __axes__: Integer or tuple of integers,
+    axis or axes along which to take the dot product.
+- __normalize__: Whether to L2-normalize samples along the
+    dot product axis before taking the dot product.
+    If set to True, then the output of the dot product
+    is the cosine proximity between the two samples.
+- __**kwargs__: Standard layer keyword arguments.
+    
 ----
 
 ### add
@@ -187,7 +202,7 @@ added = keras.layers.add([x1, x2])
 out = keras.layers.Dense(4)(added)
 model = keras.models.Model(inputs=[input1, input2], outputs=out)
 ```
-
+    
 ----
 
 ### subtract
@@ -224,7 +239,7 @@ subtracted = keras.layers.subtract([x1, x2])
 out = keras.layers.Dense(4)(subtracted)
 model = keras.models.Model(inputs=[input1, input2], outputs=out)
 ```
-
+    
 ----
 
 ### multiply
@@ -245,7 +260,7 @@ __Arguments__
 __Returns__
 
 A tensor, the element-wise product of the inputs.
-
+    
 ----
 
 ### average
@@ -266,7 +281,7 @@ __Arguments__
 __Returns__
 
 A tensor, the average of the inputs.
-
+    
 ----
 
 ### maximum
@@ -287,7 +302,28 @@ __Arguments__
 __Returns__
 
 A tensor, the element-wise maximum of the inputs.
+    
+----
 
+### minimum
+
+
+```python
+keras.layers.minimum(inputs)
+```
+
+
+Functional interface to the `Minimum` layer.
+
+__Arguments__
+
+- __inputs__: A list of input tensors (at least 2).
+- __**kwargs__: Standard layer keyword arguments.
+
+__Returns__
+
+A tensor, the element-wise minimum of the inputs.
+    
 ----
 
 ### concatenate
@@ -309,7 +345,7 @@ __Arguments__
 __Returns__
 
 A tensor, the concatenation of the inputs alongside axis `axis`.
-
+    
 ----
 
 ### dot
@@ -336,3 +372,4 @@ __Arguments__
 __Returns__
 
 A tensor, the dot product of the samples from the inputs.
+    

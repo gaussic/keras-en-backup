@@ -5,8 +5,7 @@
 ### Tokenizer
 
 ```python
-keras.preprocessing.text.Tokenizer(num_words=None, filters='!"#$%&()*+,-./:;<=>?@[\]^_`{|}~	
-', lower=True, split=' ', char_level=False, oov_token=None, document_count=0)
+keras.preprocessing.text.Tokenizer(num_words=None, filters='!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n', lower=True, split=' ', char_level=False, oov_token=None, document_count=0)
 ```
 
 Text tokenization utility class.
@@ -43,8 +42,7 @@ split into lists of tokens. They will then be indexed or vectorized.
 
 
 ```python
-keras.preprocessing.text.hashing_trick(text, n, hash_function=None, filters='!"#$%&()*+,-./:;<=>?@[\]^_`{|}~	
-', lower=True, split=' ')
+keras.preprocessing.text.hashing_trick(text, n, hash_function=None, filters='!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n', lower=True, split=' ')
 ```
 
 
@@ -87,8 +85,7 @@ the number of distinct objects.
 
 
 ```python
-keras.preprocessing.text.one_hot(text, n, filters='!"#$%&()*+,-./:;<=>?@[\]^_`{|}~	
-', lower=True, split=' ')
+keras.preprocessing.text.one_hot(text, n, filters='!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n', lower=True, split=' ')
 ```
 
 
@@ -114,15 +111,14 @@ __Returns__
 
 List of integers in [1, n]. Each integer encodes a word
 (unicity non-guaranteed).
-
+    
 ----
 
 ### text_to_word_sequence
 
 
 ```python
-keras.preprocessing.text.text_to_word_sequence(text, filters='!"#$%&()*+,-./:;<=>?@[\]^_`{|}~	
-', lower=True, split=' ')
+keras.preprocessing.text.text_to_word_sequence(text, filters='!"#$%&()*+,-./:;<=>?@[\\]^_`{|}~\t\n', lower=True, split=' ')
 ```
 
 
@@ -143,4 +139,4 @@ __Arguments__
 __Returns__
 
 A list of words (or tokens).
-
+    

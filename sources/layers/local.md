@@ -67,7 +67,7 @@ __Output shape__
 
 3D tensor with shape: `(batch_size, new_steps, filters)`
 `steps` value might have changed due to padding or strides.
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/local.py#L182)</span>
@@ -160,3 +160,4 @@ __Output shape__
 or 4D tensor with shape:
 `(samples, new_rows, new_cols, filters)` if data_format='channels_last'.
 `rows` and `cols` values might have changed due to padding.
+    

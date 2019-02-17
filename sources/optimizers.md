@@ -60,12 +60,12 @@ learning rate decay, and Nesterov momentum.
 
 __Arguments__
 
-lr: float >= 0. Learning rate.
-momentum: float >= 0. Parameter that accelerates SGD
-in the relevant direction and dampens oscillations.
-decay: float >= 0. Learning rate decay over each update.
-nesterov: boolean. Whether to apply Nesterov momentum.
-
+- __lr__: float >= 0. Learning rate.
+- __momentum__: float >= 0. Parameter that accelerates SGD
+    in the relevant direction and dampens oscillations.
+- __decay__: float >= 0. Learning rate decay over each update.
+- __nesterov__: boolean. Whether to apply Nesterov momentum.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L220)</span>
@@ -94,8 +94,8 @@ __Arguments__
 __References__
 
 - [rmsprop: Divide the gradient by a running average of its recent magnitude]
-(http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)
-
+  (http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L288)</span>
@@ -124,8 +124,8 @@ __Arguments__
 __References__
 
 - [Adaptive Subgradient Methods for Online Learning and Stochastic
-Optimization](http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)
-
+   Optimization](http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L353)</span>
@@ -160,8 +160,8 @@ __Arguments__
 __References__
 
 - [Adadelta - an adaptive learning rate method]
-(https://arxiv.org/abs/1212.5701)
-
+  (https://arxiv.org/abs/1212.5701)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L436)</span>
@@ -189,10 +189,10 @@ __Arguments__
 __References__
 
 - [Adam - A Method for Stochastic Optimization]
-(https://arxiv.org/abs/1412.6980v8)
+  (https://arxiv.org/abs/1412.6980v8)
 - [On the Convergence of Adam and Beyond]
-(https://openreview.net/forum?id=ryQu7f-RZ)
-
+  (https://openreview.net/forum?id=ryQu7f-RZ)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L527)</span>
@@ -217,8 +217,8 @@ __Arguments__
 __References__
 
 - [Adam - A Method for Stochastic Optimization]
-(https://arxiv.org/abs/1412.6980v8)
-
+  (https://arxiv.org/abs/1412.6980v8)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L605)</span>
@@ -247,5 +247,5 @@ __References__
 
 - [Nadam report](http://cs229.stanford.edu/proj2015/054_report.pdf)
 - [On the importance of initialization and momentum in deep learning]
-(http://www.cs.toronto.edu/~fritz/absps/momentum.pdf)
-
+  (http://www.cs.toronto.edu/~fritz/absps/momentum.pdf)
+    

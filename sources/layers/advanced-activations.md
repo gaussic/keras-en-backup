@@ -28,8 +28,8 @@ __Arguments__
 __References__
 
 - [Rectifier Nonlinearities Improve Neural Network Acoustic Models]
-(https://ai.stanford.edu/~amaas/papers/relu_hybrid_icml2013_final.pdf)
-
+  (https://ai.stanford.edu/~amaas/papers/relu_hybrid_icml2013_final.pdf)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/advanced_activations.py#L59)</span>
@@ -73,8 +73,8 @@ __Arguments__
 __References__
 
 - [Delving Deep into Rectifiers: Surpassing Human-Level Performance on
-ImageNet Classification](https://arxiv.org/abs/1502.01852)
-
+   ImageNet Classification](https://arxiv.org/abs/1502.01852)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/advanced_activations.py#L153)</span>
@@ -107,8 +107,8 @@ __Arguments__
 __References__
 
 - [Fast and Accurate Deep Network Learning by Exponential Linear Units
-(ELUs)](https://arxiv.org/abs/1511.07289v1)
-
+   (ELUs)](https://arxiv.org/abs/1511.07289v1)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/advanced_activations.py#L193)</span>
@@ -141,8 +141,8 @@ __Arguments__
 __References__
 
 - [Zero-Bias Autoencoders and the Benefits of Co-Adapting Features]
-(https://arxiv.org/abs/1402.3337)
-
+  (https://arxiv.org/abs/1402.3337)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/advanced_activations.py#L233)</span>
@@ -166,8 +166,8 @@ Same shape as the input.
 
 __Arguments__
 
-axis: Integer, axis along which the softmax normalization is applied.
-
+- __axis__: Integer, axis along which the softmax normalization is applied.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/advanced_activations.py#L265)</span>
@@ -198,6 +198,7 @@ Same shape as the input.
 
 __Arguments__
 
-max_value: float >= 0. Maximum activation value.
-negative_slope: float >= 0. Negative slope coefficient.
-threshold: float. Threshold value for thresholded activation.
+- __max_value__: float >= 0. Maximum activation value.
+- __negative_slope__: float >= 0. Negative slope coefficient.
+- __threshold__: float. Threshold value for thresholded activation.
+    

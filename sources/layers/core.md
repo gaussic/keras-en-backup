@@ -69,7 +69,7 @@ __Output shape__
 nD tensor with shape: `(batch_size, ..., units)`.
 For instance, for a 2D input with shape `(batch_size, input_dim)`,
 the output would have shape `(batch_size, units)`.
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L276)</span>
@@ -96,7 +96,7 @@ when using this layer as the first layer in a model.
 __Output shape__
 
 Same shape as input.
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L80)</span>
@@ -126,8 +126,8 @@ __Arguments__
 __References__
 
 - [Dropout: A Simple Way to Prevent Neural Networks from Overfitting]
-(http://www.jmlr.org/papers/volume15/srivastava14a/srivastava14a.pdf)
-
+  (http://www.jmlr.org/papers/volume15/srivastava14a/srivastava14a.pdf)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L461)</span>
@@ -166,7 +166,7 @@ model.add(Conv2D(64, (3, 3),
 model.add(Flatten())
 # now: model.output_shape == (None, 65536)
 ```
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/engine/input_layer.py#L114)</span>
@@ -227,7 +227,7 @@ x = Input(shape=(32,))
 y = Dense(16, activation='softmax')(x)
 model = Model(x, y)
 ```
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L310)</span>
@@ -273,7 +273,7 @@ model.add(Reshape((6, 2)))
 model.add(Reshape((-1, 2, 2)))
 # now: model.output_shape == (None, 3, 2, 2)
 ```
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L409)</span>
@@ -314,7 +314,7 @@ __Output shape__
 
 Same as the input shape, but with the dimensions re-ordered according
 to the specified pattern.
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L523)</span>
@@ -350,7 +350,7 @@ __Input shape__
 __Output shape__
 
 3D tensor of shape `(num_samples, n, features)`.
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L565)</span>
@@ -419,7 +419,7 @@ __Output shape__
 
 Specified by `output_shape` argument
 (or auto-inferred when using TensorFlow or CNTK).
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L911)</span>
@@ -445,7 +445,7 @@ when using this layer as the first layer in a model.
 __Output shape__
 
 Same shape as input.
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L29)</span>
@@ -517,8 +517,8 @@ Same as input
 __References__
 
 - [Efficient Object Localization Using Convolutional Networks]
-(https://arxiv.org/abs/1411.4280)
-
+  (https://arxiv.org/abs/1411.4280)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L177)</span>
@@ -563,8 +563,8 @@ Same as input
 __References__
 
 - [Efficient Object Localization Using Convolutional Networks]
-(https://arxiv.org/abs/1411.4280)
-
+  (https://arxiv.org/abs/1411.4280)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L227)</span>
@@ -608,4 +608,5 @@ Same as input
 __References__
 
 - [Efficient Object Localization Using Convolutional Networks]
-(https://arxiv.org/abs/1411.4280)
+  (https://arxiv.org/abs/1411.4280)
+    

@@ -224,7 +224,7 @@ __Arguments__
 __Returns__
 
 A transformed version of the input (same shape).
-
+    
 ---
 ### fit
 
@@ -244,18 +244,18 @@ Only required if `featurewise_center` or
 
 __Arguments__
 
-x: Sample data. Should have rank 4.
-In case of grayscale data,
-the channels axis should have value 1, in case
-of RGB data, it should have value 3, and in case
-of RGBA data, it should have value 4.
-augment: Boolean (default: False).
-Whether to fit on randomly augmented samples.
-rounds: Int (default: 1).
-If using data augmentation (`augment=True`),
-this is how many augmentation passes over the data to use.
-seed: Int (default: None). Random seed.
-
+- __x__: Sample data. Should have rank 4.
+ In case of grayscale data,
+ the channels axis should have value 1, in case
+ of RGB data, it should have value 3, and in case
+ of RGBA data, it should have value 4.
+- __augment__: Boolean (default: False).
+    Whether to fit on randomly augmented samples.
+- __rounds__: Int (default: 1).
+    If using data augmentation (`augment=True`),
+    this is how many augmentation passes over the data to use.
+- __seed__: Int (default: None). Random seed.
+   
 ---
 ### flow
 
@@ -301,14 +301,14 @@ __Arguments__
 __Returns__
 
 An `Iterator` yielding tuples of `(x, y)`
-where `x` is a numpy array of image data
-(in the case of a single image input) or a list
-of numpy arrays (in the case with
-additional inputs) and `y` is a numpy array
-of corresponding labels. If 'sample_weight' is not None,
-the yielded tuples are of the form `(x, y, sample_weight)`.
-If `y` is None, only the numpy array `x` is returned.
-
+    where `x` is a numpy array of image data
+    (in the case of a single image input) or a list
+    of numpy arrays (in the case with
+    additional inputs) and `y` is a numpy array
+    of corresponding labels. If 'sample_weight' is not None,
+    the yielded tuples are of the form `(x, y, sample_weight)`.
+    If `y` is None, only the numpy array `x` is returned.
+    
 ---
 ### flow_from_dataframe
 
@@ -394,8 +394,8 @@ __Returns__
 A DataFrameIterator yielding tuples of `(x, y)`
 where `x` is a numpy array containing a batch
 of images with shape `(batch_size, *target_size, channels)`
-and `y` is a numpy array of corresponding labels.
-
+ and `y` is a numpy array of corresponding labels.
+    
 ---
 ### flow_from_directory
 
@@ -477,10 +477,10 @@ __Arguments__
 __Returns__
 
 A `DirectoryIterator` yielding tuples of `(x, y)`
-where `x` is a numpy array containing a batch
-of images with shape `(batch_size, *target_size, channels)`
-and `y` is a numpy array of corresponding labels.
-
+    where `x` is a numpy array containing a batch
+    of images with shape `(batch_size, *target_size, channels)`
+    and `y` is a numpy array of corresponding labels.
+    
 ---
 ### get_random_transform
 
@@ -502,7 +502,7 @@ __Returns__
 
 A dictionary containing randomly chosen parameters describing the
 transformation.
-
+    
 ---
 ### random_transform
 
@@ -522,7 +522,7 @@ __Arguments__
 __Returns__
 
 A randomly transformed version of the input (same shape).
-
+    
 ---
 ### standardize
 
@@ -541,4 +541,4 @@ __Arguments__
 __Returns__
 
 The inputs, normalized.
-
+    

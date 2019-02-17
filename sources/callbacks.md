@@ -52,11 +52,11 @@ This callback is automatically applied to every Keras model.
 
 __Arguments__
 
-stateful_metrics: Iterable of string names of metrics that
-should *not* be averaged over an epoch.
-Metrics in this list will be logged as-is in `on_epoch_end`.
-All others will be averaged in `on_epoch_end`.
-
+- __stateful_metrics__: Iterable of string names of metrics that
+    should *not* be averaged over an epoch.
+    Metrics in this list will be logged as-is in `on_epoch_end`.
+    All others will be averaged in `on_epoch_end`.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L251)</span>
@@ -91,8 +91,8 @@ __Arguments__
 
 __Raises__
 
-ValueError: In case of invalid `count_mode`.
-
+- __ValueError__: In case of invalid `count_mode`.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L341)</span>
@@ -129,25 +129,25 @@ the validation loss in the filename.
 
 __Arguments__
 
-filepath: string, path to save the model file.
-monitor: quantity to monitor.
-verbose: verbosity mode, 0 or 1.
-save_best_only: if `save_best_only=True`,
-the latest best model according to
-the quantity monitored will not be overwritten.
-mode: one of {auto, min, max}.
-If `save_best_only=True`, the decision
-to overwrite the current save file is made
-based on either the maximization or the
-minimization of the monitored quantity. For `val_acc`,
-this should be `max`, for `val_loss` this should
-be `min`, etc. In `auto` mode, the direction is
-automatically inferred from the name of the monitored quantity.
-save_weights_only: if True, then only the model's weights will be
-saved (`model.save_weights(filepath)`), else the full model
-is saved (`model.save(filepath)`).
-period: Interval (number of epochs) between checkpoints.
-
+- __filepath__: string, path to save the model file.
+- __monitor__: quantity to monitor.
+- __verbose__: verbosity mode, 0 or 1.
+- __save_best_only__: if `save_best_only=True`,
+    the latest best model according to
+    the quantity monitored will not be overwritten.
+- __mode__: one of {auto, min, max}.
+    If `save_best_only=True`, the decision
+    to overwrite the current save file is made
+    based on either the maximization or the
+    minimization of the monitored quantity. For `val_acc`,
+    this should be `max`, for `val_loss` this should
+    be `min`, etc. In `auto` mode, the direction is
+    automatically inferred from the name of the monitored quantity.
+- __save_weights_only__: if True, then only the model's weights will be
+    saved (`model.save_weights(filepath)`), else the full model
+    is saved (`model.save(filepath)`).
+- __period__: Interval (number of epochs) between checkpoints.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L460)</span>
@@ -161,29 +161,29 @@ Stop training when a monitored quantity has stopped improving.
 
 __Arguments__
 
-monitor: quantity to be monitored.
-min_delta: minimum change in the monitored quantity
-to qualify as an improvement, i.e. an absolute
-change of less than min_delta, will count as no
-improvement.
-patience: number of epochs with no improvement
-after which training will be stopped.
-verbose: verbosity mode.
-mode: one of {auto, min, max}. In `min` mode,
-training will stop when the quantity
-monitored has stopped decreasing; in `max`
-mode it will stop when the quantity
-monitored has stopped increasing; in `auto`
-mode, the direction is automatically inferred
-from the name of the monitored quantity.
-baseline: Baseline value for the monitored quantity to reach.
-Training will stop if the model doesn't show improvement
-over the baseline.
-restore_best_weights: whether to restore model weights from
-the epoch with the best value of the monitored quantity.
-If False, the model weights obtained at the last step of
-training are used.
-
+- __monitor__: quantity to be monitored.
+- __min_delta__: minimum change in the monitored quantity
+    to qualify as an improvement, i.e. an absolute
+    change of less than min_delta, will count as no
+    improvement.
+- __patience__: number of epochs with no improvement
+    after which training will be stopped.
+- __verbose__: verbosity mode.
+- __mode__: one of {auto, min, max}. In `min` mode,
+    training will stop when the quantity
+    monitored has stopped decreasing; in `max`
+    mode it will stop when the quantity
+    monitored has stopped increasing; in `auto`
+    mode, the direction is automatically inferred
+    from the name of the monitored quantity.
+- __baseline__: Baseline value for the monitored quantity to reach.
+    Training will stop if the model doesn't show improvement
+    over the baseline.
+- __restore_best_weights__: whether to restore model weights from
+    the epoch with the best value of the monitored quantity.
+    If False, the model weights obtained at the last step of
+    training are used.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L574)</span>
@@ -204,15 +204,15 @@ application/json. Otherwise the serialized JSON will be send within a form
 
 __Arguments__
 
-root: String; root url of the target server.
-path: String; path relative to `root` to which the events will be sent.
-field: String; JSON field under which the data will be stored.
-The field is used only if the payload is sent within a form
-(i.e. send_as_json is set to False).
-headers: Dictionary; optional custom HTTP headers.
-send_as_json: Boolean; whether the request should be send as
-application/json.
-
+- __root__: String; root url of the target server.
+- __path__: String; path relative to `root` to which the events will be sent.
+- __field__: String; JSON field under which the data will be stored.
+    The field is used only if the payload is sent within a form
+    (i.e. send_as_json is set to False).
+- __headers__: Dictionary; optional custom HTTP headers.
+- __send_as_json__: Boolean; whether the request should be send as
+    application/json.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L633)</span>
@@ -226,11 +226,11 @@ Learning rate scheduler.
 
 __Arguments__
 
-schedule: a function that takes an epoch index as input
-(integer, indexed from 0) and current learning rate
-and returns a new learning rate as output (float).
-verbose: int. 0: quiet, 1: update messages.
-
+- __schedule__: a function that takes an epoch index as input
+    (integer, indexed from 0) and current learning rate
+    and returns a new learning rate as output (float).
+- __verbose__: int. 0: quiet, 1: update messages.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L669)</span>
@@ -262,44 +262,44 @@ be the display of the losses and metrics plots.
 
 __Arguments__
 
-log_dir: the path of the directory where to save the log
-files to be parsed by TensorBoard.
-histogram_freq: frequency (in epochs) at which to compute activation
-and weight histograms for the layers of the model. If set to 0,
-histograms won't be computed. Validation data (or split) must be
-specified for histogram visualizations.
-write_graph: whether to visualize the graph in TensorBoard.
-The log file can become quite large when
-write_graph is set to True.
-write_grads: whether to visualize gradient histograms in TensorBoard.
-`histogram_freq` must be greater than 0.
-batch_size: size of batch of inputs to feed to the network
-for histograms computation.
-write_images: whether to write model weights to visualize as
-image in TensorBoard.
-embeddings_freq: frequency (in epochs) at which selected embedding
-layers will be saved. If set to 0, embeddings won't be computed.
-Data to be visualized in TensorBoard's Embedding tab must be passed
-as `embeddings_data`.
-embeddings_layer_names: a list of names of layers to keep eye on. If
-None or empty list all the embedding layer will be watched.
-embeddings_metadata: a dictionary which maps layer name to a file name
-in which metadata for this embedding layer is saved. See the
-[details](https://www.tensorflow.org/how_tos/embedding_viz/#metadata_optional)
-about metadata files format. In case if the same metadata file is
-used for all embedding layers, string can be passed.
-embeddings_data: data to be embedded at layers specified in
-`embeddings_layer_names`. Numpy array (if the model has a single
-input) or list of Numpy arrays (if the model has multiple inputs).
-Learn [more about embeddings]
-(https://www.tensorflow.org/programmers_guide/embedding).
-update_freq: `'batch'` or `'epoch'` or integer. When using `'batch'`, writes
-the losses and metrics to TensorBoard after each batch. The same
-applies for `'epoch'`. If using an integer, let's say `10000`,
-the callback will write the metrics and losses to TensorBoard every
-10000 samples. Note that writing too frequently to TensorBoard
-can slow down your training.
-
+- __log_dir__: the path of the directory where to save the log
+    files to be parsed by TensorBoard.
+- __histogram_freq__: frequency (in epochs) at which to compute activation
+    and weight histograms for the layers of the model. If set to 0,
+    histograms won't be computed. Validation data (or split) must be
+    specified for histogram visualizations.
+- __write_graph__: whether to visualize the graph in TensorBoard.
+    The log file can become quite large when
+    write_graph is set to True.
+- __write_grads__: whether to visualize gradient histograms in TensorBoard.
+    `histogram_freq` must be greater than 0.
+- __batch_size__: size of batch of inputs to feed to the network
+    for histograms computation.
+- __write_images__: whether to write model weights to visualize as
+    image in TensorBoard.
+- __embeddings_freq__: frequency (in epochs) at which selected embedding
+    layers will be saved. If set to 0, embeddings won't be computed.
+    Data to be visualized in TensorBoard's Embedding tab must be passed
+    as `embeddings_data`.
+- __embeddings_layer_names__: a list of names of layers to keep eye on. If
+    None or empty list all the embedding layer will be watched.
+- __embeddings_metadata__: a dictionary which maps layer name to a file name
+    in which metadata for this embedding layer is saved. See the
+    [details](https://www.tensorflow.org/how_tos/embedding_viz/#metadata_optional)
+    about metadata files format. In case if the same metadata file is
+    used for all embedding layers, string can be passed.
+- __embeddings_data__: data to be embedded at layers specified in
+    `embeddings_layer_names`. Numpy array (if the model has a single
+    input) or list of Numpy arrays (if the model has multiple inputs).
+    Learn [more about embeddings]
+    (https://www.tensorflow.org/programmers_guide/embedding).
+- __update_freq__: `'batch'` or `'epoch'` or integer. When using `'batch'`, writes
+    the losses and metrics to TensorBoard after each batch. The same
+    applies for `'epoch'`. If using an integer, let's say `10000`,
+    the callback will write the metrics and losses to TensorBoard every
+    10000 samples. Note that writing too frequently to TensorBoard
+    can slow down your training.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L1017)</span>
@@ -327,25 +327,25 @@ model.fit(X_train, Y_train, callbacks=[reduce_lr])
 
 __Arguments__
 
-monitor: quantity to be monitored.
-factor: factor by which the learning rate will
-be reduced. new_lr = lr * factor
-patience: number of epochs with no improvement
-after which learning rate will be reduced.
-verbose: int. 0: quiet, 1: update messages.
-mode: one of {auto, min, max}. In `min` mode,
-lr will be reduced when the quantity
-monitored has stopped decreasing; in `max`
-mode it will be reduced when the quantity
-monitored has stopped increasing; in `auto`
-mode, the direction is automatically inferred
-from the name of the monitored quantity.
-min_delta: threshold for measuring the new optimum,
-to only focus on significant changes.
-cooldown: number of epochs to wait before resuming
-normal operation after lr has been reduced.
-min_lr: lower bound on the learning rate.
-
+- __monitor__: quantity to be monitored.
+- __factor__: factor by which the learning rate will
+    be reduced. new_lr = lr * factor
+- __patience__: number of epochs with no improvement
+    after which learning rate will be reduced.
+- __verbose__: int. 0: quiet, 1: update messages.
+- __mode__: one of {auto, min, max}. In `min` mode,
+    lr will be reduced when the quantity
+    monitored has stopped decreasing; in `max`
+    mode it will be reduced when the quantity
+    monitored has stopped increasing; in `auto`
+    mode, the direction is automatically inferred
+    from the name of the monitored quantity.
+- __min_delta__: threshold for measuring the new optimum,
+    to only focus on significant changes.
+- __cooldown__: number of epochs to wait before resuming
+    normal operation after lr has been reduced.
+- __min_lr__: lower bound on the learning rate.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L1138)</span>
@@ -370,11 +370,11 @@ model.fit(X_train, Y_train, callbacks=[csv_logger])
 
 __Arguments__
 
-filename: filename of the csv file, e.g. 'run/log.csv'.
-separator: string used to separate elements in the csv file.
-append: True: append if file exists (useful for continuing
-training). False: overwrite existing file,
-
+- __filename__: filename of the csv file, e.g. 'run/log.csv'.
+- __separator__: string used to separate elements in the csv file.
+- __append__: True: append if file exists (useful for continuing
+    training). False: overwrite existing file,
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L1226)</span>
@@ -435,7 +435,7 @@ model.fit(...,
                      json_logging_callback,
                      cleanup_callback])
 ```
-
+    
 
 ---
 

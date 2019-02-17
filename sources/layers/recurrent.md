@@ -166,7 +166,7 @@ x = keras.Input((None, 5))
 layer = RNN(cells)
 y = layer(x)
 ```
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L944)</span>
@@ -180,64 +180,64 @@ Fully-connected RNN where the output is to be fed back to input.
 
 __Arguments__
 
-units: Positive integer, dimensionality of the output space.
-activation: Activation function to use
-(see [activations](../activations.md)).
-Default: hyperbolic tangent (`tanh`).
-If you pass `None`, no activation is applied
-(ie. "linear" activation: `a(x) = x`).
-use_bias: Boolean, whether the layer uses a bias vector.
-kernel_initializer: Initializer for the `kernel` weights matrix,
-used for the linear transformation of the inputs
-(see [initializers](../initializers.md)).
-recurrent_initializer: Initializer for the `recurrent_kernel`
-weights matrix,
-used for the linear transformation of the recurrent state
-(see [initializers](../initializers.md)).
-bias_initializer: Initializer for the bias vector
-(see [initializers](../initializers.md)).
-kernel_regularizer: Regularizer function applied to
-the `kernel` weights matrix
-(see [regularizer](../regularizers.md)).
-recurrent_regularizer: Regularizer function applied to
-the `recurrent_kernel` weights matrix
-(see [regularizer](../regularizers.md)).
-bias_regularizer: Regularizer function applied to the bias vector
-(see [regularizer](../regularizers.md)).
-activity_regularizer: Regularizer function applied to
-the output of the layer (its "activation").
-(see [regularizer](../regularizers.md)).
-kernel_constraint: Constraint function applied to
-the `kernel` weights matrix
-(see [constraints](../constraints.md)).
-recurrent_constraint: Constraint function applied to
-the `recurrent_kernel` weights matrix
-(see [constraints](../constraints.md)).
-bias_constraint: Constraint function applied to the bias vector
-(see [constraints](../constraints.md)).
-dropout: Float between 0 and 1.
-Fraction of the units to drop for
-the linear transformation of the inputs.
-recurrent_dropout: Float between 0 and 1.
-Fraction of the units to drop for
-the linear transformation of the recurrent state.
-return_sequences: Boolean. Whether to return the last output
-in the output sequence, or the full sequence.
-return_state: Boolean. Whether to return the last state
-in addition to the output.
-go_backwards: Boolean (default False).
-If True, process the input sequence backwards and return the
-reversed sequence.
-stateful: Boolean (default False). If True, the last state
-for each sample at index i in a batch will be used as initial
-state for the sample of index i in the following batch.
-unroll: Boolean (default False).
-If True, the network will be unrolled,
-else a symbolic loop will be used.
-Unrolling can speed-up a RNN,
-although it tends to be more memory-intensive.
-Unrolling is only suitable for short sequences.
-
+- __units__: Positive integer, dimensionality of the output space.
+- __activation__: Activation function to use
+    (see [activations](../activations.md)).
+    Default: hyperbolic tangent (`tanh`).
+    If you pass `None`, no activation is applied
+    (ie. "linear" activation: `a(x) = x`).
+- __use_bias__: Boolean, whether the layer uses a bias vector.
+- __kernel_initializer__: Initializer for the `kernel` weights matrix,
+    used for the linear transformation of the inputs
+    (see [initializers](../initializers.md)).
+- __recurrent_initializer__: Initializer for the `recurrent_kernel`
+    weights matrix,
+    used for the linear transformation of the recurrent state
+    (see [initializers](../initializers.md)).
+- __bias_initializer__: Initializer for the bias vector
+    (see [initializers](../initializers.md)).
+- __kernel_regularizer__: Regularizer function applied to
+    the `kernel` weights matrix
+    (see [regularizer](../regularizers.md)).
+- __recurrent_regularizer__: Regularizer function applied to
+    the `recurrent_kernel` weights matrix
+    (see [regularizer](../regularizers.md)).
+- __bias_regularizer__: Regularizer function applied to the bias vector
+    (see [regularizer](../regularizers.md)).
+- __activity_regularizer__: Regularizer function applied to
+    the output of the layer (its "activation").
+    (see [regularizer](../regularizers.md)).
+- __kernel_constraint__: Constraint function applied to
+    the `kernel` weights matrix
+    (see [constraints](../constraints.md)).
+- __recurrent_constraint__: Constraint function applied to
+    the `recurrent_kernel` weights matrix
+    (see [constraints](../constraints.md)).
+- __bias_constraint__: Constraint function applied to the bias vector
+    (see [constraints](../constraints.md)).
+- __dropout__: Float between 0 and 1.
+    Fraction of the units to drop for
+    the linear transformation of the inputs.
+- __recurrent_dropout__: Float between 0 and 1.
+    Fraction of the units to drop for
+    the linear transformation of the recurrent state.
+- __return_sequences__: Boolean. Whether to return the last output
+    in the output sequence, or the full sequence.
+- __return_state__: Boolean. Whether to return the last state
+    in addition to the output.
+- __go_backwards__: Boolean (default False).
+    If True, process the input sequence backwards and return the
+    reversed sequence.
+- __stateful__: Boolean (default False). If True, the last state
+    for each sample at index i in a batch will be used as initial
+    state for the sample of index i in the following batch.
+- __unroll__: Boolean (default False).
+    If True, the network will be unrolled,
+    else a symbolic loop will be used.
+    Unrolling can speed-up a RNN,
+    although it tends to be more memory-intensive.
+    Unrolling is only suitable for short sequences.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L1482)</span>
@@ -336,14 +336,14 @@ __Arguments__
 __References__
 
 - [Learning Phrase Representations using RNN Encoder-Decoder for
-Statistical Machine Translation](https://arxiv.org/abs/1406.1078)
+   Statistical Machine Translation](https://arxiv.org/abs/1406.1078)
 - [On the Properties of Neural Machine Translation:
-Encoder-Decoder Approaches](https://arxiv.org/abs/1409.1259)
+   Encoder-Decoder Approaches](https://arxiv.org/abs/1409.1259)
 - [Empirical Evaluation of Gated Recurrent Neural Networks on
-Sequence Modeling](https://arxiv.org/abs/1412.3555v1)
+   Sequence Modeling](https://arxiv.org/abs/1412.3555v1)
 - [A Theoretically Grounded Application of Dropout in
-Recurrent Neural Networks](https://arxiv.org/abs/1512.05287)
-
+   Recurrent Neural Networks](https://arxiv.org/abs/1512.05287)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L2034)</span>
@@ -435,14 +435,14 @@ __Arguments__
 __References__
 
 - [Long short-term memory]
-(http://www.bioinf.jku.at/publications/older/2604.pdf)
+  (http://www.bioinf.jku.at/publications/older/2604.pdf)
 - [Learning to forget: Continual prediction with LSTM]
-(http://www.mitpressjournals.org/doi/pdf/10.1162/089976600300015015)
+  (http://www.mitpressjournals.org/doi/pdf/10.1162/089976600300015015)
 - [Supervised sequence labeling with recurrent neural networks]
-(http://www.cs.toronto.edu/~graves/preprint.pdf)
+  (http://www.cs.toronto.edu/~graves/preprint.pdf)
 - [A Theoretically Grounded Application of Dropout in
-Recurrent Neural Networks](https://arxiv.org/abs/1512.05287)
-
+   Recurrent Neural Networks](https://arxiv.org/abs/1512.05287)
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional_recurrent.py#L788)</span>
@@ -573,10 +573,87 @@ __Raises__
 __References__
 
 - [Convolutional LSTM Network: A Machine Learning Approach for
+
 Precipitation Nowcasting](http://arxiv.org/abs/1506.04214v1)
 The current implementation does not include the feedback loop on the
 cells output
+    
+----
 
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional_recurrent.py#L470)</span>
+### ConvLSTM2DCell
+
+```python
+keras.layers.ConvLSTM2DCell(filters, kernel_size, strides=(1, 1), padding='valid', data_format=None, dilation_rate=(1, 1), activation='tanh', recurrent_activation='hard_sigmoid', use_bias=True, kernel_initializer='glorot_uniform', recurrent_initializer='orthogonal', bias_initializer='zeros', unit_forget_bias=True, kernel_regularizer=None, recurrent_regularizer=None, bias_regularizer=None, kernel_constraint=None, recurrent_constraint=None, bias_constraint=None, dropout=0.0, recurrent_dropout=0.0)
+```
+
+Cell class for the ConvLSTM2D layer.
+
+__Arguments__
+
+- __filters__: Integer, the dimensionality of the output space
+    (i.e. the number of output filters in the convolution).
+- __kernel_size__: An integer or tuple/list of n integers, specifying the
+    dimensions of the convolution window.
+- __strides__: An integer or tuple/list of n integers,
+    specifying the strides of the convolution.
+    Specifying any stride value != 1 is incompatible with specifying
+    any `dilation_rate` value != 1.
+- __padding__: One of `"valid"` or `"same"` (case-insensitive).
+- __data_format__: A string,
+    one of `"channels_last"` (default) or `"channels_first"`.
+    It defaults to the `image_data_format` value found in your
+    Keras config file at `~/.keras/keras.json`.
+    If you never set it, then it will be `"channels_last"`.
+- __dilation_rate__: An integer or tuple/list of n integers, specifying
+    the dilation rate to use for dilated convolution.
+    Currently, specifying any `dilation_rate` value != 1 is
+    incompatible with specifying any `strides` value != 1.
+- __activation__: Activation function to use
+    (see [activations](../activations.md)).
+    If you don't specify anything, no activation is applied
+    (ie. "linear" activation: `a(x) = x`).
+- __recurrent_activation__: Activation function to use
+    for the recurrent step
+    (see [activations](../activations.md)).
+- __use_bias__: Boolean, whether the layer uses a bias vector.
+- __kernel_initializer__: Initializer for the `kernel` weights matrix,
+    used for the linear transformation of the inputs.
+    (see [initializers](../initializers.md)).
+- __recurrent_initializer__: Initializer for the `recurrent_kernel`
+    weights matrix,
+    used for the linear transformation of the recurrent state.
+    (see [initializers](../initializers.md)).
+- __bias_initializer__: Initializer for the bias vector
+    (see [initializers](../initializers.md)).
+- __unit_forget_bias__: Boolean.
+    If True, add 1 to the bias of the forget gate at initialization.
+    Use in combination with `bias_initializer="zeros"`.
+    This is recommended in [Jozefowicz et al.]
+    (http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf).
+- __kernel_regularizer__: Regularizer function applied to
+    the `kernel` weights matrix
+    (see [regularizer](../regularizers.md)).
+- __recurrent_regularizer__: Regularizer function applied to
+    the `recurrent_kernel` weights matrix
+    (see [regularizer](../regularizers.md)).
+- __bias_regularizer__: Regularizer function applied to the bias vector
+    (see [regularizer](../regularizers.md)).
+- __kernel_constraint__: Constraint function applied to
+    the `kernel` weights matrix
+    (see [constraints](../constraints.md)).
+- __recurrent_constraint__: Constraint function applied to
+    the `recurrent_kernel` weights matrix
+    (see [constraints](../constraints.md)).
+- __bias_constraint__: Constraint function applied to the bias vector
+    (see [constraints](../constraints.md)).
+- __dropout__: Float between 0 and 1.
+    Fraction of the units to drop for
+    the linear transformation of the inputs.
+- __recurrent_dropout__: Float between 0 and 1.
+    Fraction of the units to drop for
+    the linear transformation of the recurrent state.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L779)</span>
@@ -590,45 +667,45 @@ Cell class for SimpleRNN.
 
 __Arguments__
 
-units: Positive integer, dimensionality of the output space.
-activation: Activation function to use
-(see [activations](../activations.md)).
-Default: hyperbolic tangent (`tanh`).
-If you pass `None`, no activation is applied
-(ie. "linear" activation: `a(x) = x`).
-use_bias: Boolean, whether the layer uses a bias vector.
-kernel_initializer: Initializer for the `kernel` weights matrix,
-used for the linear transformation of the inputs
-(see [initializers](../initializers.md)).
-recurrent_initializer: Initializer for the `recurrent_kernel`
-weights matrix,
-used for the linear transformation of the recurrent state
-(see [initializers](../initializers.md)).
-bias_initializer: Initializer for the bias vector
-(see [initializers](../initializers.md)).
-kernel_regularizer: Regularizer function applied to
-the `kernel` weights matrix
-(see [regularizer](../regularizers.md)).
-recurrent_regularizer: Regularizer function applied to
-the `recurrent_kernel` weights matrix
-(see [regularizer](../regularizers.md)).
-bias_regularizer: Regularizer function applied to the bias vector
-(see [regularizer](../regularizers.md)).
-kernel_constraint: Constraint function applied to
-the `kernel` weights matrix
-(see [constraints](../constraints.md)).
-recurrent_constraint: Constraint function applied to
-the `recurrent_kernel` weights matrix
-(see [constraints](../constraints.md)).
-bias_constraint: Constraint function applied to the bias vector
-(see [constraints](../constraints.md)).
-dropout: Float between 0 and 1.
-Fraction of the units to drop for
-the linear transformation of the inputs.
-recurrent_dropout: Float between 0 and 1.
-Fraction of the units to drop for
-the linear transformation of the recurrent state.
-
+- __units__: Positive integer, dimensionality of the output space.
+- __activation__: Activation function to use
+    (see [activations](../activations.md)).
+    Default: hyperbolic tangent (`tanh`).
+    If you pass `None`, no activation is applied
+    (ie. "linear" activation: `a(x) = x`).
+- __use_bias__: Boolean, whether the layer uses a bias vector.
+- __kernel_initializer__: Initializer for the `kernel` weights matrix,
+    used for the linear transformation of the inputs
+    (see [initializers](../initializers.md)).
+- __recurrent_initializer__: Initializer for the `recurrent_kernel`
+    weights matrix,
+    used for the linear transformation of the recurrent state
+    (see [initializers](../initializers.md)).
+- __bias_initializer__: Initializer for the bias vector
+    (see [initializers](../initializers.md)).
+- __kernel_regularizer__: Regularizer function applied to
+    the `kernel` weights matrix
+    (see [regularizer](../regularizers.md)).
+- __recurrent_regularizer__: Regularizer function applied to
+    the `recurrent_kernel` weights matrix
+    (see [regularizer](../regularizers.md)).
+- __bias_regularizer__: Regularizer function applied to the bias vector
+    (see [regularizer](../regularizers.md)).
+- __kernel_constraint__: Constraint function applied to
+    the `kernel` weights matrix
+    (see [constraints](../constraints.md)).
+- __recurrent_constraint__: Constraint function applied to
+    the `recurrent_kernel` weights matrix
+    (see [constraints](../constraints.md)).
+- __bias_constraint__: Constraint function applied to the bias vector
+    (see [constraints](../constraints.md)).
+- __dropout__: Float between 0 and 1.
+    Fraction of the units to drop for
+    the linear transformation of the inputs.
+- __recurrent_dropout__: Float between 0 and 1.
+    Fraction of the units to drop for
+    the linear transformation of the recurrent state.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L1163)</span>
@@ -642,60 +719,60 @@ Cell class for the GRU layer.
 
 __Arguments__
 
-units: Positive integer, dimensionality of the output space.
-activation: Activation function to use
-(see [activations](../activations.md)).
-Default: hyperbolic tangent (`tanh`).
-If you pass `None`, no activation is applied
-(ie. "linear" activation: `a(x) = x`).
-recurrent_activation: Activation function to use
-for the recurrent step
-(see [activations](../activations.md)).
-Default: hard sigmoid (`hard_sigmoid`).
-If you pass `None`, no activation is applied
-(ie. "linear" activation: `a(x) = x`).
-use_bias: Boolean, whether the layer uses a bias vector.
-kernel_initializer: Initializer for the `kernel` weights matrix,
-used for the linear transformation of the inputs
-(see [initializers](../initializers.md)).
-recurrent_initializer: Initializer for the `recurrent_kernel`
-weights matrix,
-used for the linear transformation of the recurrent state
-(see [initializers](../initializers.md)).
-bias_initializer: Initializer for the bias vector
-(see [initializers](../initializers.md)).
-kernel_regularizer: Regularizer function applied to
-the `kernel` weights matrix
-(see [regularizer](../regularizers.md)).
-recurrent_regularizer: Regularizer function applied to
-the `recurrent_kernel` weights matrix
-(see [regularizer](../regularizers.md)).
-bias_regularizer: Regularizer function applied to the bias vector
-(see [regularizer](../regularizers.md)).
-kernel_constraint: Constraint function applied to
-the `kernel` weights matrix
-(see [constraints](../constraints.md)).
-recurrent_constraint: Constraint function applied to
-the `recurrent_kernel` weights matrix
-(see [constraints](../constraints.md)).
-bias_constraint: Constraint function applied to the bias vector
-(see [constraints](../constraints.md)).
-dropout: Float between 0 and 1.
-Fraction of the units to drop for
-the linear transformation of the inputs.
-recurrent_dropout: Float between 0 and 1.
-Fraction of the units to drop for
-the linear transformation of the recurrent state.
-implementation: Implementation mode, either 1 or 2.
-Mode 1 will structure its operations as a larger number of
-smaller dot products and additions, whereas mode 2 will
-batch them into fewer, larger operations. These modes will
-have different performance profiles on different hardware and
-for different applications.
-reset_after: GRU convention (whether to apply reset gate after or
-before matrix multiplication). False = "before" (default),
-True = "after" (CuDNN compatible).
-
+- __units__: Positive integer, dimensionality of the output space.
+- __activation__: Activation function to use
+    (see [activations](../activations.md)).
+    Default: hyperbolic tangent (`tanh`).
+    If you pass `None`, no activation is applied
+    (ie. "linear" activation: `a(x) = x`).
+- __recurrent_activation__: Activation function to use
+    for the recurrent step
+    (see [activations](../activations.md)).
+    Default: hard sigmoid (`hard_sigmoid`).
+    If you pass `None`, no activation is applied
+    (ie. "linear" activation: `a(x) = x`).
+- __use_bias__: Boolean, whether the layer uses a bias vector.
+- __kernel_initializer__: Initializer for the `kernel` weights matrix,
+    used for the linear transformation of the inputs
+    (see [initializers](../initializers.md)).
+- __recurrent_initializer__: Initializer for the `recurrent_kernel`
+    weights matrix,
+    used for the linear transformation of the recurrent state
+    (see [initializers](../initializers.md)).
+- __bias_initializer__: Initializer for the bias vector
+    (see [initializers](../initializers.md)).
+- __kernel_regularizer__: Regularizer function applied to
+    the `kernel` weights matrix
+    (see [regularizer](../regularizers.md)).
+- __recurrent_regularizer__: Regularizer function applied to
+    the `recurrent_kernel` weights matrix
+    (see [regularizer](../regularizers.md)).
+- __bias_regularizer__: Regularizer function applied to the bias vector
+    (see [regularizer](../regularizers.md)).
+- __kernel_constraint__: Constraint function applied to
+    the `kernel` weights matrix
+    (see [constraints](../constraints.md)).
+- __recurrent_constraint__: Constraint function applied to
+    the `recurrent_kernel` weights matrix
+    (see [constraints](../constraints.md)).
+- __bias_constraint__: Constraint function applied to the bias vector
+    (see [constraints](../constraints.md)).
+- __dropout__: Float between 0 and 1.
+    Fraction of the units to drop for
+    the linear transformation of the inputs.
+- __recurrent_dropout__: Float between 0 and 1.
+    Fraction of the units to drop for
+    the linear transformation of the recurrent state.
+- __implementation__: Implementation mode, either 1 or 2.
+    Mode 1 will structure its operations as a larger number of
+    smaller dot products and additions, whereas mode 2 will
+    batch them into fewer, larger operations. These modes will
+    have different performance profiles on different hardware and
+    for different applications.
+- __reset_after__: GRU convention (whether to apply reset gate after or
+    before matrix multiplication). False = "before" (default),
+    True = "after" (CuDNN compatible).
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L1756)</span>
@@ -709,62 +786,62 @@ Cell class for the LSTM layer.
 
 __Arguments__
 
-units: Positive integer, dimensionality of the output space.
-activation: Activation function to use
-(see [activations](../activations.md)).
-Default: hyperbolic tangent (`tanh`).
-If you pass `None`, no activation is applied
-(ie. "linear" activation: `a(x) = x`).
-recurrent_activation: Activation function to use
-for the recurrent step
-(see [activations](../activations.md)).
-Default: hard sigmoid (`hard_sigmoid`).
-If you pass `None`, no activation is applied
-(ie. "linear" activation: `a(x) = x`).x
-use_bias: Boolean, whether the layer uses a bias vector.
-kernel_initializer: Initializer for the `kernel` weights matrix,
-used for the linear transformation of the inputs
-(see [initializers](../initializers.md)).
-recurrent_initializer: Initializer for the `recurrent_kernel`
-weights matrix,
-used for the linear transformation of the recurrent state
-(see [initializers](../initializers.md)).
-bias_initializer: Initializer for the bias vector
-(see [initializers](../initializers.md)).
-unit_forget_bias: Boolean.
-If True, add 1 to the bias of the forget gate at initialization.
-Setting it to true will also force `bias_initializer="zeros"`.
-This is recommended in [Jozefowicz et al.]
-(http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf).
-kernel_regularizer: Regularizer function applied to
-the `kernel` weights matrix
-(see [regularizer](../regularizers.md)).
-recurrent_regularizer: Regularizer function applied to
-the `recurrent_kernel` weights matrix
-(see [regularizer](../regularizers.md)).
-bias_regularizer: Regularizer function applied to the bias vector
-(see [regularizer](../regularizers.md)).
-kernel_constraint: Constraint function applied to
-the `kernel` weights matrix
-(see [constraints](../constraints.md)).
-recurrent_constraint: Constraint function applied to
-the `recurrent_kernel` weights matrix
-(see [constraints](../constraints.md)).
-bias_constraint: Constraint function applied to the bias vector
-(see [constraints](../constraints.md)).
-dropout: Float between 0 and 1.
-Fraction of the units to drop for
-the linear transformation of the inputs.
-recurrent_dropout: Float between 0 and 1.
-Fraction of the units to drop for
-the linear transformation of the recurrent state.
-implementation: Implementation mode, either 1 or 2.
-Mode 1 will structure its operations as a larger number of
-smaller dot products and additions, whereas mode 2 will
-batch them into fewer, larger operations. These modes will
-have different performance profiles on different hardware and
-for different applications.
-
+- __units__: Positive integer, dimensionality of the output space.
+- __activation__: Activation function to use
+    (see [activations](../activations.md)).
+    Default: hyperbolic tangent (`tanh`).
+    If you pass `None`, no activation is applied
+    (ie. "linear" activation: `a(x) = x`).
+- __recurrent_activation__: Activation function to use
+    for the recurrent step
+    (see [activations](../activations.md)).
+    Default: hard sigmoid (`hard_sigmoid`).
+    If you pass `None`, no activation is applied
+    (ie. "linear" activation: `a(x) = x`).x
+- __use_bias__: Boolean, whether the layer uses a bias vector.
+- __kernel_initializer__: Initializer for the `kernel` weights matrix,
+    used for the linear transformation of the inputs
+    (see [initializers](../initializers.md)).
+- __recurrent_initializer__: Initializer for the `recurrent_kernel`
+    weights matrix,
+    used for the linear transformation of the recurrent state
+    (see [initializers](../initializers.md)).
+- __bias_initializer__: Initializer for the bias vector
+    (see [initializers](../initializers.md)).
+- __unit_forget_bias__: Boolean.
+    If True, add 1 to the bias of the forget gate at initialization.
+    Setting it to true will also force `bias_initializer="zeros"`.
+    This is recommended in [Jozefowicz et al.]
+    (http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf).
+- __kernel_regularizer__: Regularizer function applied to
+    the `kernel` weights matrix
+    (see [regularizer](../regularizers.md)).
+- __recurrent_regularizer__: Regularizer function applied to
+    the `recurrent_kernel` weights matrix
+    (see [regularizer](../regularizers.md)).
+- __bias_regularizer__: Regularizer function applied to the bias vector
+    (see [regularizer](../regularizers.md)).
+- __kernel_constraint__: Constraint function applied to
+    the `kernel` weights matrix
+    (see [constraints](../constraints.md)).
+- __recurrent_constraint__: Constraint function applied to
+    the `recurrent_kernel` weights matrix
+    (see [constraints](../constraints.md)).
+- __bias_constraint__: Constraint function applied to the bias vector
+    (see [constraints](../constraints.md)).
+- __dropout__: Float between 0 and 1.
+    Fraction of the units to drop for
+    the linear transformation of the inputs.
+- __recurrent_dropout__: Float between 0 and 1.
+    Fraction of the units to drop for
+    the linear transformation of the recurrent state.
+- __implementation__: Implementation mode, either 1 or 2.
+    Mode 1 will structure its operations as a larger number of
+    smaller dot products and additions, whereas mode 2 will
+    batch them into fewer, larger operations. These modes will
+    have different performance profiles on different hardware and
+    for different applications.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/cudnn_recurrent.py#L135)</span>
@@ -780,43 +857,43 @@ Can only be run on GPU, with the TensorFlow backend.
 
 __Arguments__
 
-units: Positive integer, dimensionality of the output space.
-kernel_initializer: Initializer for the `kernel` weights matrix,
-used for the linear transformation of the inputs.
-(see [initializers](../initializers.md)).
-recurrent_initializer: Initializer for the `recurrent_kernel`
-weights matrix,
-used for the linear transformation of the recurrent state.
-(see [initializers](../initializers.md)).
-bias_initializer: Initializer for the bias vector
-(see [initializers](../initializers.md)).
-kernel_regularizer: Regularizer function applied to
-the `kernel` weights matrix
-(see [regularizer](../regularizers.md)).
-recurrent_regularizer: Regularizer function applied to
-the `recurrent_kernel` weights matrix
-(see [regularizer](../regularizers.md)).
-bias_regularizer: Regularizer function applied to the bias vector
-(see [regularizer](../regularizers.md)).
-activity_regularizer: Regularizer function applied to
-the output of the layer (its "activation").
-(see [regularizer](../regularizers.md)).
-kernel_constraint: Constraint function applied to
-the `kernel` weights matrix
-(see [constraints](../constraints.md)).
-recurrent_constraint: Constraint function applied to
-the `recurrent_kernel` weights matrix
-(see [constraints](../constraints.md)).
-bias_constraint: Constraint function applied to the bias vector
-(see [constraints](../constraints.md)).
-return_sequences: Boolean. Whether to return the last output.
-in the output sequence, or the full sequence.
-return_state: Boolean. Whether to return the last state
-in addition to the output.
-stateful: Boolean (default False). If True, the last state
-for each sample at index i in a batch will be used as initial
-state for the sample of index i in the following batch.
-
+- __units__: Positive integer, dimensionality of the output space.
+- __kernel_initializer__: Initializer for the `kernel` weights matrix,
+    used for the linear transformation of the inputs.
+    (see [initializers](../initializers.md)).
+- __recurrent_initializer__: Initializer for the `recurrent_kernel`
+    weights matrix,
+    used for the linear transformation of the recurrent state.
+    (see [initializers](../initializers.md)).
+- __bias_initializer__: Initializer for the bias vector
+    (see [initializers](../initializers.md)).
+- __kernel_regularizer__: Regularizer function applied to
+    the `kernel` weights matrix
+    (see [regularizer](../regularizers.md)).
+- __recurrent_regularizer__: Regularizer function applied to
+    the `recurrent_kernel` weights matrix
+    (see [regularizer](../regularizers.md)).
+- __bias_regularizer__: Regularizer function applied to the bias vector
+    (see [regularizer](../regularizers.md)).
+- __activity_regularizer__: Regularizer function applied to
+    the output of the layer (its "activation").
+    (see [regularizer](../regularizers.md)).
+- __kernel_constraint__: Constraint function applied to
+    the `kernel` weights matrix
+    (see [constraints](../constraints.md)).
+- __recurrent_constraint__: Constraint function applied to
+    the `recurrent_kernel` weights matrix
+    (see [constraints](../constraints.md)).
+- __bias_constraint__: Constraint function applied to the bias vector
+    (see [constraints](../constraints.md)).
+- __return_sequences__: Boolean. Whether to return the last output.
+    in the output sequence, or the full sequence.
+- __return_state__: Boolean. Whether to return the last state
+    in addition to the output.
+- __stateful__: Boolean (default False). If True, the last state
+    for each sample at index i in a batch will be used as initial
+    state for the sample of index i in the following batch.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/cudnn_recurrent.py#L328)</span>
@@ -832,44 +909,45 @@ Can only be run on GPU, with the TensorFlow backend.
 
 __Arguments__
 
-units: Positive integer, dimensionality of the output space.
-kernel_initializer: Initializer for the `kernel` weights matrix,
-used for the linear transformation of the inputs.
-(see [initializers](../initializers.md)).
-unit_forget_bias: Boolean.
-If True, add 1 to the bias of the forget gate at initialization.
-Setting it to true will also force `bias_initializer="zeros"`.
-This is recommended in [Jozefowicz et al.]
-(http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf).
-recurrent_initializer: Initializer for the `recurrent_kernel`
-weights matrix,
-used for the linear transformation of the recurrent state.
-(see [initializers](../initializers.md)).
-bias_initializer: Initializer for the bias vector
-(see [initializers](../initializers.md)).
-kernel_regularizer: Regularizer function applied to
-the `kernel` weights matrix
-(see [regularizer](../regularizers.md)).
-recurrent_regularizer: Regularizer function applied to
-the `recurrent_kernel` weights matrix
-(see [regularizer](../regularizers.md)).
-bias_regularizer: Regularizer function applied to the bias vector
-(see [regularizer](../regularizers.md)).
-activity_regularizer: Regularizer function applied to
-the output of the layer (its "activation").
-(see [regularizer](../regularizers.md)).
-kernel_constraint: Constraint function applied to
-the `kernel` weights matrix
-(see [constraints](../constraints.md)).
-recurrent_constraint: Constraint function applied to
-the `recurrent_kernel` weights matrix
-(see [constraints](../constraints.md)).
-bias_constraint: Constraint function applied to the bias vector
-(see [constraints](../constraints.md)).
-return_sequences: Boolean. Whether to return the last output.
-in the output sequence, or the full sequence.
-return_state: Boolean. Whether to return the last state
-in addition to the output.
-stateful: Boolean (default False). If True, the last state
-for each sample at index i in a batch will be used as initial
-state for the sample of index i in the following batch.
+- __units__: Positive integer, dimensionality of the output space.
+- __kernel_initializer__: Initializer for the `kernel` weights matrix,
+    used for the linear transformation of the inputs.
+    (see [initializers](../initializers.md)).
+- __unit_forget_bias__: Boolean.
+    If True, add 1 to the bias of the forget gate at initialization.
+    Setting it to true will also force `bias_initializer="zeros"`.
+    This is recommended in [Jozefowicz et al.]
+    (http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf).
+- __recurrent_initializer__: Initializer for the `recurrent_kernel`
+    weights matrix,
+    used for the linear transformation of the recurrent state.
+    (see [initializers](../initializers.md)).
+- __bias_initializer__: Initializer for the bias vector
+    (see [initializers](../initializers.md)).
+- __kernel_regularizer__: Regularizer function applied to
+    the `kernel` weights matrix
+    (see [regularizer](../regularizers.md)).
+- __recurrent_regularizer__: Regularizer function applied to
+    the `recurrent_kernel` weights matrix
+    (see [regularizer](../regularizers.md)).
+- __bias_regularizer__: Regularizer function applied to the bias vector
+    (see [regularizer](../regularizers.md)).
+- __activity_regularizer__: Regularizer function applied to
+    the output of the layer (its "activation").
+    (see [regularizer](../regularizers.md)).
+- __kernel_constraint__: Constraint function applied to
+    the `kernel` weights matrix
+    (see [constraints](../constraints.md)).
+- __recurrent_constraint__: Constraint function applied to
+    the `recurrent_kernel` weights matrix
+    (see [constraints](../constraints.md)).
+- __bias_constraint__: Constraint function applied to the bias vector
+    (see [constraints](../constraints.md)).
+- __return_sequences__: Boolean. Whether to return the last output.
+    in the output sequence, or the full sequence.
+- __return_state__: Boolean. Whether to return the last state
+    in addition to the output.
+- __stateful__: Boolean (default False). If True, the last state
+    for each sample at index i in a batch will be used as initial
+    state for the sample of index i in the following batch.
+    

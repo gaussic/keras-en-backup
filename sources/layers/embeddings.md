@@ -66,4 +66,5 @@ __Output shape__
 __References__
 
 - [A Theoretically Grounded Application of Dropout in
-Recurrent Neural Networks](http://arxiv.org/abs/1512.05287)
+   Recurrent Neural Networks](http://arxiv.org/abs/1512.05287)
+    

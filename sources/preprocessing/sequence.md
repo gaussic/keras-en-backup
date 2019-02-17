@@ -68,7 +68,7 @@ assert np.array_equal(x,
 assert np.array_equal(y,
                       np.array([[10], [11]]))
 ```
-
+    
 ----
 
 ### pad_sequences
@@ -116,9 +116,9 @@ __Returns__
 
 __Raises__
 
-ValueError: In case of invalid values for `truncating` or `padding`,
-or in case of invalid shape for a `sequences` entry.
-
+- __ValueError__: In case of invalid values for `truncating` or `padding`,
+    or in case of invalid shape for a `sequences` entry.
+    
 ----
 
 ### skipgrams
@@ -173,7 +173,7 @@ __Note__
 
 By convention, index 0 in the vocabulary is
 a non-word and will be skipped.
-
+    
 ----
 
 ### make_sampling_table
@@ -214,3 +214,4 @@ __Returns__
 
 A 1D Numpy array of length `size` where the ith entry
 is the probability that a word of rank i should be sampled.
+    

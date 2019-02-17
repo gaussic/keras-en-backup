@@ -14,6 +14,44 @@ model.add(Dense(64,
 
 The following built-in initializers are available as part of the `keras.initializers` module:
 
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L66)</span>
+### RandomNormal
+
+```python
+keras.initializers.RandomNormal(mean=0.0, stddev=0.05, seed=None)
+```
+
+Initializer that generates tensors with a normal distribution.
+
+__Arguments__
+
+- __mean__: a python scalar or a scalar tensor. Mean of the random values
+  to generate.
+- __stddev__: a python scalar or a scalar tensor. Standard deviation of the
+  random values to generate.
+- __seed__: A Python integer. Used to seed the random generator.
+    
+----
+
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L94)</span>
+### RandomUniform
+
+```python
+keras.initializers.RandomUniform(minval=-0.05, maxval=0.05, seed=None)
+```
+
+Initializer that generates tensors with a uniform distribution.
+
+__Arguments__
+
+- __minval__: A python scalar or a scalar tensor. Lower bound of the range
+  of random values to generate.
+- __maxval__: A python scalar or a scalar tensor. Upper bound of the range
+  of random values to generate.  Defaults to 1 for float types.
+- __seed__: A Python integer. Used to seed the random generator.
+    
+----
+
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L122)</span>
 ### TruncatedNormal
 
@@ -30,12 +68,12 @@ neural network weights and filters.
 
 __Arguments__
 
-mean: a python scalar or a scalar tensor. Mean of the random values
-to generate.
-stddev: a python scalar or a scalar tensor. Standard deviation of the
-random values to generate.
-seed: A Python integer. Used to seed the random generator.
-
+- __mean__: a python scalar or a scalar tensor. Mean of the random values
+  to generate.
+- __stddev__: a python scalar or a scalar tensor. Standard deviation of the
+  random values to generate.
+- __seed__: A Python integer. Used to seed the random generator.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L14)</span>
@@ -82,46 +120,8 @@ Initializer that generates tensors initialized to a constant value.
 
 __Arguments__
 
-value: float; the value of the generator tensors.
-
-----
-
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L66)</span>
-### RandomNormal
-
-```python
-keras.initializers.RandomNormal(mean=0.0, stddev=0.05, seed=None)
-```
-
-Initializer that generates tensors with a normal distribution.
-
-__Arguments__
-
-mean: a python scalar or a scalar tensor. Mean of the random values
-to generate.
-stddev: a python scalar or a scalar tensor. Standard deviation of the
-random values to generate.
-seed: A Python integer. Used to seed the random generator.
-
-----
-
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L94)</span>
-### RandomUniform
-
-```python
-keras.initializers.RandomUniform(minval=-0.05, maxval=0.05, seed=None)
-```
-
-Initializer that generates tensors with a uniform distribution.
-
-__Arguments__
-
-minval: A python scalar or a scalar tensor. Lower bound of the range
-of random values to generate.
-maxval: A python scalar or a scalar tensor. Upper bound of the range
-of random values to generate.  Defaults to 1 for float types.
-seed: A Python integer. Used to seed the random generator.
-
+- __value__: float; the value of the generator tensors.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L155)</span>
@@ -153,9 +153,9 @@ __Arguments__
 
 __Raises__
 
-ValueError: In case of an invalid value for the "scale", mode" or
-"distribution" arguments.
-
+- __ValueError__: In case of an invalid value for the "scale", mode" or
+  "distribution" arguments.
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L229)</span>
@@ -175,7 +175,7 @@ __Arguments__
 __References__
 
 Saxe et al., http://arxiv.org/abs/1312.6120
-
+    
 ----
 
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L266)</span>
@@ -193,8 +193,8 @@ multiple identity matrices are concatenated along the long side.
 
 __Arguments__
 
-gain: Multiplicative factor to apply to the identity matrix.
-
+- __gain__: Multiplicative factor to apply to the identity matrix.
+    
 ----
 
 ### lecun_uniform
@@ -222,8 +222,8 @@ An initializer.
 __References__
 
 LeCun 98, Efficient Backprop,
-http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf
-
+- __http__://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf
+    
 ----
 
 ### glorot_normal
@@ -252,8 +252,8 @@ An initializer.
 __References__
 
 Glorot & Bengio, AISTATS 2010
-http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
-
+- __http__://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
+    
 ----
 
 ### glorot_uniform
@@ -282,8 +282,8 @@ An initializer.
 __References__
 
 Glorot & Bengio, AISTATS 2010
-http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
-
+- __http__://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
+    
 ----
 
 ### he_normal
@@ -311,7 +311,7 @@ An initializer.
 __References__
 
 He et al., http://arxiv.org/abs/1502.01852
-
+    
 ----
 
 ### lecun_normal
@@ -340,7 +340,7 @@ __References__
 
 - [Self-Normalizing Neural Networks](https://arxiv.org/abs/1706.02515)
 - [Efficient Backprop](http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf)
-
+    
 ----
 
 ### he_uniform
@@ -368,7 +368,7 @@ An initializer.
 __References__
 
 He et al., http://arxiv.org/abs/1502.01852
-
+    
 
 
 An initializer may be passed as a string (must match one of the available initializers above), or as a callable:

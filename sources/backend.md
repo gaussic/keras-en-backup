@@ -2,7 +2,7 @@
 
 ## What is a "backend"?
 
-Keras is a model-level library, providing high-level building blocks for developing deep learning models. It does not handle itself low-level operations such as tensor products, convolutions and so on. Instead, it relies on a specialized, well-optimized tensor manipulation library to do so, serving as the "backend engine" of Keras. Rather than picking one single tensor library and making the implementation of Keras tied to that library, Keras handles the problem in a modular way, and several different backend engines can be plugged seamlessly into Keras.
+Keras is a model-level library, providing high-level building blocks for developing deep learning models. It does not handle low-level operations such as tensor products, convolutions and so on itself. Instead, it relies on a specialized, well optimized tensor manipulation library to do so, serving as the "backend engine" of Keras. Rather than picking one single tensor library and making the implementation of Keras tied to that library, Keras handles the problem in a modular way, and several different backend engines can be plugged seamlessly into Keras.
 
 At this time, Keras has three backend implementations available: the **TensorFlow** backend, the **Theano** backend, and the **CNTK** backend.
 
@@ -161,7 +161,7 @@ __Example__
 >>> keras.backend.backend()
 'tensorflow'
 ```
-
+    
 ----
 
 ### epsilon
@@ -184,7 +184,7 @@ __Example__
 >>> keras.backend.epsilon()
 1e-07
 ```
-
+    
 ----
 
 ### set_epsilon
@@ -211,7 +211,7 @@ __Example__
 >>> K.epsilon()
 1e-05
 ```
-
+    
 ----
 
 ### floatx
@@ -235,7 +235,7 @@ __Example__
 >>> keras.backend.floatx()
 'float32'
 ```
-
+    
 ----
 
 ### set_floatx
@@ -262,7 +262,7 @@ __Example__
 >>> K.floatx()
 'float16'
 ```
-
+    
 ----
 
 ### cast_to_floatx
@@ -298,7 +298,7 @@ array([ 1.,  2.], dtype=float32)
 >>> new_arr.dtype
 dtype('float32')
 ```
-
+    
 ----
 
 ### image_data_format
@@ -321,7 +321,7 @@ __Example__
 >>> keras.backend.image_data_format()
 'channels_first'
 ```
-
+    
 ----
 
 ### set_image_data_format
@@ -348,7 +348,7 @@ __Example__
 >>> K.image_data_format()
 'channels_last'
 ```
-
+    
 ----
 
 ### get_uid
@@ -368,7 +368,7 @@ __Arguments__
 __Returns__
 
 A unique identifier for the graph.
-
+    
 ----
 
 ### reset_uids
@@ -415,8 +415,8 @@ the user should handle the initialization
 
 __Arguments__
 
-value: Python boolean.
-
+- __value__: Python boolean.
+    
 ----
 
 ### learning_phase
@@ -436,7 +436,7 @@ that uses a different behavior at train time and test time.
 __Returns__
 
 Learning phase (scalar integer tensor or Python integer).
-
+    
 ----
 
 ### set_learning_phase
@@ -455,8 +455,8 @@ __Arguments__
 
 __Raises__
 
-ValueError: if `value` is neither `0` nor `1`.
-
+- __ValueError__: if `value` is neither `0` nor `1`.
+    
 ----
 
 ### is_sparse
@@ -488,7 +488,7 @@ False
 >>> print(K.is_sparse(b))
 True
 ```
-
+    
 ----
 
 ### to_dense
@@ -520,7 +520,7 @@ True
 >>> print(K.is_sparse(c))
 False
 ```
-
+    
 ----
 
 ### variable
@@ -559,7 +559,7 @@ example_var
 array([[ 1.,  2.],
        [ 3.,  4.]])
 ```
-
+    
 ----
 
 ### constant
@@ -582,7 +582,7 @@ __Arguments__
 __Returns__
 
 A Constant Tensor.
-
+    
 ----
 
 ### is_keras_tensor
@@ -634,7 +634,7 @@ True
 >>> K.is_keras_tensor(keras_layer_output) # Any Keras layer output is a Keras tensor.
 True
 ```
-
+    
 ----
 
 ### is_tensor
@@ -681,7 +681,7 @@ __Examples__
 >>> input_ph
 <tf.Tensor 'Placeholder_4:0' shape=(2, 4, 5) dtype=float32>
 ```
-
+    
 ----
 
 ### is_placeholder
@@ -701,7 +701,7 @@ __Arguments__
 __Returns__
 
 Boolean.
-
+    
 ----
 
 ### shape
@@ -741,7 +741,7 @@ array([2, 2], dtype=int32)
 >>> K.shape(inputs).eval(session=tf_session)
 array([2, 4, 5], dtype=int32)
 ```
-
+    
 ----
 
 ### int_shape
@@ -774,7 +774,7 @@ __Examples__
 >>> K.int_shape(kvar)
 (2, 2)
 ```
-
+    
 ----
 
 ### ndim
@@ -807,7 +807,7 @@ __Examples__
 >>> K.ndim(kvar)
 2
 ```
-
+    
 ----
 
 ### dtype
@@ -846,7 +846,7 @@ __Examples__
 >>> K.dtype(kvar)
 'float32_ref'
 ```
-
+    
 ----
 
 ### eval
@@ -876,7 +876,7 @@ __Examples__
 array([[ 1.,  2.],
        [ 3.,  4.]], dtype=float32)
 ```
-
+    
 ----
 
 ### zeros
@@ -911,7 +911,7 @@ array([[ 0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  0.]], dtype=float32)
 ```
-
+    
 ----
 
 ### ones
@@ -946,7 +946,7 @@ array([[ 1.,  1.,  1.,  1.],
        [ 1.,  1.,  1.,  1.],
        [ 1.,  1.,  1.,  1.]], dtype=float32)
 ```
-
+    
 ----
 
 ### eye
@@ -1014,7 +1014,7 @@ __Example__
 array([[ 0.,  0.,  0.],
        [ 0.,  0.,  0.]], dtype=float32)
 ```
-
+    
 ----
 
 ### ones_like
@@ -1048,7 +1048,7 @@ __Example__
 array([[ 1.,  1.,  1.],
        [ 1.,  1.,  1.]], dtype=float32)
 ```
-
+    
 ----
 
 ### identity
@@ -1069,7 +1069,7 @@ __Arguments__
 __Returns__
 
 A tensor of the same shape, type and content.
-
+    
 ----
 
 ### random_uniform_variable
@@ -1106,7 +1106,7 @@ __Example__
 array([[ 0.10940075,  0.10047495,  0.476143  ],
        [ 0.66137183,  0.00869417,  0.89220798]], dtype=float32)
 ```
-
+    
 ----
 
 ### random_normal_variable
@@ -1143,7 +1143,7 @@ __Example__
 array([[ 1.19591331,  0.68685907, -0.63814116],
        [ 0.92629528,  0.28055015,  1.70484698]], dtype=float32)
 ```
-
+    
 ----
 
 ### count_params
@@ -1175,7 +1175,7 @@ __Example__
 array([[ 0.,  0.,  0.],
        [ 0.,  0.,  0.]], dtype=float32)
 ```
-
+    
 ----
 
 ### cast
@@ -1216,7 +1216,7 @@ __Example__
 >>> input
 <tf.Tensor 'Cast_2:0' shape=(2, 3) dtype=float16>
 ```
-
+    
 ----
 
 ### update
@@ -1237,7 +1237,7 @@ __Arguments__
 __Returns__
 
 The variable `x` updated.
-
+    
 ----
 
 ### update_add
@@ -1258,7 +1258,7 @@ __Arguments__
 __Returns__
 
 The variable `x` updated.
-
+    
 ----
 
 ### update_sub
@@ -1279,7 +1279,7 @@ __Arguments__
 __Returns__
 
 The variable `x` updated.
-
+    
 ----
 
 ### moving_average_update
@@ -1301,7 +1301,7 @@ __Arguments__
 __Returns__
 
 An operation to update the variable.
-
+    
 ----
 
 ### dot
@@ -1483,7 +1483,7 @@ __Arguments__
 __Returns__
 
 A tensor of same type as `reference`.
-
+    
 ----
 
 ### max
@@ -1510,7 +1510,7 @@ __Arguments__
 __Returns__
 
 A tensor with maximum values of `x`.
-
+    
 ----
 
 ### min
@@ -1537,7 +1537,7 @@ __Arguments__
 __Returns__
 
 A tensor with miminum values of `x`.
-
+    
 ----
 
 ### sum
@@ -1564,7 +1564,7 @@ __Arguments__
 __Returns__
 
 A tensor with sum of `x`.
-
+    
 ----
 
 ### prod
@@ -1591,7 +1591,7 @@ __Arguments__
 __Returns__
 
 A tensor with the product of elements of `x`.
-
+    
 ----
 
 ### cumsum
@@ -1612,7 +1612,7 @@ __Arguments__
 __Returns__
 
 A tensor of the cumulative sum of values of `x` along `axis`.
-
+    
 ----
 
 ### cumprod
@@ -1633,7 +1633,7 @@ __Arguments__
 __Returns__
 
 A tensor of the cumulative product of values of `x` along `axis`.
-
+    
 ----
 
 ### var
@@ -1660,7 +1660,7 @@ __Arguments__
 __Returns__
 
 A tensor with the variance of elements of `x`.
-
+    
 ----
 
 ### std
@@ -1687,7 +1687,7 @@ __Arguments__
 __Returns__
 
 A tensor with the standard deviation of elements of `x`.
-
+    
 ----
 
 ### mean
@@ -1714,7 +1714,7 @@ __Arguments__
 __Returns__
 
 A tensor with the mean of elements of `x`.
-
+    
 ----
 
 ### any
@@ -1738,7 +1738,7 @@ __Arguments__
 __Returns__
 
 A uint8 tensor (0s and 1s).
-
+    
 ----
 
 ### all
@@ -1762,7 +1762,7 @@ __Arguments__
 __Returns__
 
 A uint8 tensor (0s and 1s).
-
+    
 ----
 
 ### argmax
@@ -1783,7 +1783,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### argmin
@@ -1804,7 +1804,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### square
@@ -1824,7 +1824,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### abs
@@ -1844,7 +1844,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### sqrt
@@ -1864,7 +1864,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### exp
@@ -1884,7 +1884,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### log
@@ -1904,7 +1904,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### logsumexp
@@ -1935,7 +1935,7 @@ __Arguments__
 __Returns__
 
 The reduced tensor.
-
+    
 ----
 
 ### round
@@ -1957,7 +1957,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### sign
@@ -1977,7 +1977,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### pow
@@ -1998,7 +1998,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### clip
@@ -2020,7 +2020,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### equal
@@ -2041,7 +2041,7 @@ __Arguments__
 __Returns__
 
 A bool tensor.
-
+    
 ----
 
 ### not_equal
@@ -2062,7 +2062,7 @@ __Arguments__
 __Returns__
 
 A bool tensor.
-
+    
 ----
 
 ### greater
@@ -2083,7 +2083,7 @@ __Arguments__
 __Returns__
 
 A bool tensor.
-
+    
 ----
 
 ### greater_equal
@@ -2104,7 +2104,7 @@ __Arguments__
 __Returns__
 
 A bool tensor.
-
+    
 ----
 
 ### less
@@ -2125,7 +2125,7 @@ __Arguments__
 __Returns__
 
 A bool tensor.
-
+    
 ----
 
 ### less_equal
@@ -2146,7 +2146,7 @@ __Arguments__
 __Returns__
 
 A bool tensor.
-
+    
 ----
 
 ### maximum
@@ -2167,7 +2167,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### minimum
@@ -2188,7 +2188,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### sin
@@ -2208,7 +2208,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### cos
@@ -2228,7 +2228,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### normalize_batch_in_training
@@ -2253,7 +2253,7 @@ __Arguments__
 __Returns__
 
 A tuple length of 3, `(normalized_tensor, mean, variance)`.
-
+    
 ----
 
 ### batch_normalization
@@ -2283,7 +2283,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### concatenate
@@ -2304,7 +2304,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### reshape
@@ -2325,7 +2325,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### permute_dimensions
@@ -2347,7 +2347,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### resize_images
@@ -2374,8 +2374,8 @@ A tensor.
 
 __Raises__
 
-ValueError: if `data_format` is neither `"channels_last"` or `"channels_first"`.
-
+- __ValueError__: if `data_format` is neither `"channels_last"` or `"channels_first"`.
+    
 ----
 
 ### resize_volumes
@@ -2402,8 +2402,8 @@ A tensor.
 
 __Raises__
 
-ValueError: if `data_format` is neither `"channels_last"` or `"channels_first"`.
-
+- __ValueError__: if `data_format` is neither `"channels_last"` or `"channels_first"`.
+    
 ----
 
 ### repeat_elements
@@ -2428,7 +2428,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### repeat
@@ -2452,7 +2452,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### arange
@@ -2505,7 +2505,7 @@ __Arguments__
 __Returns__
 
 A tiled tensor.
-
+    
 ----
 
 ### flatten
@@ -2525,7 +2525,7 @@ __Arguments__
 __Returns__
 
 A tensor, reshaped into 1-D
-
+    
 ----
 
 ### batch_flatten
@@ -2547,7 +2547,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### expand_dims
@@ -2568,7 +2568,7 @@ __Arguments__
 __Returns__
 
 A tensor with expanded dimensions.
-
+    
 ----
 
 ### squeeze
@@ -2589,7 +2589,7 @@ __Arguments__
 __Returns__
 
 A tensor with the same data as `x` but reduced dimensions.
-
+    
 ----
 
 ### temporal_padding
@@ -2611,7 +2611,7 @@ __Arguments__
 __Returns__
 
 A padded 3D tensor.
-
+    
 ----
 
 ### spatial_2d_padding
@@ -2636,8 +2636,8 @@ A padded 4D tensor.
 
 __Raises__
 
-ValueError: if `data_format` is neither `"channels_last"` or `"channels_first"`.
-
+- __ValueError__: if `data_format` is neither `"channels_last"` or `"channels_first"`.
+    
 ----
 
 ### spatial_3d_padding
@@ -2693,7 +2693,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### one_hot
@@ -2716,7 +2716,7 @@ __Returns__
 
 (n + 1)D one hot representation of the input
 with shape `(batch_size, dim1, dim2, ... dim(n-1), num_classes)`
-
+    
 ----
 
 ### reverse
@@ -2738,7 +2738,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### slice
@@ -2764,9 +2764,9 @@ __Arguments__
 __Returns__
 
 Tensor `x[start[0]: start[0] + size[0],
-...,
-start[-1]: start[-1] + size[-1]]`
-
+          ...,
+          start[-1]: start[-1] + size[-1]]`
+    
 ----
 
 ### get_value
@@ -2786,7 +2786,7 @@ __Arguments__
 __Returns__
 
 A Numpy array.
-
+    
 ----
 
 ### batch_get_value
@@ -2806,7 +2806,7 @@ __Arguments__
 __Returns__
 
 A list of Numpy arrays.
-
+    
 ----
 
 ### set_value
@@ -2821,10 +2821,10 @@ Sets the value of a variable, from a Numpy array.
 
 __Arguments__
 
-x: Tensor to set to a new value.
-value: Value to set the tensor to, as a Numpy array
-(of the same shape).
-
+- __x__: Tensor to set to a new value.
+- __value__: Value to set the tensor to, as a Numpy array
+    (of the same shape).
+    
 ----
 
 ### batch_set_value
@@ -2839,9 +2839,9 @@ Sets the values of many tensor variables at once.
 
 __Arguments__
 
-tuples: a list of tuples `(tensor, value)`.
-`value` should be a Numpy array.
-
+- __tuples__: a list of tuples `(tensor, value)`.
+    `value` should be a Numpy array.
+    
 ----
 
 ### print_tensor
@@ -2872,7 +2872,7 @@ __Arguments__
 __Returns__
 
 The same tensor `x`, unchanged.
-
+    
 ----
 
 ### function
@@ -2898,8 +2898,8 @@ Output values as Numpy arrays.
 
 __Raises__
 
-ValueError: if invalid kwargs are passed in.
-
+- __ValueError__: if invalid kwargs are passed in.
+    
 ----
 
 ### gradients
@@ -2920,7 +2920,7 @@ __Arguments__
 __Returns__
 
 A gradients tensor.
-
+    
 ----
 
 ### stop_gradient
@@ -2941,8 +2941,8 @@ __Arguments__
 __Returns__
 
 A single tensor or a list of tensors (depending on the passed argument)
-that has constant gradient with respect to any other variable.
-
+    that has constant gradient with respect to any other variable.
+    
 ----
 
 ### rnn
@@ -2994,12 +2994,12 @@ the step function, of shape `(samples, ...)`.
 
 __Raises__
 
-ValueError: If input dimension is less than 3.
-ValueError: If `unroll` is `True`
-but input timestep is not a fixed number.
-ValueError: If `mask` is provided (not `None`)
-but states is not provided (`len(states)` == 0).
-
+- __ValueError__: If input dimension is less than 3.
+- __ValueError__: If `unroll` is `True`
+    but input timestep is not a fixed number.
+- __ValueError__: If `mask` is provided (not `None`)
+    but states is not provided (`len(states)` == 0).
+    
 ----
 
 ### switch
@@ -3027,8 +3027,8 @@ The selected tensor.
 
 __Raises__
 
-ValueError: If rank of `condition` is greater than rank of expressions.
-
+- __ValueError__: If rank of `condition` is greater than rank of expressions.
+    
 ----
 
 ### in_train_phase
@@ -3057,7 +3057,7 @@ __Returns__
 
 Either `x` or `alt` based on the `training` flag.
 the `training` flag defaults to `K.learning_phase()`.
-
+    
 ----
 
 ### in_test_phase
@@ -3085,7 +3085,7 @@ __Arguments__
 __Returns__
 
 Either `x` or `alt` based on `K.learning_phase`.
-
+    
 ----
 
 ### relu
@@ -3115,7 +3115,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### elu
@@ -3136,7 +3136,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### softmax
@@ -3158,7 +3158,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### softplus
@@ -3178,7 +3178,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### softsign
@@ -3198,7 +3198,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### categorical_crossentropy
@@ -3230,9 +3230,9 @@ Output tensor.
 
 __Raises__
 
-ValueError: if `axis` is neither -1 nor one of
-the axes of `output`.
-
+- __ValueError__: if `axis` is neither -1 nor one of
+    the axes of `output`.
+    
 ----
 
 ### sparse_categorical_crossentropy
@@ -3264,9 +3264,9 @@ Output tensor.
 
 __Raises__
 
-ValueError: if `axis` is neither -1 nor one of
-the axes of `output`.
-
+- __ValueError__: if `axis` is neither -1 nor one of
+    the axes of `output`.
+    
 ----
 
 ### binary_crossentropy
@@ -3290,7 +3290,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### sigmoid
@@ -3310,7 +3310,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### hard_sigmoid
@@ -3334,7 +3334,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### tanh
@@ -3354,7 +3354,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### dropout
@@ -3379,7 +3379,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### l2_normalize
@@ -3400,7 +3400,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### in_top_k
@@ -3424,7 +3424,7 @@ __Returns__
 A 1D tensor of length `batch_size` and type `bool`.
 `output[i]` is `True` if `predictions[i, targets[i]]` is within top-`k`
 values of `predictions[i]`.
-
+    
 ----
 
 ### conv1d
@@ -3452,9 +3452,9 @@ A tensor, result of 1D convolution.
 
 __Raises__
 
-ValueError: If `data_format` is neither
-`"channels_last"` nor `"channels_first"`.
-
+- __ValueError__: If `data_format` is neither
+    `"channels_last"` nor `"channels_first"`.
+    
 ----
 
 ### conv2d
@@ -3484,9 +3484,9 @@ A tensor, result of 2D convolution.
 
 __Raises__
 
-ValueError: If `data_format` is neither
-`"channels_last"` nor `"channels_first"`.
-
+- __ValueError__: If `data_format` is neither
+    `"channels_last"` nor `"channels_first"`.
+    
 ----
 
 ### conv2d_transpose
@@ -3517,9 +3517,9 @@ A tensor, result of transposed 2D convolution.
 
 __Raises__
 
-ValueError: If `data_format` is neither
-`"channels_last"` nor `"channels_first"`.
-
+- __ValueError__: If `data_format` is neither
+    `"channels_last"` nor `"channels_first"`.
+    
 ----
 
 ### separable_conv1d
@@ -3548,9 +3548,9 @@ Output tensor.
 
 __Raises__
 
-ValueError: If `data_format` is neither
-`"channels_last"` nor `"channels_first"`.
-
+- __ValueError__: If `data_format` is neither
+    `"channels_last"` nor `"channels_first"`.
+    
 ----
 
 ### separable_conv2d
@@ -3580,9 +3580,9 @@ Output tensor.
 
 __Raises__
 
-ValueError: If `data_format` is neither
-`"channels_last"` nor `"channels_first"`.
-
+- __ValueError__: If `data_format` is neither
+    `"channels_last"` nor `"channels_first"`.
+    
 ----
 
 ### depthwise_conv2d
@@ -3611,9 +3611,9 @@ Output tensor.
 
 __Raises__
 
-ValueError: If `data_format` is neither
-`"channels_last"` nor `"channels_first"`.
-
+- __ValueError__: If `data_format` is neither
+    `"channels_last"` nor `"channels_first"`.
+    
 ----
 
 ### conv3d
@@ -3643,9 +3643,9 @@ A tensor, result of 3D convolution.
 
 __Raises__
 
-ValueError: If `data_format` is neither
-`"channels_last"` nor `"channels_first"`.
-
+- __ValueError__: If `data_format` is neither
+    `"channels_last"` nor `"channels_first"`.
+    
 ----
 
 ### conv3d_transpose
@@ -3675,9 +3675,9 @@ A tensor, result of transposed 3D convolution.
 
 __Raises__
 
-ValueError: If `data_format` is neither
-`"channels_last"` nor `"channels_first"`.
-
+- __ValueError__: If `data_format` is neither
+    `"channels_last"` nor `"channels_first"`.
+    
 ----
 
 ### pool2d
@@ -3705,9 +3705,9 @@ A tensor, result of 2D pooling.
 
 __Raises__
 
-ValueError: if `data_format` is neither `"channels_last"` or `"channels_first"`.
-ValueError: if `pool_mode` is neither `"max"` or `"avg"`.
-
+- __ValueError__: if `data_format` is neither `"channels_last"` or `"channels_first"`.
+- __ValueError__: if `pool_mode` is neither `"max"` or `"avg"`.
+    
 ----
 
 ### pool3d
@@ -3735,9 +3735,9 @@ A tensor, result of 3D pooling.
 
 __Raises__
 
-ValueError: if `data_format` is neither `"channels_last"` or `"channels_first"`.
-ValueError: if `pool_mode` is neither `"max"` or `"avg"`.
-
+- __ValueError__: if `data_format` is neither `"channels_last"` or `"channels_first"`.
+- __ValueError__: if `pool_mode` is neither `"max"` or `"avg"`.
+    
 ----
 
 ### bias_add
@@ -3762,12 +3762,12 @@ Output tensor.
 
 __Raises__
 
-ValueError: In one of the two cases below:
-1. invalid `data_format` argument.
-2. invalid bias shape.
-the bias should be either a vector or
-a tensor with ndim(x) - 1 dimension
-
+- __ValueError__: In one of the two cases below:
+            1. invalid `data_format` argument.
+            2. invalid bias shape.
+               the bias should be either a vector or
+               a tensor with ndim(x) - 1 dimension
+    
 ----
 
 ### random_normal
@@ -3792,7 +3792,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### random_uniform
@@ -3818,7 +3818,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### random_binomial
@@ -3841,7 +3841,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### truncated_normal
@@ -3870,7 +3870,7 @@ __Arguments__
 __Returns__
 
 A tensor.
-
+    
 ----
 
 ### ctc_label_dense_to_sparse
@@ -3891,7 +3891,7 @@ __Arguments__
 __Returns__
 
 A sparse tensor representation of the labels.
-
+    
 ----
 
 ### ctc_batch_cost
@@ -3918,8 +3918,8 @@ __Arguments__
 __Returns__
 
 Tensor with shape (samples,1) containing the
-CTC loss of each element.
-
+    CTC loss of each element.
+    
 ----
 
 ### ctc_decode
@@ -3950,15 +3950,15 @@ __Arguments__
 
 __Returns__
 
-Tuple:
-List: if `greedy` is `true`, returns a list of one element that
-contains the decoded sequence.
-If `false`, returns the `top_paths` most probable
-decoded sequences.
-Important: blank labels are returned as `-1`.
-Tensor `(top_paths, )` that contains
-the log probability of each decoded sequence.
-
+- __Tuple__:
+    List: if `greedy` is `true`, returns a list of one element that
+        contains the decoded sequence.
+        If `false`, returns the `top_paths` most probable
+        decoded sequences.
+        Important: blank labels are returned as `-1`.
+    Tensor `(top_paths, )` that contains
+        the log probability of each decoded sequence.
+    
 ----
 
 ### map_fn
@@ -3981,7 +3981,7 @@ __Arguments__
 __Returns__
 
 Tensor with dtype `dtype`.
-
+    
 ----
 
 ### foldl
@@ -4005,7 +4005,7 @@ __Arguments__
 __Returns__
 
 Tensor with same type and shape as `initializer`.
-
+    
 ----
 
 ### foldr
@@ -4029,7 +4029,7 @@ __Arguments__
 __Returns__
 
 Tensor with same type and shape as `initializer`.
-
+    
 ----
 
 ### local_conv1d
@@ -4059,9 +4059,9 @@ the tensor after 1d conv with un-shared weights, with shape (batch_size, output_
 
 __Raises__
 
-ValueError: If `data_format` is neither
-`"channels_last"` nor `"channels_first"`.
-
+- __ValueError__: If `data_format` is neither
+    `"channels_last"` nor `"channels_first"`.
+    
 ----
 
 ### local_conv2d
@@ -4102,9 +4102,9 @@ if data_format='channels_last'.
 
 __Raises__
 
-ValueError: if `data_format` is neither
-`channels_last` or `channels_first`.
-
+- __ValueError__: if `data_format` is neither
+            `channels_last` or `channels_first`.
+    
 
 
 
