@@ -1,4 +1,4 @@
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L237)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L238)</span>
 ### RNN
 
 ```python
@@ -27,7 +27,7 @@ __Arguments__
         of the `state_size`.
 
     It is also possible for `cell` to be a list of RNN cell instances,
-    in which cases the cells get stacked on after the other in the RNN,
+    in which cases the cells get stacked one after the other in the RNN,
     implementing an efficient stacked RNN.
 
 - __return_sequences__: Boolean. Whether to return the last output
@@ -68,7 +68,8 @@ __Output shape__
 
 - if `return_state`: a list of tensors. The first tensor is
     the output. The remaining tensors are the last states,
-    each with shape `(batch_size, units)`.
+    each with shape `(batch_size, units)`. For example, the number of
+    state tensors is 1 (for RNN and GRU) or 2 (for LSTM).
 - if `return_sequences`: 3D tensor with shape
     `(batch_size, timesteps, units)`.
 - else, 2D tensor with shape `(batch_size, units)`.
@@ -169,7 +170,7 @@ y = layer(x)
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L944)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L977)</span>
 ### SimpleRNN
 
 ```python
@@ -240,11 +241,11 @@ __Arguments__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L1482)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L1524)</span>
 ### GRU
 
 ```python
-keras.layers.GRU(units, activation='tanh', recurrent_activation='hard_sigmoid', use_bias=True, kernel_initializer='glorot_uniform', recurrent_initializer='orthogonal', bias_initializer='zeros', kernel_regularizer=None, recurrent_regularizer=None, bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, recurrent_constraint=None, bias_constraint=None, dropout=0.0, recurrent_dropout=0.0, implementation=1, return_sequences=False, return_state=False, go_backwards=False, stateful=False, unroll=False, reset_after=False)
+keras.layers.GRU(units, activation='tanh', recurrent_activation='sigmoid', use_bias=True, kernel_initializer='glorot_uniform', recurrent_initializer='orthogonal', bias_initializer='zeros', kernel_regularizer=None, recurrent_regularizer=None, bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, recurrent_constraint=None, bias_constraint=None, dropout=0.0, recurrent_dropout=0.0, implementation=2, return_sequences=False, return_state=False, go_backwards=False, stateful=False, unroll=False, reset_after=False)
 ```
 
 Gated Recurrent Unit - Cho et al. 2014.
@@ -346,11 +347,11 @@ __References__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L2034)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L2086)</span>
 ### LSTM
 
 ```python
-keras.layers.LSTM(units, activation='tanh', recurrent_activation='hard_sigmoid', use_bias=True, kernel_initializer='glorot_uniform', recurrent_initializer='orthogonal', bias_initializer='zeros', unit_forget_bias=True, kernel_regularizer=None, recurrent_regularizer=None, bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, recurrent_constraint=None, bias_constraint=None, dropout=0.0, recurrent_dropout=0.0, implementation=1, return_sequences=False, return_state=False, go_backwards=False, stateful=False, unroll=False)
+keras.layers.LSTM(units, activation='tanh', recurrent_activation='sigmoid', use_bias=True, kernel_initializer='glorot_uniform', recurrent_initializer='orthogonal', bias_initializer='zeros', unit_forget_bias=True, kernel_regularizer=None, recurrent_regularizer=None, bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, recurrent_constraint=None, bias_constraint=None, dropout=0.0, recurrent_dropout=0.0, implementation=2, return_sequences=False, return_state=False, go_backwards=False, stateful=False, unroll=False)
 ```
 
 Long Short-Term Memory layer - Hochreiter 1997.
@@ -382,8 +383,8 @@ __Arguments__
 - __unit_forget_bias__: Boolean.
     If True, add 1 to the bias of the forget gate at initialization.
     Setting it to true will also force `bias_initializer="zeros"`.
-    This is recommended in [Jozefowicz et al.]
-    (http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf).
+    This is recommended in [Jozefowicz et al. (2015)](
+    http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf).
 - __kernel_regularizer__: Regularizer function applied to
     the `kernel` weights matrix
     (see [regularizer](../regularizers.md)).
@@ -418,7 +419,8 @@ __Arguments__
 - __return_sequences__: Boolean. Whether to return the last output
     in the output sequence, or the full sequence.
 - __return_state__: Boolean. Whether to return the last state
-    in addition to the output.
+    in addition to the output. The returned elements of the
+    states list are the hidden state and the cell state, respectively.
 - __go_backwards__: Boolean (default False).
     If True, process the input sequence backwards and return the
     reversed sequence.
@@ -434,18 +436,18 @@ __Arguments__
 
 __References__
 
-- [Long short-term memory]
-  (http://www.bioinf.jku.at/publications/older/2604.pdf)
-- [Learning to forget: Continual prediction with LSTM]
-  (http://www.mitpressjournals.org/doi/pdf/10.1162/089976600300015015)
-- [Supervised sequence labeling with recurrent neural networks]
-  (http://www.cs.toronto.edu/~graves/preprint.pdf)
+- [Long short-term memory](
+  http://www.bioinf.jku.at/publications/older/2604.pdf)
+- [Learning to forget: Continual prediction with LSTM](
+  http://www.mitpressjournals.org/doi/pdf/10.1162/089976600300015015)
+- [Supervised sequence labeling with recurrent neural networks](
+  http://www.cs.toronto.edu/~graves/preprint.pdf)
 - [A Theoretically Grounded Application of Dropout in
    Recurrent Neural Networks](https://arxiv.org/abs/1512.05287)
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional_recurrent.py#L788)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional_recurrent.py#L795)</span>
 ### ConvLSTM2D
 
 ```python
@@ -484,8 +486,6 @@ __Arguments__
     incompatible with specifying any `strides` value != 1.
 - __activation__: Activation function to use
     (see [activations](../activations.md)).
-    If you don't specify anything, no activation is applied
-    (ie. "linear" activation: `a(x) = x`).
 - __recurrent_activation__: Activation function to use
     for the recurrent step
     (see [activations](../activations.md)).
@@ -502,8 +502,8 @@ __Arguments__
 - __unit_forget_bias__: Boolean.
     If True, add 1 to the bias of the forget gate at initialization.
     Use in combination with `bias_initializer="zeros"`.
-    This is recommended in [Jozefowicz et al.]
-    (http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf).
+    This is recommended in [Jozefowicz et al. (2015)](
+    http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf).
 - __kernel_regularizer__: Regularizer function applied to
     the `kernel` weights matrix
     (see [regularizer](../regularizers.md)).
@@ -573,14 +573,13 @@ __Raises__
 __References__
 
 - [Convolutional LSTM Network: A Machine Learning Approach for
-
-Precipitation Nowcasting](http://arxiv.org/abs/1506.04214v1)
-The current implementation does not include the feedback loop on the
-cells output
+  Precipitation Nowcasting](http://arxiv.org/abs/1506.04214v1)
+  The current implementation does not include the feedback loop on the
+  cells output
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional_recurrent.py#L470)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional_recurrent.py#L479)</span>
 ### ConvLSTM2DCell
 
 ```python
@@ -611,8 +610,6 @@ __Arguments__
     incompatible with specifying any `strides` value != 1.
 - __activation__: Activation function to use
     (see [activations](../activations.md)).
-    If you don't specify anything, no activation is applied
-    (ie. "linear" activation: `a(x) = x`).
 - __recurrent_activation__: Activation function to use
     for the recurrent step
     (see [activations](../activations.md)).
@@ -629,8 +626,8 @@ __Arguments__
 - __unit_forget_bias__: Boolean.
     If True, add 1 to the bias of the forget gate at initialization.
     Use in combination with `bias_initializer="zeros"`.
-    This is recommended in [Jozefowicz et al.]
-    (http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf).
+    This is recommended in [Jozefowicz et al. (2015)](
+    http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf).
 - __kernel_regularizer__: Regularizer function applied to
     the `kernel` weights matrix
     (see [regularizer](../regularizers.md)).
@@ -656,7 +653,7 @@ __Arguments__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L779)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L812)</span>
 ### SimpleRNNCell
 
 ```python
@@ -708,11 +705,11 @@ __Arguments__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L1163)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L1196)</span>
 ### GRUCell
 
 ```python
-keras.layers.GRUCell(units, activation='tanh', recurrent_activation='hard_sigmoid', use_bias=True, kernel_initializer='glorot_uniform', recurrent_initializer='orthogonal', bias_initializer='zeros', kernel_regularizer=None, recurrent_regularizer=None, bias_regularizer=None, kernel_constraint=None, recurrent_constraint=None, bias_constraint=None, dropout=0.0, recurrent_dropout=0.0, implementation=1, reset_after=False)
+keras.layers.GRUCell(units, activation='tanh', recurrent_activation='sigmoid', use_bias=True, kernel_initializer='glorot_uniform', recurrent_initializer='orthogonal', bias_initializer='zeros', kernel_regularizer=None, recurrent_regularizer=None, bias_regularizer=None, kernel_constraint=None, recurrent_constraint=None, bias_constraint=None, dropout=0.0, recurrent_dropout=0.0, implementation=2, reset_after=False)
 ```
 
 Cell class for the GRU layer.
@@ -775,11 +772,11 @@ __Arguments__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L1756)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/recurrent.py#L1798)</span>
 ### LSTMCell
 
 ```python
-keras.layers.LSTMCell(units, activation='tanh', recurrent_activation='hard_sigmoid', use_bias=True, kernel_initializer='glorot_uniform', recurrent_initializer='orthogonal', bias_initializer='zeros', unit_forget_bias=True, kernel_regularizer=None, recurrent_regularizer=None, bias_regularizer=None, kernel_constraint=None, recurrent_constraint=None, bias_constraint=None, dropout=0.0, recurrent_dropout=0.0, implementation=1)
+keras.layers.LSTMCell(units, activation='tanh', recurrent_activation='sigmoid', use_bias=True, kernel_initializer='glorot_uniform', recurrent_initializer='orthogonal', bias_initializer='zeros', unit_forget_bias=True, kernel_regularizer=None, recurrent_regularizer=None, bias_regularizer=None, kernel_constraint=None, recurrent_constraint=None, bias_constraint=None, dropout=0.0, recurrent_dropout=0.0, implementation=2)
 ```
 
 Cell class for the LSTM layer.
@@ -811,8 +808,8 @@ __Arguments__
 - __unit_forget_bias__: Boolean.
     If True, add 1 to the bias of the forget gate at initialization.
     Setting it to true will also force `bias_initializer="zeros"`.
-    This is recommended in [Jozefowicz et al.]
-    (http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf).
+    This is recommended in [Jozefowicz et al. (2015)](
+    http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf).
 - __kernel_regularizer__: Regularizer function applied to
     the `kernel` weights matrix
     (see [regularizer](../regularizers.md)).
@@ -913,17 +910,17 @@ __Arguments__
 - __kernel_initializer__: Initializer for the `kernel` weights matrix,
     used for the linear transformation of the inputs.
     (see [initializers](../initializers.md)).
-- __unit_forget_bias__: Boolean.
-    If True, add 1 to the bias of the forget gate at initialization.
-    Setting it to true will also force `bias_initializer="zeros"`.
-    This is recommended in [Jozefowicz et al.]
-    (http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf).
 - __recurrent_initializer__: Initializer for the `recurrent_kernel`
     weights matrix,
     used for the linear transformation of the recurrent state.
     (see [initializers](../initializers.md)).
 - __bias_initializer__: Initializer for the bias vector
     (see [initializers](../initializers.md)).
+- __unit_forget_bias__: Boolean.
+    If True, add 1 to the bias of the forget gate at initialization.
+    Setting it to true will also force `bias_initializer="zeros"`.
+    This is recommended in [Jozefowicz et al. (2015)](
+    http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf).
 - __kernel_regularizer__: Regularizer function applied to
     the `kernel` weights matrix
     (see [regularizer](../regularizers.md)).

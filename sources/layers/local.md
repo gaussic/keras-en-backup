@@ -33,10 +33,11 @@ __Arguments__
     specifying the length of the 1D convolution window.
 - __strides__: An integer or tuple/list of a single integer,
     specifying the stride length of the convolution.
-    Specifying any stride value != 1 is incompatible with specifying
-    any `dilation_rate` value != 1.
+    Specifying any `strides!=1` is incompatible with specifying
+    any `dilation_rate!=1`.
 - __padding__: Currently only supports `"valid"` (case-insensitive).
     `"same"` may be supported in the future.
+- __data_format__: String, one of `channels_first`, `channels_last`.
 - __activation__: Activation function to use
     (see [activations](../activations.md)).
     If you don't specify anything, no activation is applied
@@ -70,7 +71,7 @@ __Output shape__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/local.py#L182)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/local.py#L183)</span>
 ### LocallyConnected2D
 
 ```python
@@ -149,9 +150,9 @@ __Arguments__
 __Input shape__
 
 4D tensor with shape:
-`(samples, channels, rows, cols)` if data_format='channels_first'
+`(samples, channels, rows, cols)` if `data_format='channels_first'`
 or 4D tensor with shape:
-`(samples, rows, cols, channels)` if data_format='channels_last'.
+`(samples, rows, cols, channels)` if `data_format='channels_last'`.
 
 __Output shape__
 

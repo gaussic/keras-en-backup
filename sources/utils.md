@@ -26,7 +26,7 @@ with CustomObjectScope({'MyObject':MyObject}):
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/utils/io_utils.py#L25)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/utils/io_utils.py#L26)</span>
 ### HDF5Matrix
 
 ```python
@@ -63,7 +63,7 @@ An array-like HDF5 dataset.
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/utils/data_utils.py#L302)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/utils/data_utils.py#L305)</span>
 ### Sequence
 
 ```python
@@ -138,6 +138,24 @@ __Returns__
 
 A binary matrix representation of the input. The classes axis
 is placed last.
+
+__Example__
+
+
+```python
+# Consider an array of 5 labels out of a set of 3 classes {0, 1, 2}:
+> labels
+array([0, 2, 1, 2, 0])
+# `to_categorical` converts this into a matrix with as many
+# columns as there are classes. The number of rows
+# stays the same.
+> to_categorical(labels)
+array([[ 1.,  0.,  0.],
+       [ 0.,  0.,  1.],
+       [ 0.,  1.,  0.],
+       [ 0.,  0.,  1.],
+       [ 1.,  0.,  0.]], dtype=float32)
+```
     
 ----
 
@@ -244,7 +262,7 @@ __Arguments__
 
 
 ```python
-keras.utils.plot_model(model, to_file='model.png', show_shapes=False, show_layer_names=True, rankdir='TB')
+keras.utils.plot_model(model, to_file='model.png', show_shapes=False, show_layer_names=True, rankdir='TB', expand_nested=False, dpi=96)
 ```
 
 
@@ -260,6 +278,13 @@ __Arguments__
     a string specifying the format of the plot:
     'TB' creates a vertical plot;
     'LR' creates a horizontal plot.
+- __expand_nested__: whether to expand nested models into clusters.
+- __dpi__: dot DPI.
+
+__Returns__
+
+A Jupyter notebook Image object if Jupyter is installed.
+This enables in-line display of the model plots in notebooks.
     
 ----
 
@@ -310,8 +335,10 @@ __Returns__
 A Keras `Model` instance which can be used just like the initial
 `model` argument, but which distributes its workload on multiple GPUs.
 
-__Example 1 - Training models with weights merge on CPU__
+__Examples__
 
+
+Example 1 - Training models with weights merge on CPU
 
 ```python
 import tensorflow as tf
@@ -352,8 +379,7 @@ parallel_model.fit(x, y, epochs=20, batch_size=256)
 model.save('my_model.h5')
 ```
 
-__Example 2 - Training models with weights merge on CPU using cpu_relocation__
-
+Example 2 - Training models with weights merge on CPU using cpu_relocation
 
 ```python
 ..
@@ -361,17 +387,16 @@ __Example 2 - Training models with weights merge on CPU using cpu_relocation__
 model = Xception(weights=None, ..)
 
 try:
-    model = multi_gpu_model(model, cpu_relocation=True)
+    parallel_model = multi_gpu_model(model, cpu_relocation=True)
     print("Training using multiple GPUs..")
-except:
+except ValueError:
+    parallel_model = model
     print("Training using single GPU or CPU..")
-
-model.compile(..)
+parallel_model.compile(..)
 ..
 ```
 
-__Example 3 - Training models with weights merge on GPU (recommended for NV-link)__
-
+Example 3 - Training models with weights merge on GPU (recommended for NV-link)
 
 ```python
 ..
@@ -379,12 +404,13 @@ __Example 3 - Training models with weights merge on GPU (recommended for NV-link
 model = Xception(weights=None, ..)
 
 try:
-    model = multi_gpu_model(model, cpu_merge=False)
+    parallel_model = multi_gpu_model(model, cpu_merge=False)
     print("Training using multiple GPUs..")
 except:
+    parallel_model = model
     print("Training using single GPU or CPU..")
 
-model.compile(..)
+parallel_model.compile(..)
 ..
 ```
 

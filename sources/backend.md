@@ -148,8 +148,7 @@ keras.backend.backend()
 ```
 
 
-Publicly accessible method
-for determining the current backend.
+Returns the name of the current backend (e.g. "tensorflow").
 
 __Returns__
 
@@ -161,6 +160,97 @@ __Example__
 >>> keras.backend.backend()
 'tensorflow'
 ```
+    
+----
+
+### symbolic
+
+
+```python
+keras.backend.symbolic(func)
+```
+
+
+Decorator used in TensorFlow 2.0 to enter the Keras graph.
+
+__Arguments__
+
+- __func__: Function to decorate.
+
+__Returns__
+
+Decorated function.
+    
+----
+
+### eager
+
+
+```python
+keras.backend.eager(func)
+```
+
+
+Decorator used in TensorFlow 2.0 to exit the Keras graph.
+
+__Arguments__
+
+- __func__: Function to decorate.
+
+__Returns__
+
+Decorated function.
+    
+----
+
+### get_uid
+
+
+```python
+keras.backend.get_uid(prefix='')
+```
+
+
+Provides a unique UID given a string prefix.
+
+__Arguments__
+
+- __prefix__: string.
+
+__Returns__
+
+An integer.
+
+__Example__
+
+```python
+>>> keras.backend.get_uid('dense')
+1
+>>> keras.backend.get_uid('dense')
+2
+```
+
+
+----
+
+### manual_variable_initialization
+
+
+```python
+keras.backend.manual_variable_initialization(value)
+```
+
+
+Sets the manual variable initialization flag.
+
+This boolean flag determines whether
+variables should be initialized
+as they are instantiated (default), or if
+the user should handle the initialization.
+
+__Arguments__
+
+- __value__: Python boolean.
     
 ----
 
@@ -185,6 +275,17 @@ __Example__
 1e-07
 ```
     
+----
+
+### reset_uids
+
+
+```python
+keras.backend.reset_uids()
+```
+
+
+Resets graph identifiers.
 ----
 
 ### set_epsilon
@@ -309,7 +410,7 @@ keras.backend.image_data_format()
 ```
 
 
-Returns the default image data format convention ('channels_first' or 'channels_last').
+Returns the default image data format convention.
 
 __Returns__
 
@@ -351,74 +452,6 @@ __Example__
     
 ----
 
-### get_uid
-
-
-```python
-keras.backend.get_uid(prefix='')
-```
-
-
-Get the uid for the default graph.
-
-__Arguments__
-
-- __prefix__: An optional prefix of the graph.
-
-__Returns__
-
-A unique identifier for the graph.
-    
-----
-
-### reset_uids
-
-
-```python
-keras.backend.reset_uids()
-```
-
-
-Resets graph identifiers.
-
-----
-
-### clear_session
-
-
-```python
-keras.backend.clear_session()
-```
-
-
-Destroys the current TF graph and creates a new one.
-
-Useful to avoid clutter from old models / layers.
-
-----
-
-### manual_variable_initialization
-
-
-```python
-keras.backend.manual_variable_initialization(value)
-```
-
-
-Sets the manual variable initialization flag.
-
-This boolean flag determines whether
-variables should be initialized
-as they are instantiated (default), or if
-the user should handle the initialization
-(e.g. via `tf.initialize_all_variables()`).
-
-__Arguments__
-
-- __value__: Python boolean.
-    
-----
-
 ### learning_phase
 
 
@@ -457,6 +490,20 @@ __Raises__
 
 - __ValueError__: if `value` is neither `0` nor `1`.
     
+----
+
+### clear_session
+
+
+```python
+keras.backend.clear_session()
+```
+
+
+Destroys the current Keras graph and creates a new one.
+
+Useful to avoid clutter from old models / layers.
+
 ----
 
 ### is_sparse
@@ -562,6 +609,15 @@ array([[ 1.,  2.],
     
 ----
 
+### is_variable
+
+
+```python
+keras.backend.is_variable(x)
+```
+
+----
+
 ### constant
 
 
@@ -619,19 +675,23 @@ __Examples__
 >>> K.is_keras_tensor(np_var) # A numpy array is not a symbolic tensor.
 ValueError
 >>> k_var = tf.placeholder('float32', shape=(1,1))
->>> K.is_keras_tensor(k_var) # A variable indirectly created outside of keras is not a Keras tensor.
+>>> # A variable indirectly created outside of keras is not a Keras tensor.
+>>> K.is_keras_tensor(k_var)
 False
 >>> keras_var = K.variable(np_var)
->>> K.is_keras_tensor(keras_var)  # A variable created with the keras backend is not a Keras tensor.
+>>> # A variable created with the keras backend is not a Keras tensor.
+>>> K.is_keras_tensor(keras_var)
 False
 >>> keras_placeholder = K.placeholder(shape=(2, 4, 5))
->>> K.is_keras_tensor(keras_placeholder)  # A placeholder is not a Keras tensor.
+>>> # A placeholder is not a Keras tensor.
+>>> K.is_keras_tensor(keras_placeholder)
 False
 >>> keras_input = Input([10])
 >>> K.is_keras_tensor(keras_input) # An Input is a Keras tensor.
 True
 >>> keras_layer_output = Dense(10)(keras_input)
->>> K.is_keras_tensor(keras_layer_output) # Any Keras layer output is a Keras tensor.
+>>> # Any Keras layer output is a Keras tensor.
+>>> K.is_keras_tensor(keras_layer_output)
 True
 ```
     
@@ -774,7 +834,16 @@ __Examples__
 >>> K.int_shape(kvar)
 (2, 2)
 ```
-    
+
+__Numpy implementation__
+
+
+```python
+def int_shape(x):
+    return x.shape
+```
+
+
 ----
 
 ### ndim
@@ -807,7 +876,48 @@ __Examples__
 >>> K.ndim(kvar)
 2
 ```
-    
+
+__Numpy implementation__
+
+
+```python
+def ndim(x):
+    return x.ndim
+```
+
+
+----
+
+### size
+
+
+```python
+keras.backend.size(x, name=None)
+```
+
+
+Returns the size of a tensor.
+
+__Arguments__
+
+- __x__: Tensor or variable.
+- __name__: A name for the operation (optional).
+
+__Returns__
+
+Size of the tensor.
+
+__Examples__
+
+```python
+>>> from keras import backend as K
+>>> val = np.array([[1, 2], [3, 4]])
+>>> kvar = K.variable(value=val)
+>>> K.size(inputs)
+<tf.Tensor: id=9, shape=(), dtype=int32, numpy=4>
+```
+
+
 ----
 
 ### dtype
@@ -846,7 +956,15 @@ __Examples__
 >>> K.dtype(kvar)
 'float32_ref'
 ```
-    
+__Numpy implementation__
+
+
+```python
+def dtype(x):
+    return x.dtype.name
+```
+
+
 ----
 
 ### eval
@@ -857,11 +975,11 @@ keras.backend.eval(x)
 ```
 
 
-Evaluates the value of a variable.
+Evaluates the value of a tensor.
 
 __Arguments__
 
-- __x__: A variable.
+- __x__: A tensor.
 
 __Returns__
 
@@ -876,7 +994,15 @@ __Examples__
 array([[ 1.,  2.],
        [ 3.,  4.]], dtype=float32)
 ```
-    
+__Numpy implementation__
+
+
+```python
+def eval(x):
+    return x
+```
+
+
 ----
 
 ### zeros
@@ -911,7 +1037,15 @@ array([[ 0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  0.],
        [ 0.,  0.,  0.,  0.]], dtype=float32)
 ```
-    
+__Numpy implementation__
+
+
+```python
+def zeros(shape, dtype=floatx(), name=None):
+    return np.zeros(shape, dtype=dtype)
+```
+
+
 ----
 
 ### ones
@@ -946,7 +1080,15 @@ array([[ 1.,  1.,  1.,  1.],
        [ 1.,  1.,  1.,  1.],
        [ 1.,  1.,  1.,  1.]], dtype=float32)
 ```
-    
+__Numpy implementation__
+
+
+```python
+def ones(shape, dtype=floatx(), name=None):
+    return np.ones(shape, dtype=dtype)
+```
+
+
 ----
 
 ### eye
@@ -961,7 +1103,7 @@ Instantiate an identity matrix and returns it.
 
 __Arguments__
 
-- __size__: Integer, number of rows/columns.
+- __size__: Tuple, number of rows and columns. If Integer, number of rows.
 - __dtype__: String, data type of returned Keras variable.
 - __name__: String, name of returned Keras variable.
 
@@ -973,11 +1115,24 @@ __Example__
 
 ```python
 >>> from keras import backend as K
->>> kvar = K.eye(3)
->>> K.eval(kvar)
+>>> K.eval(K.eye(3))
 array([[ 1.,  0.,  0.],
        [ 0.,  1.,  0.],
        [ 0.,  0.,  1.]], dtype=float32)
+>>> K.eval(K.eye((2, 3)))
+array([[1., 0., 0.],
+       [0., 1., 0.]], dtype=float32)
+```
+__Numpy implementation__
+
+
+```python
+def eye(size, dtype=None, name=None):
+    if isinstance(size, (list, tuple)):
+        n, m = size
+    else:
+        n, m = size, size
+    return np.eye(n, m, dtype=dtype)
 ```
 
 
@@ -1014,7 +1169,15 @@ __Example__
 array([[ 0.,  0.,  0.],
        [ 0.,  0.,  0.]], dtype=float32)
 ```
-    
+__Numpy implementation__
+
+
+```python
+def zeros_like(x, dtype=floatx(), name=None):
+    return np.zeros_like(x, dtype=dtype)
+```
+
+
 ----
 
 ### ones_like
@@ -1048,7 +1211,15 @@ __Example__
 array([[ 1.,  1.,  1.],
        [ 1.,  1.,  1.]], dtype=float32)
 ```
-    
+__Numpy implementation__
+
+
+```python
+def ones_like(x, dtype=floatx(), name=None):
+    return np.ones_like(x, dtype=dtype)
+```
+
+
 ----
 
 ### identity
@@ -1106,7 +1277,15 @@ __Example__
 array([[ 0.10940075,  0.10047495,  0.476143  ],
        [ 0.66137183,  0.00869417,  0.89220798]], dtype=float32)
 ```
-    
+__Numpy implementation__
+
+
+```python
+def random_uniform_variable(shape, low, high, dtype=None, name=None, seed=None):
+    return (high - low) * np.random.random(shape).astype(dtype) + low
+```
+
+
 ----
 
 ### random_normal_variable
@@ -1143,7 +1322,15 @@ __Example__
 array([[ 1.19591331,  0.68685907, -0.63814116],
        [ 0.92629528,  0.28055015,  1.70484698]], dtype=float32)
 ```
-    
+__Numpy implementation__
+
+
+```python
+def random_normal_variable(shape, mean, scale, dtype=None, name=None, seed=None):
+    return scale * np.random.randn(*shape).astype(dtype) + mean
+```
+
+
 ----
 
 ### count_params
@@ -1175,7 +1362,15 @@ __Example__
 array([[ 0.,  0.,  0.],
        [ 0.,  0.,  0.]], dtype=float32)
 ```
-    
+__Numpy implementation__
+
+
+```python
+def count_params(x):
+    return x.size
+```
+
+
 ----
 
 ### cast
@@ -1355,6 +1550,14 @@ __Examples__
 >>> K.int_shape(xy)
 (2, 4, 5)
 ```
+__Numpy implementation__
+
+
+```python
+def dot(x, y):
+    return np.dot(x, y)
+```
+
 
 ----
 
@@ -1369,7 +1572,7 @@ keras.backend.batch_dot(x, y, axes=None)
 Batchwise dot product.
 
 `batch_dot` is used to compute dot product of `x` and `y` when
-`x` and `y` are data in batch, i.e. in a shape of
+`x` and `y` are data in batches, i.e. in a shape of
 `(batch_size, :)`.
 `batch_dot` results in a tensor or variable with less dimensions
 than the input. If the number of dimensions is reduced to 1,
@@ -1379,8 +1582,7 @@ __Arguments__
 
 - __x__: Keras tensor or variable with `ndim >= 2`.
 - __y__: Keras tensor or variable with `ndim >= 2`.
-- __axes__: list of (or single) int with target dimensions.
-    The lengths of `axes[0]` and `axes[1]` should be the same.
+- __axes__: int or tuple(int, int). Target dimensions to be reduced.
 
 __Returns__
 
@@ -1395,6 +1597,14 @@ Assume `x = [[1, 2], [3, 4]]` and `y = [[5, 6], [7, 8]]`
 `batch_dot(x, y, axes=1) = [[17], [53]]` which is the main diagonal
 of `x.dot(y.T)`, although we never have to calculate the off-diagonal
 elements.
+
+Pseudocode:
+```
+inner_products = []
+for xi, yi in zip(x, y):
+    inner_products.append(xi.dot(yi))
+result = stack(inner_products)
+```
 
 Shape inference:
 Let `x`'s shape be `(100, 20)` and `y`'s shape be `(100, 30, 20)`.
@@ -1414,10 +1624,73 @@ dimension 2 of `y` has been summed over. (`dot_axes[1]` = 2)
 ```python
 >>> x_batch = K.ones(shape=(32, 20, 1))
 >>> y_batch = K.ones(shape=(32, 30, 20))
->>> xy_batch_dot = K.batch_dot(x_batch, y_batch, axes=[1, 2])
+>>> xy_batch_dot = K.batch_dot(x_batch, y_batch, axes=(1, 2))
 >>> K.int_shape(xy_batch_dot)
 (32, 1, 30)
 ```
+
+__Numpy implementation__
+
+
+<details>
+<summary>Show the Numpy implementation</summary>
+
+```python
+def batch_dot(x, y, axes=None):
+    if x.ndim < 2 or y.ndim < 2:
+        raise ValueError('Batch dot requires inputs of rank 2 or more.')
+
+    if isinstance(axes, int):
+        axes = [axes, axes]
+    elif isinstance(axes, tuple):
+        axes = list(axes)
+
+    if axes is None:
+        if y.ndim == 2:
+            axes = [x.ndim - 1, y.ndim - 1]
+        else:
+            axes = [x.ndim - 1, y.ndim - 2]
+
+    if any([isinstance(a, (list, tuple)) for a in axes]):
+        raise ValueError('Multiple target dimensions are not supported. ' +
+                         'Expected: None, int, (int, int), ' +
+                         'Provided: ' + str(axes))
+
+    # Handle negative axes
+    if axes[0] < 0:
+        axes[0] += x.ndim
+    if axes[1] < 0:
+        axes[1] += y.ndim
+
+    if 0 in axes:
+        raise ValueError('Can not perform batch dot over axis 0.')
+
+    if x.shape[0] != y.shape[0]:
+        raise ValueError('Can not perform batch dot on inputs'
+                         ' with different batch sizes.')
+
+    d1 = x.shape[axes[0]]
+    d2 = y.shape[axes[1]]
+    if d1 != d2:
+        raise ValueError('Can not do batch_dot on inputs with shapes ' +
+                         str(x.shape) + ' and ' + str(y.shape) +
+                         ' with axes=' + str(axes) + '. x.shape[%d] != '
+                         'y.shape[%d] (%d != %d).' % (axes[0], axes[1], d1, d2))
+
+    result = []
+    axes = [axes[0] - 1, axes[1] - 1]  # ignore batch dimension
+    for xi, yi in zip(x, y):
+        result.append(np.tensordot(xi, yi, axes))
+    result = np.array(result)
+
+    if result.ndim == 1:
+        result = np.expand_dims(result, -1)
+
+    return result
+```
+
+</details>
+
 
 ----
 
@@ -1462,6 +1735,14 @@ array([[ 1.,  4.],
 <tf.Tensor 'transpose_4:0' shape=(3, 2) dtype=float32>
 
 ```
+__Numpy implementation__
+
+
+```python
+def transpose(x):
+    return np.transpose(x)
+```
+
 
 ----
 
@@ -1483,7 +1764,16 @@ __Arguments__
 __Returns__
 
 A tensor of same type as `reference`.
-    
+
+__Numpy implementation__
+
+
+```python
+def gather(reference, indices):
+    return reference[indices]
+```
+
+
 ----
 
 ### max
@@ -1510,7 +1800,18 @@ __Arguments__
 __Returns__
 
 A tensor with maximum values of `x`.
-    
+
+__Numpy implementation__
+
+
+```python
+def max(x, axis=None, keepdims=False):
+    if isinstance(axis, list):
+        axis = tuple(axis)
+    return np.max(x, axis=axis, keepdims=keepdims)
+```
+
+
 ----
 
 ### min
@@ -1537,7 +1838,18 @@ __Arguments__
 __Returns__
 
 A tensor with miminum values of `x`.
-    
+
+__Numpy implementation__
+
+
+```python
+def min(x, axis=None, keepdims=False):
+    if isinstance(axis, list):
+        axis = tuple(axis)
+    return np.min(x, axis=axis, keepdims=keepdims)
+```
+
+
 ----
 
 ### sum
@@ -1564,7 +1876,18 @@ __Arguments__
 __Returns__
 
 A tensor with sum of `x`.
-    
+
+__Numpy implementation__
+
+
+```python
+def sum(x, axis=None, keepdims=False):
+    if isinstance(axis, list):
+        axis = tuple(axis)
+    return np.sum(x, axis=axis, keepdims=keepdims)
+```
+
+
 ----
 
 ### prod
@@ -1591,7 +1914,18 @@ __Arguments__
 __Returns__
 
 A tensor with the product of elements of `x`.
-    
+
+__Numpy implementation__
+
+
+```python
+def prod(x, axis=None, keepdims=False):
+    if isinstance(axis, list):
+        axis = tuple(axis)
+    return np.prod(x, axis=axis, keepdims=keepdims)
+```
+
+
 ----
 
 ### cumsum
@@ -1612,7 +1946,15 @@ __Arguments__
 __Returns__
 
 A tensor of the cumulative sum of values of `x` along `axis`.
-    
+__Numpy implementation__
+
+
+```python
+def cumsum(x, axis=0):
+    return np.cumsum(x, axis=axis)
+```
+
+
 ----
 
 ### cumprod
@@ -1633,7 +1975,15 @@ __Arguments__
 __Returns__
 
 A tensor of the cumulative product of values of `x` along `axis`.
-    
+__Numpy implementation__
+
+
+```python
+def cumprod(x, axis=0):
+    return np.cumprod(x, axis=axis)
+```
+
+
 ----
 
 ### var
@@ -1660,7 +2010,17 @@ __Arguments__
 __Returns__
 
 A tensor with the variance of elements of `x`.
-    
+__Numpy implementation__
+
+
+```python
+def var(x, axis=None, keepdims=False):
+    if isinstance(axis, list):
+        axis = tuple(axis)
+    return np.var(x, axis=axis, keepdims=keepdims)
+```
+
+
 ----
 
 ### std
@@ -1687,7 +2047,17 @@ __Arguments__
 __Returns__
 
 A tensor with the standard deviation of elements of `x`.
-    
+__Numpy implementation__
+
+
+```python
+def std(x, axis=None, keepdims=False):
+    if isinstance(axis, list):
+        axis = tuple(axis)
+    return np.std(x, axis=axis, keepdims=keepdims)
+```
+
+
 ----
 
 ### mean
@@ -1714,7 +2084,17 @@ __Arguments__
 __Returns__
 
 A tensor with the mean of elements of `x`.
-    
+__Numpy implementation__
+
+
+```python
+def mean(x, axis=None, keepdims=False):
+    if isinstance(axis, list):
+        axis = tuple(axis)
+    return np.mean(x, axis=axis, keepdims=keepdims)
+```
+
+
 ----
 
 ### any
@@ -1738,7 +2118,17 @@ __Arguments__
 __Returns__
 
 A uint8 tensor (0s and 1s).
-    
+__Numpy implementation__
+
+
+```python
+def any(x, axis=None, keepdims=False):
+    if isinstance(axis, list):
+        axis = tuple(axis)
+    return np.any(x, axis=axis, keepdims=keepdims)
+```
+
+
 ----
 
 ### all
@@ -1762,7 +2152,17 @@ __Arguments__
 __Returns__
 
 A uint8 tensor (0s and 1s).
-    
+__Numpy implementation__
+
+
+```python
+def all(x, axis=None, keepdims=False):
+    if isinstance(axis, list):
+        axis = tuple(axis)
+    return np.all(x, axis=axis, keepdims=keepdims)
+```
+
+
 ----
 
 ### argmax
@@ -1783,7 +2183,15 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+__Numpy implementation__
+
+
+```python
+def argmax(x, axis=-1):
+    return np.argmax(x, axis=axis)
+```
+
+
 ----
 
 ### argmin
@@ -1804,7 +2212,15 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+__Numpy implementation__
+
+
+```python
+def argmin(x, axis=-1):
+    return np.argmin(x, axis=axis)
+```
+
+
 ----
 
 ### square
@@ -1864,7 +2280,17 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+__Numpy implementation__
+
+
+```python
+def sqrt(x):
+    y = np.sqrt(x)
+    y[np.isnan(y)] = 0.
+    return y
+```
+
+
 ----
 
 ### exp
@@ -1935,7 +2361,17 @@ __Arguments__
 __Returns__
 
 The reduced tensor.
-    
+__Numpy implementation__
+
+
+```python
+def logsumexp(x, axis=None, keepdims=False):
+    if isinstance(axis, list):
+        axis = tuple(axis)
+    return sp.special.logsumexp(x, axis=axis, keepdims=keepdims)
+```
+
+
 ----
 
 ### round
@@ -1998,7 +2434,15 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+__Numpy implementation__
+
+
+```python
+def pow(x, a=1.):
+    return np.power(x, a)
+```
+
+
 ----
 
 ### clip
@@ -2014,13 +2458,21 @@ Element-wise value clipping.
 __Arguments__
 
 - __x__: Tensor or variable.
-- __min_value__: Python float or integer.
-- __max_value__: Python float or integer.
+- __min_value__: Python float, integer or tensor.
+- __max_value__: Python float, integer or tensor.
 
 __Returns__
 
 A tensor.
-    
+__Numpy implementation__
+
+
+```python
+def clip(x, min_value, max_value):
+    return np.clip(x, min_value, max_value)
+```
+
+
 ----
 
 ### equal
@@ -2041,7 +2493,16 @@ __Arguments__
 __Returns__
 
 A bool tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def equal(x, y):
+    return x == y
+```
+
+
 ----
 
 ### not_equal
@@ -2062,7 +2523,16 @@ __Arguments__
 __Returns__
 
 A bool tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def not_equal(x, y):
+    return x != y
+```
+
+
 ----
 
 ### greater
@@ -2083,7 +2553,16 @@ __Arguments__
 __Returns__
 
 A bool tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def greater(x, y):
+    return x > y
+```
+
+
 ----
 
 ### greater_equal
@@ -2104,7 +2583,16 @@ __Arguments__
 __Returns__
 
 A bool tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def greater_equal(x, y):
+    return x >= y
+```
+
+
 ----
 
 ### less
@@ -2125,7 +2613,16 @@ __Arguments__
 __Returns__
 
 A bool tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def less(x, y):
+    return x < y
+```
+
+
 ----
 
 ### less_equal
@@ -2146,7 +2643,16 @@ __Arguments__
 __Returns__
 
 A bool tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def less_equal(x, y):
+    return x <= y
+```
+
+
 ----
 
 ### maximum
@@ -2167,7 +2673,16 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def maximum(x, y):
+    return np.maximum(x, y)
+```
+
+
 ----
 
 ### minimum
@@ -2188,7 +2703,16 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def minimum(x, y):
+    return np.minimum(x, y)
+```
+
+
 ----
 
 ### sin
@@ -2283,7 +2807,16 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def batch_normalization(x, mean, var, beta, gamma, axis=-1, epsilon=0.001):
+    return ((x - mean) / sqrt(var + epsilon)) * gamma + beta
+```
+
+
 ----
 
 ### concatenate
@@ -2374,7 +2907,9 @@ A tensor.
 
 __Raises__
 
-- __ValueError__: if `data_format` is neither `"channels_last"` or `"channels_first"`.
+- __ValueError__: if `data_format` is
+
+neither `"channels_last"` or `"channels_first"`.
     
 ----
 
@@ -2402,7 +2937,9 @@ A tensor.
 
 __Raises__
 
-- __ValueError__: if `data_format` is neither `"channels_last"` or `"channels_first"`.
+- __ValueError__: if `data_format` is
+
+neither `"channels_last"` or `"channels_first"`.
     
 ----
 
@@ -2505,7 +3042,28 @@ __Arguments__
 __Returns__
 
 A tiled tensor.
-    
+
+__Example__
+
+```python
+>>> from keras import backend as K
+>>> kvar = K.variable(np.random.random((2, 3)))
+>>> kvar_tile = K.tile(K.eye(2), (2, 3))
+>>> K.eval(kvar_tile)
+array([[1., 0., 1., 0., 1., 0.],
+       [0., 1., 0., 1., 0., 1.],
+       [1., 0., 1., 0., 1., 0.],
+       [0., 1., 0., 1., 0., 1.]], dtype=float32)
+```
+__Numpy implementation__
+
+
+```python
+def tile(x, n):
+    return np.tile(x, n)
+```
+
+
 ----
 
 ### flatten
@@ -2636,7 +3194,9 @@ A padded 4D tensor.
 
 __Raises__
 
-- __ValueError__: if `data_format` is neither `"channels_last"` or `"channels_first"`.
+- __ValueError__: if `data_format` is
+
+neither `"channels_last"` or `"channels_first"`.
     
 ----
 
@@ -2670,7 +3230,9 @@ A padded 5D tensor.
 
 __Raises__
 
-- __ValueError__: if `data_format` is neither `"channels_last"` or `"channels_first"`.
+- __ValueError__: if `data_format` is
+
+neither `"channels_last"` or `"channels_first"`.
 
 
 ----
@@ -2693,7 +3255,16 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def stack(x, axis=0):
+    return np.stack(x, axis=axis)
+```
+
+
 ----
 
 ### one_hot
@@ -2738,7 +3309,18 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def reverse(x, axes):
+    if isinstance(axes, list):
+        axes = tuple(axes)
+    return np.flip(x, axes)
+```
+
+
 ----
 
 ### slice
@@ -2763,10 +3345,25 @@ __Arguments__
 
 __Returns__
 
-Tensor `x[start[0]: start[0] + size[0],
-          ...,
-          start[-1]: start[-1] + size[-1]]`
-    
+A sliced tensor:
+```python
+new_x = x[start[0]: start[0] + size[0], ..., start[-1]: start[-1] + size[-1]]
+```
+
+__Raises__
+
+- __ValueError__: if the dimension and the size of indices mismatches.
+
+__Numpy implementation__
+
+
+```python
+def slice(x, start, size):
+    slices = [py_slice(i, i + j) for i, j in zip(start, size)]
+    return x[tuple(slices)]
+```
+
+
 ----
 
 ### get_value
@@ -2821,7 +3418,7 @@ Sets the value of a variable, from a Numpy array.
 
 __Arguments__
 
-- __x__: Tensor to set to a new value.
+- __x__: Variable to set to a new value.
 - __value__: Value to set the tensor to, as a Numpy array
     (of the same shape).
     
@@ -2860,6 +3457,7 @@ print operation is not taken into account during evaluation.
 
 __Example__
 
+
 ```python
 >>> x = K.print_tensor(x, message="x is: ")
 ```
@@ -2882,24 +3480,6 @@ The same tensor `x`, unchanged.
 keras.backend.function(inputs, outputs, updates=None)
 ```
 
-
-Instantiates a Keras function.
-
-__Arguments__
-
-- __inputs__: List of placeholder tensors.
-- __outputs__: List of output tensors.
-- __updates__: List of update ops.
-- __**kwargs__: Passed to `tf.Session.run`.
-
-__Returns__
-
-Output values as Numpy arrays.
-
-__Raises__
-
-- __ValueError__: if invalid kwargs are passed in.
-    
 ----
 
 ### gradients
@@ -2999,7 +3579,65 @@ __Raises__
     but input timestep is not a fixed number.
 - __ValueError__: If `mask` is provided (not `None`)
     but states is not provided (`len(states)` == 0).
-    
+
+__Numpy implementation__
+
+
+<details>
+<summary>Show the Numpy implementation</summary>
+
+```python
+def rnn(step_function, inputs, initial_states,
+        go_backwards=False, mask=None, constants=None,
+        unroll=False, input_length=None):
+
+    if constants is None:
+        constants = []
+
+    output_sample, _ = step_function(inputs[:, 0], initial_states + constants)
+    if mask is not None:
+        if mask.dtype != np.bool:
+            mask = mask.astype(np.bool)
+        if mask.shape != inputs.shape[:2]:
+            raise ValueError(
+                'mask should have `shape=(samples, time)`, '
+                'got {}'.format(mask.shape))
+
+        def expand_mask(mask_, x):
+            # expand mask so that `mask[:, t].ndim == x.ndim`
+            while mask_.ndim < x.ndim + 1:
+                mask_ = np.expand_dims(mask_, axis=-1)
+            return mask_
+        output_mask = expand_mask(mask, output_sample)
+        states_masks = [expand_mask(mask, state) for state in initial_states]
+
+    if input_length is None:
+        input_length = inputs.shape[1]
+    assert input_length == inputs.shape[1]
+    time_index = range(input_length)
+    if go_backwards:
+        time_index = time_index[::-1]
+
+    outputs = []
+    states_tm1 = initial_states  # tm1 means "t minus one" as in "previous timestep"
+    output_tm1 = np.zeros(output_sample.shape)
+    for t in time_index:
+        output_t, states_t = step_function(inputs[:, t], states_tm1 + constants)
+        if mask is not None:
+            output_t = np.where(output_mask[:, t], output_t, output_tm1)
+            states_t = [np.where(state_mask[:, t], state_t, state_tm1)
+                        for state_mask, state_t, state_tm1
+                        in zip(states_masks, states_t, states_tm1)]
+        outputs.append(output_t)
+        states_tm1 = states_t
+        output_tm1 = output_t
+
+    return outputs[-1], np.stack(outputs, axis=1), states_tm1
+```
+
+</details>
+
+
 ----
 
 ### switch
@@ -3028,7 +3666,19 @@ The selected tensor.
 __Raises__
 
 - __ValueError__: If rank of `condition` is greater than rank of expressions.
-    
+
+__Numpy implementation__
+
+
+```python
+def switch(condition, then_expression, else_expression):
+    cond_float = condition.astype(floatx())
+    while cond_float.ndim < then_expression.ndim:
+        cond_float = cond_float[..., np.newaxis]
+    return cond_float * then_expression + (1 - cond_float) * else_expression
+```
+
+
 ----
 
 ### in_train_phase
@@ -3115,7 +3765,21 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def relu(x, alpha=0., max_value=None, threshold=0.):
+    if max_value is None:
+        max_value = np.inf
+    above_threshold = x * (x >= threshold)
+    above_threshold = np.clip(above_threshold, 0.0, max_value)
+    below_threshold = alpha * (x - threshold) * (x < threshold)
+    return below_threshold + above_threshold
+```
+
+
 ----
 
 ### elu
@@ -3136,7 +3800,16 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def elu(x, alpha=1.):
+    return x * (x > 0) + alpha * (np.exp(x) - 1.) * (x < 0)
+```
+
+
 ----
 
 ### softmax
@@ -3158,7 +3831,17 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def softmax(x, axis=-1):
+    y = np.exp(x - np.max(x, axis, keepdims=True))
+    return y / np.sum(y, axis, keepdims=True)
+```
+
+
 ----
 
 ### softplus
@@ -3178,7 +3861,16 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def softplus(x):
+    return np.log(1. + np.exp(x))
+```
+
+
 ----
 
 ### softsign
@@ -3198,7 +3890,16 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def softsign(x):
+    return x / (1 + np.abs(x))
+```
+
+
 ----
 
 ### categorical_crossentropy
@@ -3310,7 +4011,16 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def sigmoid(x):
+    return 1. / (1. + np.exp(-x))
+```
+
+
 ----
 
 ### hard_sigmoid
@@ -3334,7 +4044,17 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def hard_sigmoid(x):
+    y = 0.2 * x + 0.5
+    return np.clip(y, 0, 1)
+```
+
+
 ----
 
 ### tanh
@@ -3354,7 +4074,16 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def tanh(x):
+    return np.tanh(x)
+```
+
+
 ----
 
 ### dropout
@@ -3379,7 +4108,29 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+__Numpy implementation__
+
+
+<details>
+<summary>Show the Numpy implementation</summary>
+
+```python
+def dropout(x, level, noise_shape=None, seed=None):
+    if noise_shape is None:
+        noise_shape = x.shape
+    if learning_phase():
+        noise = np.random.choice([0, 1],
+                                 noise_shape,
+                                 replace=True,
+                                 p=[level, 1 - level])
+        return x * noise / (1 - level)
+    else:
+        return x
+```
+
+</details>
+
+
 ----
 
 ### l2_normalize
@@ -3400,7 +4151,17 @@ __Arguments__
 __Returns__
 
 A tensor.
-    
+
+__Numpy implementation__
+
+
+```python
+def l2_normalize(x, axis=-1):
+    y = np.max(np.sum(x ** 2, axis, keepdims=True), axis, keepdims=True)
+    return x / np.sqrt(y)
+```
+
+
 ----
 
 ### in_top_k
@@ -3705,7 +4466,10 @@ A tensor, result of 2D pooling.
 
 __Raises__
 
-- __ValueError__: if `data_format` is neither `"channels_last"` or `"channels_first"`.
+- __ValueError__: if `data_format` is
+
+neither `"channels_last"` or `"channels_first"`.
+
 - __ValueError__: if `pool_mode` is neither `"max"` or `"avg"`.
     
 ----
@@ -3735,8 +4499,87 @@ A tensor, result of 3D pooling.
 
 __Raises__
 
-- __ValueError__: if `data_format` is neither `"channels_last"` or `"channels_first"`.
+- __ValueError__: if `data_format` is
+
+neither `"channels_last"` or `"channels_first"`.
+
 - __ValueError__: if `pool_mode` is neither `"max"` or `"avg"`.
+    
+----
+
+### local_conv1d
+
+
+```python
+keras.backend.local_conv1d(inputs, kernel, kernel_size, strides, data_format=None)
+```
+
+
+Apply 1D conv with un-shared weights.
+
+__Arguments__
+
+- __inputs__: 3D tensor with shape: (batch_size, steps, input_dim)
+- __kernel__: the unshared weight for convolution,
+        with shape (output_length, feature_dim, filters)
+- __kernel_size__: a tuple of a single integer,
+             specifying the length of the 1D convolution window
+- __strides__: a tuple of a single integer,
+         specifying the stride length of the convolution
+- __data_format__: the data format, channels_first or channels_last
+
+__Returns__
+
+the tensor after 1d conv with un-shared weights,
+with shape (batch_size, output_length, filters)
+
+__Raises__
+
+- __ValueError__: If `data_format` is neither
+    `"channels_last"` nor `"channels_first"`.
+    
+----
+
+### local_conv2d
+
+
+```python
+keras.backend.local_conv2d(inputs, kernel, kernel_size, strides, output_shape, data_format=None)
+```
+
+
+Apply 2D conv with un-shared weights.
+
+__Arguments__
+
+- __inputs__: 4D tensor with shape:
+        (batch_size, filters, new_rows, new_cols)
+        if data_format='channels_first'
+        or 4D tensor with shape:
+        (batch_size, new_rows, new_cols, filters)
+        if data_format='channels_last'.
+- __kernel__: the unshared weight for convolution,
+        with shape (output_items, feature_dim, filters)
+- __kernel_size__: a tuple of 2 integers, specifying the
+             width and height of the 2D convolution window.
+- __strides__: a tuple of 2 integers, specifying the strides
+         of the convolution along the width and height.
+- __output_shape__: a tuple with (output_row, output_col)
+- __data_format__: the data format, channels_first or channels_last
+
+__Returns__
+
+A 4d tensor with shape:
+(batch_size, filters, new_rows, new_cols)
+if data_format='channels_first'
+or 4D tensor with shape:
+(batch_size, new_rows, new_cols, filters)
+if data_format='channels_last'.
+
+__Raises__
+
+- __ValueError__: if `data_format` is neither
+            `channels_last` or `channels_first`.
     
 ----
 
@@ -3762,12 +4605,33 @@ Output tensor.
 
 __Raises__
 
-- __ValueError__: In one of the two cases below:
-            1. invalid `data_format` argument.
-            2. invalid bias shape.
-               the bias should be either a vector or
-               a tensor with ndim(x) - 1 dimension
-    
+ValueError: In one of the two cases below:
+1. invalid `data_format` argument.
+2. invalid bias shape.
+the bias should be either a vector or
+a tensor with ndim(x) - 1 dimension
+__Numpy implementation__
+
+
+<details>
+<summary>Show the Numpy implementation</summary>
+
+```python
+def bias_add(x, y, data_format):
+    if data_format == 'channels_first':
+        if y.ndim > 1:
+            y = np.reshape(y, y.shape[::-1])
+        for _ in range(x.ndim - y.ndim - 1):
+            y = np.expand_dims(y, -1)
+    else:
+        for _ in range(x.ndim - y.ndim - 1):
+            y = np.expand_dims(y, 0)
+    return x + y
+```
+
+</details>
+
+
 ----
 
 ### random_normal
@@ -3926,7 +4790,7 @@ Tensor with shape (samples,1) containing the
 
 
 ```python
-keras.backend.ctc_decode(y_pred, input_length, greedy=True, beam_width=100, top_paths=1)
+keras.backend.ctc_decode(y_pred, input_length, greedy=True, beam_width=100, top_paths=1, merge_repeated=False)
 ```
 
 
@@ -3941,23 +4805,48 @@ __Arguments__
     containing the prediction, or output of the softmax.
 - __input_length__: tensor `(samples, )` containing the sequence length for
     each batch item in `y_pred`.
-- __greedy__: perform much faster best-path search if `true`.
+- __greedy__: perform much faster best-path search if `True`.
     This does not use a dictionary.
-- __beam_width__: if `greedy` is `false`: a beam search decoder will be used
+- __beam_width__: if `greedy` is `False`: a beam search decoder will be used
     with a beam of this width.
-- __top_paths__: if `greedy` is `false`,
+- __top_paths__: if `greedy` is `False`,
     how many of the most probable paths will be returned.
+- __merge_repeated__: if `greedy` is `False`,
+    merge repeated classes in the output beams.
 
 __Returns__
 
 - __Tuple__:
-    List: if `greedy` is `true`, returns a list of one element that
+    List: if `greedy` is `True`, returns a list of one element that
         contains the decoded sequence.
-        If `false`, returns the `top_paths` most probable
+        If `False`, returns the `top_paths` most probable
         decoded sequences.
         Important: blank labels are returned as `-1`.
     Tensor `(top_paths, )` that contains
         the log probability of each decoded sequence.
+    
+----
+
+### control_dependencies
+
+
+```python
+keras.backend.control_dependencies(control_inputs)
+```
+
+
+A context manager that specifies control dependencies.
+
+__Arguments__
+
+- __control_inputs__: A list of Operation or Tensor objects
+    which must be executed
+    or computed before running the operations defined in the context.
+    Can also be None to clear the control dependencies.
+
+__Returns__
+
+A context manager.
     
 ----
 
@@ -4029,81 +4918,6 @@ __Arguments__
 __Returns__
 
 Tensor with same type and shape as `initializer`.
-    
-----
-
-### local_conv1d
-
-
-```python
-keras.backend.local_conv1d(inputs, kernel, kernel_size, strides, data_format=None)
-```
-
-
-Apply 1D conv with un-shared weights.
-
-__Arguments__
-
-- __inputs__: 3D tensor with shape: (batch_size, steps, input_dim)
-- __kernel__: the unshared weight for convolution,
-        with shape (output_length, feature_dim, filters)
-- __kernel_size__: a tuple of a single integer,
-             specifying the length of the 1D convolution window
-- __strides__: a tuple of a single integer,
-         specifying the stride length of the convolution
-- __data_format__: the data format, channels_first or channels_last
-
-__Returns__
-
-the tensor after 1d conv with un-shared weights, with shape (batch_size, output_length, filters)
-
-__Raises__
-
-- __ValueError__: If `data_format` is neither
-    `"channels_last"` nor `"channels_first"`.
-    
-----
-
-### local_conv2d
-
-
-```python
-keras.backend.local_conv2d(inputs, kernel, kernel_size, strides, output_shape, data_format=None)
-```
-
-
-Apply 2D conv with un-shared weights.
-
-__Arguments__
-
-- __inputs__: 4D tensor with shape:
-        (batch_size, filters, new_rows, new_cols)
-        if data_format='channels_first'
-        or 4D tensor with shape:
-        (batch_size, new_rows, new_cols, filters)
-        if data_format='channels_last'.
-- __kernel__: the unshared weight for convolution,
-        with shape (output_items, feature_dim, filters)
-- __kernel_size__: a tuple of 2 integers, specifying the
-             width and height of the 2D convolution window.
-- __strides__: a tuple of 2 integers, specifying the strides
-         of the convolution along the width and height.
-- __output_shape__: a tuple with (output_row, output_col)
-- __data_format__: the data format, channels_first or channels_last
-
-__Returns__
-
-A 4d tensor with shape:
-(batch_size, filters, new_rows, new_cols)
-if data_format='channels_first'
-or 4D tensor with shape:
-(batch_size, new_rows, new_cols, filters)
-if data_format='channels_last'.
-
-__Raises__
-
-- __ValueError__: if `data_format` is neither
-            `channels_last` or `channels_first`.
     
 
 

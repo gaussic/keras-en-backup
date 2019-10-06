@@ -1,4 +1,4 @@
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L767)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L796)</span>
 ### Dense
 
 ```python
@@ -72,7 +72,7 @@ the output would have shape `(batch_size, units)`.
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L276)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L277)</span>
 ### Activation
 
 ```python
@@ -99,7 +99,7 @@ Same shape as input.
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L80)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L81)</span>
 ### Dropout
 
 ```python
@@ -125,12 +125,12 @@ __Arguments__
 
 __References__
 
-- [Dropout: A Simple Way to Prevent Neural Networks from Overfitting]
-  (http://www.jmlr.org/papers/volume15/srivastava14a/srivastava14a.pdf)
+- [Dropout: A Simple Way to Prevent Neural Networks from Overfitting](
+   http://www.jmlr.org/papers/volume15/srivastava14a/srivastava14a.pdf)
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L461)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L462)</span>
 ### Flatten
 
 ```python
@@ -230,7 +230,7 @@ model = Model(x, y)
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L310)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L311)</span>
 ### Reshape
 
 ```python
@@ -276,7 +276,7 @@ model.add(Reshape((-1, 2, 2)))
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L409)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L410)</span>
 ### Permute
 
 ```python
@@ -317,7 +317,7 @@ to the specified pattern.
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L523)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L524)</span>
 ### RepeatVector
 
 ```python
@@ -353,7 +353,7 @@ __Output shape__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L565)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L566)</span>
 ### Lambda
 
 ```python
@@ -390,11 +390,31 @@ def antirectifier_output_shape(input_shape):
 model.add(Lambda(antirectifier,
                  output_shape=antirectifier_output_shape))
 ```
+```python
+# add a layer that returns the hadamard product
+# and sum of it from two input tensors
+
+def hadamard_product_sum(tensors):
+    out1 = tensors[0] * tensors[1]
+    out2 = K.sum(out1, axis=-1)
+    return [out1, out2]
+
+def hadamard_product_sum_output_shape(input_shapes):
+    shape1 = list(input_shapes[0])
+    shape2 = list(input_shapes[1])
+    assert shape1 == shape2  # else hadamard product isn't possible
+    return [tuple(shape1), tuple(shape2[:-1])]
+
+x1 = Dense(32)(input_1)
+x2 = Dense(32)(input_2)
+layer = Lambda(hadamard_product_sum, hadamard_product_sum_output_shape)
+x_hadamard, x_sum = layer([x1, x2])
+```
 
 __Arguments__
 
 - __function__: The function to be evaluated.
-    Takes input tensor as first argument.
+    Takes input tensor or list of tensors as first argument.
 - __output_shape__: Expected output shape from function.
     Only relevant when using Theano.
     Can be a tuple or function.
@@ -406,6 +426,8 @@ __Arguments__
          `output_shape = (None, ) + output_shape`
     If a function, it specifies the entire shape as a function of the
     input shape: `output_shape = f(input_shape)`
+- __mask__: Either None (indicating no masking) or a Tensor indicating the
+  input mask for Embedding.
 - __arguments__: optional dictionary of keyword arguments to be passed
     to the function.
 
@@ -422,7 +444,7 @@ Specified by `output_shape` argument
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L911)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L940)</span>
 ### ActivityRegularization
 
 ```python
@@ -448,7 +470,7 @@ Same shape as input.
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L29)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L28)</span>
 ### Masking
 
 ```python
@@ -457,10 +479,9 @@ keras.layers.Masking(mask_value=0.0)
 
 Masks a sequence by using a mask value to skip timesteps.
 
-For each timestep in the input tensor (dimension #1 in the tensor),
-if all values in the input tensor at that timestep
-are equal to `mask_value`, then the timestep will be masked (skipped)
-in all downstream layers (as long as they support masking).
+If all features for a given sample timestep are equal to `mask_value`,
+then the sample timestep will be masked (skipped) in all downstream layers
+(as long as they support masking).
 
 If any downstream layer does not support masking yet receives such
 an input mask, an exception will be raised.
@@ -470,10 +491,10 @@ __Example__
 
 Consider a Numpy data array `x` of shape `(samples, timesteps, features)`,
 to be fed to an LSTM layer.
-You want to mask timestep #3 and #5 because you lack data for
-these timesteps. You can:
+You want to mask sample #0 at timestep #3, and sample #2 at timestep #5,
+because you lack features for these sample timesteps. You can do:
 
-- set `x[:, 3, :] = 0.` and `x[:, 5, :] = 0.`
+- set `x[0, 3, :] = 0.` and `x[2, 5, :] = 0.`
 - insert a `Masking` layer with `mask_value=0.` before the LSTM layer:
 
 ```python
@@ -482,9 +503,13 @@ model.add(Masking(mask_value=0., input_shape=(timesteps, features)))
 model.add(LSTM(32))
 ```
 
+__Arguments__
+
+- __mask_value__: Either None or mask value to skip
+    
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L140)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L141)</span>
 ### SpatialDropout1D
 
 ```python
@@ -516,12 +541,12 @@ Same as input
 
 __References__
 
-- [Efficient Object Localization Using Convolutional Networks]
-  (https://arxiv.org/abs/1411.4280)
+- [Efficient Object Localization Using Convolutional Networks](
+   https://arxiv.org/abs/1411.4280)
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L177)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L178)</span>
 ### SpatialDropout2D
 
 ```python
@@ -562,12 +587,12 @@ Same as input
 
 __References__
 
-- [Efficient Object Localization Using Convolutional Networks]
-  (https://arxiv.org/abs/1411.4280)
+- [Efficient Object Localization Using Convolutional Networks](
+   https://arxiv.org/abs/1411.4280)
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L227)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/core.py#L228)</span>
 ### SpatialDropout3D
 
 ```python
@@ -607,6 +632,6 @@ Same as input
 
 __References__
 
-- [Efficient Object Localization Using Convolutional Networks]
-  (https://arxiv.org/abs/1411.4280)
+- [Efficient Object Localization Using Convolutional Networks](
+   https://arxiv.org/abs/1411.4280)
     

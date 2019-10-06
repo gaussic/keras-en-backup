@@ -59,8 +59,8 @@ Same shape as input.
 
 __References__
 
-- [Dropout: A Simple Way to Prevent Neural Networks from Overfitting]
-  (http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)
+- [Dropout: A Simple Way to Prevent Neural Networks from Overfitting](
+   http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)
     
 ----
 
@@ -84,6 +84,8 @@ __Arguments__
 - __rate__: float, drop probability (as with `Dropout`).
     The multiplicative noise will have
     standard deviation `sqrt(rate / (1 - rate))`.
+- __noise_shape__: A 1-D `Tensor` of type `int32`, representing the
+    shape for randomly generated keep/drop flags.
 - __seed__: A Python integer to use as random seed.
 
 __Input shape__

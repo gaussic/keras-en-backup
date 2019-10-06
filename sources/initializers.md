@@ -14,45 +14,7 @@ model.add(Dense(64,
 
 The following built-in initializers are available as part of the `keras.initializers` module:
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L66)</span>
-### RandomNormal
-
-```python
-keras.initializers.RandomNormal(mean=0.0, stddev=0.05, seed=None)
-```
-
-Initializer that generates tensors with a normal distribution.
-
-__Arguments__
-
-- __mean__: a python scalar or a scalar tensor. Mean of the random values
-  to generate.
-- __stddev__: a python scalar or a scalar tensor. Standard deviation of the
-  random values to generate.
-- __seed__: A Python integer. Used to seed the random generator.
-    
-----
-
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L94)</span>
-### RandomUniform
-
-```python
-keras.initializers.RandomUniform(minval=-0.05, maxval=0.05, seed=None)
-```
-
-Initializer that generates tensors with a uniform distribution.
-
-__Arguments__
-
-- __minval__: A python scalar or a scalar tensor. Lower bound of the range
-  of random values to generate.
-- __maxval__: A python scalar or a scalar tensor. Upper bound of the range
-  of random values to generate.  Defaults to 1 for float types.
-- __seed__: A Python integer. Used to seed the random generator.
-    
-----
-
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L122)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L128)</span>
 ### TruncatedNormal
 
 ```python
@@ -63,7 +25,7 @@ Initializer that generates a truncated normal distribution.
 
 These values are similar to values from a `RandomNormal`
 except that values more than two standard deviations from the mean
-are discarded and re-drawn. This is the recommended initializer for
+are discarded and redrawn. This is the recommended initializer for
 neural network weights and filters.
 
 __Arguments__
@@ -73,6 +35,61 @@ __Arguments__
 - __stddev__: a python scalar or a scalar tensor. Standard deviation of the
   random values to generate.
 - __seed__: A Python integer. Used to seed the random generator.
+    
+----
+
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L164)</span>
+### VarianceScaling
+
+```python
+keras.initializers.VarianceScaling(scale=1.0, mode='fan_in', distribution='normal', seed=None)
+```
+
+Initializer capable of adapting its scale to the shape of weights.
+
+With `distribution="normal"`, samples are drawn from a truncated normal
+distribution centered on zero, with `stddev = sqrt(scale / n)` where n is:
+
+- number of input units in the weight tensor, if mode = "fan_in"
+- number of output units, if mode = "fan_out"
+- average of the numbers of input and output units, if mode = "fan_avg"
+
+With `distribution="uniform"`,
+samples are drawn from a uniform distribution
+within [-limit, limit], with `limit = sqrt(3 * scale / n)`.
+
+__Arguments__
+
+- __scale__: Scaling factor (positive float).
+- __mode__: One of "fan_in", "fan_out", "fan_avg".
+- __distribution__: Random distribution to use. One of "normal", "uniform".
+- __seed__: A Python integer. Used to seed the random generator.
+
+__Raises__
+
+- __ValueError__: In case of an invalid value for the "scale", mode" or
+  "distribution" arguments.
+    
+----
+
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L241)</span>
+### Orthogonal
+
+```python
+keras.initializers.Orthogonal(gain=1.0, seed=None)
+```
+
+Initializer that generates a random orthogonal matrix.
+
+__Arguments__
+
+- __gain__: Multiplicative factor to apply to the orthogonal matrix.
+- __seed__: A Python integer. Used to seed the random generator.
+
+__References__
+
+- [Exact solutions to the nonlinear dynamics of learning in deep
+   linear neural networks](http://arxiv.org/abs/1312.6120)
     
 ----
 
@@ -124,61 +141,45 @@ __Arguments__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L155)</span>
-### VarianceScaling
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L66)</span>
+### RandomNormal
 
 ```python
-keras.initializers.VarianceScaling(scale=1.0, mode='fan_in', distribution='normal', seed=None)
+keras.initializers.RandomNormal(mean=0.0, stddev=0.05, seed=None)
 ```
 
-Initializer capable of adapting its scale to the shape of weights.
-
-With `distribution="normal"`, samples are drawn from a truncated normal
-distribution centered on zero, with `stddev = sqrt(scale / n)` where n is:
-
-- number of input units in the weight tensor, if mode = "fan_in"
-- number of output units, if mode = "fan_out"
-- average of the numbers of input and output units, if mode = "fan_avg"
-
-With `distribution="uniform"`,
-samples are drawn from a uniform distribution
-within [-limit, limit], with `limit = sqrt(3 * scale / n)`.
+Initializer that generates tensors with a normal distribution.
 
 __Arguments__
 
-- __scale__: Scaling factor (positive float).
-- __mode__: One of "fan_in", "fan_out", "fan_avg".
-- __distribution__: Random distribution to use. One of "normal", "uniform".
+- __mean__: a python scalar or a scalar tensor. Mean of the random values
+  to generate.
+- __stddev__: a python scalar or a scalar tensor. Standard deviation of the
+  random values to generate.
 - __seed__: A Python integer. Used to seed the random generator.
-
-__Raises__
-
-- __ValueError__: In case of an invalid value for the "scale", mode" or
-  "distribution" arguments.
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L229)</span>
-### Orthogonal
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L97)</span>
+### RandomUniform
 
 ```python
-keras.initializers.Orthogonal(gain=1.0, seed=None)
+keras.initializers.RandomUniform(minval=-0.05, maxval=0.05, seed=None)
 ```
 
-Initializer that generates a random orthogonal matrix.
+Initializer that generates tensors with a uniform distribution.
 
 __Arguments__
 
-- __gain__: Multiplicative factor to apply to the orthogonal matrix.
+- __minval__: A python scalar or a scalar tensor. Lower bound of the range
+  of random values to generate.
+- __maxval__: A python scalar or a scalar tensor. Upper bound of the range
+  of random values to generate.  Defaults to 1 for float types.
 - __seed__: A Python integer. Used to seed the random generator.
-
-__References__
-
-Saxe et al., http://arxiv.org/abs/1312.6120
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L266)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/initializers.py#L281)</span>
 ### Identity
 
 ```python
@@ -188,8 +189,8 @@ keras.initializers.Identity(gain=1.0)
 Initializer that generates the identity matrix.
 
 Only use for 2D matrices.
-If the long side of the matrix is a multiple of the short side,
-multiple identity matrices are concatenated along the long side.
+If the desired matrix is not square, it gets padded
+with zeros for the additional rows/columns.
 
 __Arguments__
 
@@ -221,8 +222,7 @@ An initializer.
 
 __References__
 
-LeCun 98, Efficient Backprop,
-- __http__://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf
+- [Efficient BackProp](http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf)
     
 ----
 
@@ -251,8 +251,8 @@ An initializer.
 
 __References__
 
-Glorot & Bengio, AISTATS 2010
-- __http__://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
+- [Understanding the difficulty of training deep feedforward neural
+   networks](http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf)
     
 ----
 
@@ -281,8 +281,8 @@ An initializer.
 
 __References__
 
-Glorot & Bengio, AISTATS 2010
-- __http__://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf
+- [Understanding the difficulty of training deep feedforward neural
+   networks](http://jmlr.org/proceedings/papers/v9/glorot10a/glorot10a.pdf)
     
 ----
 
@@ -310,7 +310,8 @@ An initializer.
 
 __References__
 
-He et al., http://arxiv.org/abs/1502.01852
+- [Delving Deep into Rectifiers: Surpassing Human-Level Performance on
+   ImageNet Classification](http://arxiv.org/abs/1502.01852)
     
 ----
 
@@ -367,7 +368,8 @@ An initializer.
 
 __References__
 
-He et al., http://arxiv.org/abs/1502.01852
+- [Delving Deep into Rectifiers: Surpassing Human-Level Performance on
+   ImageNet Classification](http://arxiv.org/abs/1502.01852)
     
 
 

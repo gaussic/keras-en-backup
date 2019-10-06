@@ -1,11 +1,11 @@
 
 # Image Preprocessing
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/preprocessing/image.py#L232)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/preprocessing/image.py#L238)</span>
 ## ImageDataGenerator class
 
 ```python
-keras.preprocessing.image.ImageDataGenerator(featurewise_center=False, samplewise_center=False, featurewise_std_normalization=False, samplewise_std_normalization=False, zca_whitening=False, zca_epsilon=1e-06, rotation_range=0, width_shift_range=0.0, height_shift_range=0.0, brightness_range=None, shear_range=0.0, zoom_range=0.0, channel_shift_range=0.0, fill_mode='nearest', cval=0.0, horizontal_flip=False, vertical_flip=False, rescale=None, preprocessing_function=None, data_format=None, validation_split=0.0, dtype=None)
+keras.preprocessing.image.ImageDataGenerator(featurewise_center=False, samplewise_center=False, featurewise_std_normalization=False, samplewise_std_normalization=False, zca_whitening=False, zca_epsilon=1e-06, rotation_range=0, width_shift_range=0.0, height_shift_range=0.0, brightness_range=None, shear_range=0.0, zoom_range=0.0, channel_shift_range=0.0, fill_mode='nearest', cval=0.0, horizontal_flip=False, vertical_flip=False, rescale=None, preprocessing_function=None, data_format='channels_last', validation_split=0.0, interpolation_order=1, dtype='float32')
 ```
 
 Generate batches of tensor image data with real-time data augmentation.
@@ -66,7 +66,7 @@ __Arguments__
     If None or 0, no rescaling is applied,
     otherwise we multiply the data by the value provided
     (after applying all other transformations).
-- __preprocessing_function__: function that will be implied on each input.
+- __preprocessing_function__: function that will be applied on each input.
     The function will run after the image is resized and augmented.
     The function should take one argument:
     one image (Numpy tensor with rank 3),
@@ -187,6 +187,48 @@ model.fit_generator(
     train_generator,
     steps_per_epoch=2000,
     epochs=50)
+```
+
+Example of using ```.flow_from_dataframe(dataframe, directory,
+```:
+
+```python
+
+train_df = pandas.read_csv("./train.csv")
+valid_df = pandas.read_csv("./valid.csv")
+
+train_datagen = ImageDataGenerator(
+        rescale=1./255,
+        shear_range=0.2,
+        zoom_range=0.2,
+        horizontal_flip=True)
+
+test_datagen = ImageDataGenerator(rescale=1./255)
+
+train_generator = train_datagen.flow_from_dataframe(
+        dataframe=train_df,
+        directory='data/train',
+        x_col="filename",
+        y_col="class",
+        target_size=(150, 150),
+        batch_size=32,
+        class_mode='binary')
+
+validation_generator = test_datagen.flow_from_dataframe(
+        dataframe=valid_df,
+        directory='data/validation',
+        x_col="filename",
+        y_col="class",
+        target_size=(150, 150),
+        batch_size=32,
+        class_mode='binary')
+
+model.fit_generator(
+        train_generator,
+        steps_per_epoch=2000,
+        epochs=50,
+        validation_data=validation_generator,
+        validation_steps=800)
 ```
 
 
@@ -314,87 +356,96 @@ An `Iterator` yielding tuples of `(x, y)`
 
 
 ```python
-flow_from_dataframe(dataframe, directory, x_col='filename', y_col='class', has_ext=True, target_size=(256, 256), color_mode='rgb', classes=None, class_mode='categorical', batch_size=32, shuffle=True, seed=None, save_to_dir=None, save_prefix='', save_format='png', subset=None, interpolation='nearest')
+flow_from_dataframe(dataframe, directory=None, x_col='filename', y_col='class', weight_col=None, target_size=(256, 256), color_mode='rgb', classes=None, class_mode='categorical', batch_size=32, shuffle=True, seed=None, save_to_dir=None, save_prefix='', save_format='png', subset=None, interpolation='nearest', validate_filenames=True)
 ```
 
 
 Takes the dataframe and the path to a directory
 and generates batches of augmented/normalized data.
 
-__A simple tutorial can be found at: http://bit.ly/keras_flow_from_dataframe__
-
+**A simple tutorial can be found **[here](
+http://bit.ly/keras_flow_from_dataframe).
 
 __Arguments__
 
-    dataframe: Pandas dataframe containing the filenames of the
-               images in a column and classes in another or column/s
-               that can be fed as raw target data.
-    directory: string, path to the target directory that contains all
-               the images mapped in the dataframe.
-    x_col: string, column in the dataframe that contains
-           the filenames of the target images.
-    y_col: string or list of strings,columns in
-           the dataframe that will be the target data.
-    has_ext: bool, True if filenames in dataframe[x_col]
-            has filename extensions,else False.
-    target_size: tuple of integers `(height, width)`,
-                 default: `(256, 256)`.
-                 The dimensions to which all images
-                 found will be resized.
-    color_mode: one of "grayscale", "rbg". Default: "rgb".
-                Whether the images will be converted to have
-                1 or 3 color channels.
-    classes: optional list of classes
-    (e.g. `['dogs', 'cats']`). Default: None.
-     If not provided, the list of classes will be automatically
-     inferred from the y_col,
-     which will map to the label indices, will be alphanumeric).
-     The dictionary containing the mapping from class names to class
-     indices can be obtained via the attribute `class_indices`.
-    class_mode: one of "categorical", "binary", "sparse",
-      "input", "other" or None. Default: "categorical".
-     Determines the type of label arrays that are returned:
-     - `"categorical"` will be 2D one-hot encoded labels,
-     - `"binary"` will be 1D binary labels,
-     - `"sparse"` will be 1D integer labels,
-     - `"input"` will be images identical
+- __dataframe__: Pandas dataframe containing the filepaths relative to
+    `directory` (or absolute paths if `directory` is None) of the
+    images in a string column. It should include other column/s
+    depending on the `class_mode`:
+    - if `class_mode` is `"categorical"` (default value) it must
+        include the `y_col` column with the class/es of each image.
+        Values in column can be string/list/tuple if a single class
+        or list/tuple if multiple classes.
+    - if `class_mode` is `"binary"` or `"sparse"` it must include
+        the given `y_col` column with class values as strings.
+    - if `class_mode` is `"raw"` or `"multi_output"` it should contain
 
-     to input images (mainly used to work with autoencoders).
+    the columns specified in `y_col`.
 
-    - `"other"` will be numpy array of y_col data
-     - None, no labels are returned (the generator will only
-             yield batches of image data, which is useful to use
-
-     `model.predict_generator()`, `model.evaluate_generator()`, etc.).
-
-    batch_size: size of the batches of data (default: 32).
-    shuffle: whether to shuffle the data (default: True)
-    seed: optional random seed for shuffling and transformations.
-    save_to_dir: None or str (default: None).
-                 This allows you to optionally specify a directory
-                 to which to save the augmented pictures being generated
-                 (useful for visualizing what you are doing).
-    save_prefix: str. Prefix to use for filenames of saved pictures
+    - if `class_mode` is `"input"` or `None` no extra column is needed.
+- __directory__: string, path to the directory to read images from. If `None`,
+    data in `x_col` column should be absolute paths.
+- __x_col__: string, column in `dataframe` that contains the filenames (or
+    absolute paths if `directory` is `None`).
+- __y_col__: string or list, column/s in `dataframe` that has the target data.
+- __weight_col__: string, column in `dataframe` that contains the sample
+    weights. Default: `None`.
+- __target_size__: tuple of integers `(height, width)`, default: `(256, 256)`.
+    The dimensions to which all images found will be resized.
+- __color_mode__: one of "grayscale", "rgb", "rgba". Default: "rgb".
+    Whether the images will be converted to have 1 or 3 color channels.
+- __classes__: optional list of classes (e.g. `['dogs', 'cats']`).
+    Default: None. If not provided, the list of classes will be
+    automatically inferred from the `y_col`,
+    which will map to the label indices, will be alphanumeric).
+    The dictionary containing the mapping from class names to class
+    indices can be obtained via the attribute `class_indices`.
+- __class_mode__: one of "binary", "categorical", "input", "multi_output",
+    "raw", sparse" or None. Default: "categorical".
+    Mode for yielding the targets:
+    - `"binary"`: 1D numpy array of binary labels,
+    - `"categorical"`: 2D numpy array of one-hot encoded labels.
+        Supports multi-label output.
+    - `"input"`: images identical to input images (mainly used to
+        work with autoencoders),
+    - `"multi_output"`: list with the values of the different columns,
+    - `"raw"`: numpy array of values in `y_col` column(s),
+    - `"sparse"`: 1D numpy array of integer labels,
+    - `None`, no targets are returned (the generator will only yield
+        batches of image data, which is useful to use in
+        `model.predict_generator()`).
+- __batch_size__: size of the batches of data (default: 32).
+- __shuffle__: whether to shuffle the data (default: True)
+- __seed__: optional random seed for shuffling and transformations.
+- __save_to_dir__: None or str (default: None).
+    This allows you to optionally specify a directory
+    to which to save the augmented pictures being generated
+    (useful for visualizing what you are doing).
+- __save_prefix__: str. Prefix to use for filenames of saved pictures
     (only relevant if `save_to_dir` is set).
-    save_format: one of "png", "jpeg"
+- __save_format__: one of "png", "jpeg"
     (only relevant if `save_to_dir` is set). Default: "png".
-    follow_links: whether to follow symlinks inside class subdirectories
+- __follow_links__: whether to follow symlinks inside class subdirectories
     (default: False).
-    subset: Subset of data (`"training"` or `"validation"`) if
-     `validation_split` is set in `ImageDataGenerator`.
-    interpolation: Interpolation method used to resample the image if the
-     target size is different from that of the loaded image.
-     Supported methods are `"nearest"`, `"bilinear"`, and `"bicubic"`.
-     If PIL version 1.1.3 or newer is installed, `"lanczos"` is also
-     supported. If PIL version 3.4.0 or newer is installed, `"box"` and
-     `"hamming"` are also supported. By default, `"nearest"` is used.
+- __subset__: Subset of data (`"training"` or `"validation"`) if
+    `validation_split` is set in `ImageDataGenerator`.
+- __interpolation__: Interpolation method used to resample the image if the
+    target size is different from that of the loaded image.
+    Supported methods are `"nearest"`, `"bilinear"`, and `"bicubic"`.
+    If PIL version 1.1.3 or newer is installed, `"lanczos"` is also
+    supported. If PIL version 3.4.0 or newer is installed, `"box"` and
+    `"hamming"` are also supported. By default, `"nearest"` is used.
+- __validate_filenames__: Boolean, whether to validate image filenames in
+    `x_col`. If `True`, invalid images will be ignored. Disabling this
+    option can lead to speed-up in the execution of this function.
+    Default: `True`.
 
 __Returns__
 
-A DataFrameIterator yielding tuples of `(x, y)`
+A `DataFrameIterator` yielding tuples of `(x, y)`
 where `x` is a numpy array containing a batch
 of images with shape `(batch_size, *target_size, channels)`
- and `y` is a numpy array of corresponding labels.
+and `y` is a numpy array of corresponding labels.
     
 ---
 ### flow_from_directory
@@ -409,7 +460,7 @@ Takes the path to a directory & generates batches of augmented data.
 
 __Arguments__
 
-- __directory__: Path to the target directory.
+- __directory__: string, path to the target directory.
     It should contain one subdirectory per class.
     Any PNG, JPG, BMP, PPM or TIF images
     inside each of the subdirectories directory tree
@@ -420,7 +471,7 @@ __Arguments__
 - __target_size__: Tuple of integers `(height, width)`,
     default: `(256, 256)`.
     The dimensions to which all images found will be resized.
-- __color_mode__: One of "grayscale", "rbg", "rgba". Default: "rgb".
+- __color_mode__: One of "grayscale", "rgb", "rgba". Default: "rgb".
     Whether the images will be converted to
     have 1, 3, or 4 channels.
 - __classes__: Optional list of class subdirectories
@@ -443,13 +494,13 @@ __Arguments__
         to input images (mainly used to work with autoencoders).
     - If None, no labels are returned
       (the generator will only yield batches of image data,
-      which is useful to use with `model.predict_generator()`,
-      `model.evaluate_generator()`, etc.).
+      which is useful to use with `model.predict_generator()`).
       Please note that in case of class_mode None,
       the data still needs to reside in a subdirectory
       of `directory` for it to work correctly.
 - __batch_size__: Size of the batches of data (default: 32).
 - __shuffle__: Whether to shuffle the data (default: True)
+    If set to False, sorts the data in alphanumeric order.
 - __seed__: Optional random seed for shuffling and transformations.
 - __save_to_dir__: None or str (default: None).
     This allows you to optionally specify
@@ -532,7 +583,15 @@ standardize(x)
 ```
 
 
-Applies the normalization configuration to a batch of inputs.
+Applies the normalization configuration in-place to a batch of inputs.
+
+`x` is changed in-place since the function is mainly used internally
+to standarize images and feed them to your network. If a copy of `x`
+would be created instead it would have a significant performance cost.
+If you want to apply this method without changing the input in-place
+you can call the method creating a copy before:
+
+standarize(np.copy(x))
 
 __Arguments__
 

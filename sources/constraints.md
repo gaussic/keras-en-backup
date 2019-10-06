@@ -34,7 +34,7 @@ to have a norm less than or equal to a desired value.
 
 __Arguments__
 
-- __m__: the maximum norm for the incoming weights.
+- __max_value__: the maximum norm for the incoming weights.
 - __axis__: integer, axis along which to calculate weight norms.
     For instance, in a `Dense` layer the weight matrix
     has shape `(input_dim, output_dim)`,
@@ -49,12 +49,12 @@ __Arguments__
 
 __References__
 
-- [Dropout: A Simple Way to Prevent Neural Networks from Overfitting]
-  (http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)
+- [Dropout: A Simple Way to Prevent Neural Networks from Overfitting](
+   http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf)
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/constraints.py#L62)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/constraints.py#L61)</span>
 ### NonNeg
 
 ```python
@@ -65,7 +65,7 @@ Constrains the weights to be non-negative.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/constraints.py#L71)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/constraints.py#L69)</span>
 ### UnitNorm
 
 ```python
@@ -90,7 +90,7 @@ __Arguments__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/constraints.py#L100)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/constraints.py#L98)</span>
 ### MinMaxNorm
 
 ```python

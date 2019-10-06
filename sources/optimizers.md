@@ -46,11 +46,64 @@ sgd = optimizers.SGD(lr=0.01, clipvalue=0.5)
 
 ---
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L157)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L229)</span>
+### RMSprop
+
+```python
+keras.optimizers.RMSprop(learning_rate=0.001, rho=0.9)
+```
+
+RMSProp optimizer.
+
+It is recommended to leave the parameters of this optimizer
+at their default values
+(except the learning rate, which can be freely tuned).
+
+__Arguments__
+
+- __learning_rate__: float >= 0. Learning rate.
+- __rho__: float >= 0.
+
+__References__
+
+- [rmsprop: Divide the gradient by a running average of its recent magnitude
+   ](http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)
+    
+----
+
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L303)</span>
+### Adagrad
+
+```python
+keras.optimizers.Adagrad(learning_rate=0.01)
+```
+
+Adagrad optimizer.
+
+Adagrad is an optimizer with parameter-specific learning rates,
+which are adapted relative to how frequently a parameter gets
+updated during training. The more updates a parameter receives,
+the smaller the learning rate.
+
+It is recommended to leave the parameters of this optimizer
+at their default values.
+
+__Arguments__
+
+- __learning_rate__: float >= 0. Initial learning rate.
+
+__References__
+
+- [Adaptive Subgradient Methods for Online Learning and Stochastic
+   Optimization](http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)
+    
+----
+
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L164)</span>
 ### SGD
 
 ```python
-keras.optimizers.SGD(lr=0.01, momentum=0.0, decay=0.0, nesterov=False)
+keras.optimizers.SGD(learning_rate=0.01, momentum=0.0, nesterov=False)
 ```
 
 Stochastic gradient descent optimizer.
@@ -60,79 +113,18 @@ learning rate decay, and Nesterov momentum.
 
 __Arguments__
 
-- __lr__: float >= 0. Learning rate.
+- __learning_rate__: float >= 0. Learning rate.
 - __momentum__: float >= 0. Parameter that accelerates SGD
     in the relevant direction and dampens oscillations.
-- __decay__: float >= 0. Learning rate decay over each update.
 - __nesterov__: boolean. Whether to apply Nesterov momentum.
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L220)</span>
-### RMSprop
-
-```python
-keras.optimizers.RMSprop(lr=0.001, rho=0.9, epsilon=None, decay=0.0)
-```
-
-RMSProp optimizer.
-
-It is recommended to leave the parameters of this optimizer
-at their default values
-(except the learning rate, which can be freely tuned).
-
-This optimizer is usually a good choice for recurrent
-neural networks.
-
-__Arguments__
-
-- __lr__: float >= 0. Learning rate.
-- __rho__: float >= 0.
-- __epsilon__: float >= 0. Fuzz factor. If `None`, defaults to `K.epsilon()`.
-- __decay__: float >= 0. Learning rate decay over each update.
-
-__References__
-
-- [rmsprop: Divide the gradient by a running average of its recent magnitude]
-  (http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)
-    
-----
-
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L288)</span>
-### Adagrad
-
-```python
-keras.optimizers.Adagrad(lr=0.01, epsilon=None, decay=0.0)
-```
-
-Adagrad optimizer.
-
-Adagrad is an optimizer with parameter-specific learning rates,
-which are adapted relative to how frequently a parameter gets
-updated during training. The more updates a parameter receives,
-the smaller the updates.
-
-It is recommended to leave the parameters of this optimizer
-at their default values.
-
-__Arguments__
-
-- __lr__: float >= 0. Initial learning rate.
-- __epsilon__: float >= 0. If `None`, defaults to `K.epsilon()`.
-- __decay__: float >= 0. Learning rate decay over each update.
-
-__References__
-
-- [Adaptive Subgradient Methods for Online Learning and Stochastic
-   Optimization](http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)
-    
-----
-
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L353)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L376)</span>
 ### Adadelta
 
 ```python
-keras.optimizers.Adadelta(lr=1.0, rho=0.95, epsilon=None, decay=0.0)
+keras.optimizers.Adadelta(learning_rate=1.0, rho=0.95)
 ```
 
 Adadelta optimizer.
@@ -150,25 +142,23 @@ at their default values.
 
 __Arguments__
 
-- __lr__: float >= 0. Initial learning rate, defaults to 1.
+- __learning_rate__: float >= 0. Initial learning rate, defaults to 1.
     It is recommended to leave it at the default value.
 - __rho__: float >= 0. Adadelta decay factor, corresponding to fraction of
     gradient to keep at each time step.
-- __epsilon__: float >= 0. Fuzz factor. If `None`, defaults to `K.epsilon()`.
-- __decay__: float >= 0. Initial learning rate decay.
 
 __References__
 
-- [Adadelta - an adaptive learning rate method]
-  (https://arxiv.org/abs/1212.5701)
+- [Adadelta - an adaptive learning rate method](
+   https://arxiv.org/abs/1212.5701)
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L436)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L467)</span>
 ### Adam
 
 ```python
-keras.optimizers.Adam(lr=0.001, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0, amsgrad=False)
+keras.optimizers.Adam(learning_rate=0.001, beta_1=0.9, beta_2=0.999, amsgrad=False)
 ```
 
 Adam optimizer.
@@ -177,29 +167,27 @@ Default parameters follow those provided in the original paper.
 
 __Arguments__
 
-- __lr__: float >= 0. Learning rate.
+- __learning_rate__: float >= 0. Learning rate.
 - __beta_1__: float, 0 < beta < 1. Generally close to 1.
 - __beta_2__: float, 0 < beta < 1. Generally close to 1.
-- __epsilon__: float >= 0. Fuzz factor. If `None`, defaults to `K.epsilon()`.
-- __decay__: float >= 0. Learning rate decay over each update.
 - __amsgrad__: boolean. Whether to apply the AMSGrad variant of this
     algorithm from the paper "On the Convergence of Adam and
     Beyond".
 
 __References__
 
-- [Adam - A Method for Stochastic Optimization]
-  (https://arxiv.org/abs/1412.6980v8)
-- [On the Convergence of Adam and Beyond]
-  (https://openreview.net/forum?id=ryQu7f-RZ)
+- [Adam - A Method for Stochastic Optimization](
+   https://arxiv.org/abs/1412.6980v8)
+- [On the Convergence of Adam and Beyond](
+   https://openreview.net/forum?id=ryQu7f-RZ)
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L527)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L567)</span>
 ### Adamax
 
 ```python
-keras.optimizers.Adamax(lr=0.002, beta_1=0.9, beta_2=0.999, epsilon=None, decay=0.0)
+keras.optimizers.Adamax(learning_rate=0.002, beta_1=0.9, beta_2=0.999)
 ```
 
 Adamax optimizer from Adam paper's Section 7.
@@ -209,29 +197,28 @@ Default parameters follow those provided in the paper.
 
 __Arguments__
 
-- __lr__: float >= 0. Learning rate.
-- __beta_1/beta_2__: floats, 0 < beta < 1. Generally close to 1.
-- __epsilon__: float >= 0. Fuzz factor. If `None`, defaults to `K.epsilon()`.
-- __decay__: float >= 0. Learning rate decay over each update.
+- __learning_rate__: float >= 0. Learning rate.
+- __beta_1__: float, 0 < beta < 1. Generally close to 1.
+- __beta_2__: float, 0 < beta < 1. Generally close to 1.
 
 __References__
 
-- [Adam - A Method for Stochastic Optimization]
-  (https://arxiv.org/abs/1412.6980v8)
+- [Adam - A Method for Stochastic Optimization](
+   https://arxiv.org/abs/1412.6980v8)
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L605)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/optimizers.py#L645)</span>
 ### Nadam
 
 ```python
-keras.optimizers.Nadam(lr=0.002, beta_1=0.9, beta_2=0.999, epsilon=None, schedule_decay=0.004)
+keras.optimizers.Nadam(learning_rate=0.002, beta_1=0.9, beta_2=0.999)
 ```
 
 Nesterov Adam optimizer.
 
 Much like Adam is essentially RMSprop with momentum,
-Nadam is Adam RMSprop with Nesterov momentum.
+Nadam is RMSprop with Nesterov momentum.
 
 Default parameters follow those provided in the paper.
 It is recommended to leave the parameters of this optimizer
@@ -239,13 +226,13 @@ at their default values.
 
 __Arguments__
 
-- __lr__: float >= 0. Learning rate.
-- __beta_1/beta_2__: floats, 0 < beta < 1. Generally close to 1.
-- __epsilon__: float >= 0. Fuzz factor. If `None`, defaults to `K.epsilon()`.
+- __learning_rate__: float >= 0. Learning rate.
+- __beta_1__: float, 0 < beta < 1. Generally close to 1.
+- __beta_2__: float, 0 < beta < 1. Generally close to 1.
 
 __References__
 
 - [Nadam report](http://cs229.stanford.edu/proj2015/054_report.pdf)
-- [On the importance of initialization and momentum in deep learning]
-  (http://www.cs.toronto.edu/~fritz/absps/momentum.pdf)
+- [On the importance of initialization and momentum in deep learning](
+   http://www.cs.toronto.edu/~fritz/absps/momentum.pdf)
     

@@ -1,4 +1,4 @@
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/wrappers.py#L114)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/wrappers.py#L116)</span>
 ### TimeDistributed
 
 ```python
@@ -51,7 +51,7 @@ __Arguments__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/wrappers.py#L333)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/wrappers.py#L335)</span>
 ### Bidirectional
 
 ```python
@@ -68,6 +68,7 @@ __Arguments__
     One of {'sum', 'mul', 'concat', 'ave', None}.
     If None, the outputs will not be combined,
     they will be returned as a list.
+- __weights__: Initial weights to load in the Bidirectional model
 
 __Raises__
 

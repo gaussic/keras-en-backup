@@ -38,6 +38,9 @@ __Arguments__
 - __embeddings_regularizer__: Regularizer function applied to
     the `embeddings` matrix
     (see [regularizer](../regularizers.md)).
+- __activity_regularizer__: Regularizer function applied to
+    the output of the layer (its "activation").
+    (see [regularizer](../regularizers.md)).
 - __embeddings_constraint__: Constraint function applied to
     the `embeddings` matrix
     (see [constraints](../constraints.md)).

@@ -1,4 +1,4 @@
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L241)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L234)</span>
 ### Conv1D
 
 ```python
@@ -15,10 +15,11 @@ Finally, if `activation` is not `None`,
 it is applied to the outputs as well.
 
 When using this layer as the first layer in a model,
-provide an `input_shape` argument
-(tuple of integers or `None`, e.g.
-`(10, 128)` for sequences of 10 vectors of 128-dimensional vectors,
-or `(None, 128)` for variable-length sequences of 128-dimensional vectors.
+provide an `input_shape` argument (tuple of integers or `None`, does not
+include the batch axis), e.g. `input_shape=(10, 128)` for time series
+sequences of 10 time steps with 128 features per step in
+`data_format="channels_last"`, or `(None, 128)` for variable-length
+sequences with 128 features per step.
 
 __Arguments__
 
@@ -40,8 +41,8 @@ __Arguments__
     the output has the same length as the original input.
     Useful when modeling temporal data where the model
     should not violate the temporal order. See
-    [WaveNet: A Generative Model for Raw Audio, section 2.1]
-    (https://arxiv.org/abs/1609.03499).
+    [WaveNet: A Generative Model for Raw Audio, section 2.1](
+    https://arxiv.org/abs/1609.03499).
 - __data_format__: A string,
     one of `"channels_last"` (default) or `"channels_first"`.
     The ordering of the dimensions in the inputs.
@@ -87,7 +88,7 @@ __Output shape__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L367)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L361)</span>
 ### Conv2D
 
 ```python
@@ -104,7 +105,7 @@ a bias vector is created and added to the outputs. Finally, if
 
 When using this layer as the first layer in a model,
 provide the keyword argument `input_shape`
-(tuple of integers, does not include the sample axis),
+(tuple of integers, does not include the batch axis),
 e.g. `input_shape=(128, 128, 3)` for 128x128 RGB pictures
 in `data_format="channels_last"`.
 
@@ -186,7 +187,7 @@ if `data_format` is `"channels_last"`.
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L1420)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L1414)</span>
 ### SeparableConv1D
 
 ```python
@@ -284,7 +285,7 @@ if `data_format` is `"channels_last"`.
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L1552)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L1546)</span>
 ### SeparableConv2D
 
 ```python
@@ -293,7 +294,7 @@ keras.layers.SeparableConv2D(filters, kernel_size, strides=(1, 1), padding='vali
 
 Depthwise separable 2D convolution.
 
-Separable convolutions consist in first performing
+Separable convolution performs first
 a depthwise spatial convolution
 (which acts on each input channel separately)
 followed by a pointwise convolution which mixes together the resulting
@@ -390,17 +391,17 @@ if `data_format` is `"channels_last"`.
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L1693)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L1687)</span>
 ### DepthwiseConv2D
 
 ```python
-keras.layers.DepthwiseConv2D(kernel_size, strides=(1, 1), padding='valid', depth_multiplier=1, data_format=None, activation=None, use_bias=True, depthwise_initializer='glorot_uniform', bias_initializer='zeros', depthwise_regularizer=None, bias_regularizer=None, activity_regularizer=None, depthwise_constraint=None, bias_constraint=None)
+keras.layers.DepthwiseConv2D(kernel_size, strides=(1, 1), padding='valid', depth_multiplier=1, data_format=None, dilation_rate=(1, 1), activation=None, use_bias=True, depthwise_initializer='glorot_uniform', bias_initializer='zeros', depthwise_regularizer=None, bias_regularizer=None, activity_regularizer=None, depthwise_constraint=None, bias_constraint=None)
 ```
 
-Depthwise separable 2D convolution.
+Depthwise 2D convolution.
 
-Depthwise Separable convolutions consists in performing
-just the first step in a depthwise spatial convolution
+Depthwise convolution performs
+just the first step of a depthwise spatial convolution
 (which acts on each input channel separately).
 The `depth_multiplier` argument controls how many
 output channels are generated per input channel in the depthwise step.
@@ -433,6 +434,12 @@ __Arguments__
     It defaults to the `image_data_format` value found in your
     Keras config file at `~/.keras/keras.json`.
     If you never set it, then it will be 'channels_last'.
+- __dilation_rate__: an integer or tuple/list of 2 integers, specifying
+    the dilation rate to use for dilated convolution.
+    Can be a single integer to specify the same value for
+    all spatial dimensions.
+    Currently, specifying any `dilation_rate` value != 1 is
+    incompatible with specifying any stride value != 1.
 - __activation__: Activation function to use
     (see [activations](../activations.md)).
     If you don't specify anything, no activation is applied
@@ -468,16 +475,16 @@ if `data_format` is `"channels_last"`.
 __Output shape__
 
 4D tensor with shape:
-`(batch, filters, new_rows, new_cols)`
+`(batch, channels * depth_multiplier, new_rows, new_cols)`
 if `data_format` is `"channels_first"`
 or 4D tensor with shape:
-`(batch, new_rows, new_cols, filters)`
+`(batch, new_rows, new_cols,  channels * depth_multiplier)`
 if `data_format` is `"channels_last"`.
 `rows` and `cols` values might have changed due to padding.
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L627)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L621)</span>
 ### Conv2DTranspose
 
 ```python
@@ -495,7 +502,7 @@ said convolution.
 
 When using this layer as the first layer in a model,
 provide the keyword argument `input_shape`
-(tuple of integers, does not include the sample axis),
+(tuple of integers, does not include the batch axis),
 e.g. `input_shape=(128, 128, 3)` for 128x128 RGB pictures
 in `data_format="channels_last"`.
 
@@ -590,14 +597,14 @@ new_cols = ((cols - 1) * strides[1] + kernel_size[1]
 
 __References__
 
-- [A guide to convolution arithmetic for deep learning]
-  (https://arxiv.org/abs/1603.07285v1)
-- [Deconvolutional Networks]
-  (http://www.matthewzeiler.com/pubs/cvpr2010/cvpr2010.pdf)
+- [A guide to convolution arithmetic for deep learning](
+   https://arxiv.org/abs/1603.07285v1)
+- [Deconvolutional Networks](
+   https://www.matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf)
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L498)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L492)</span>
 ### Conv3D
 
 ```python
@@ -614,7 +621,7 @@ a bias vector is created and added to the outputs. Finally, if
 
 When using this layer as the first layer in a model,
 provide the keyword argument `input_shape`
-(tuple of integers, does not include the sample axis),
+(tuple of integers, does not include the batch axis),
 e.g. `input_shape=(128, 128, 128, 1)` for 128x128x128 volumes
 with a single channel,
 in `data_format="channels_last"`.
@@ -694,7 +701,7 @@ changed due to padding.
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L900)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L894)</span>
 ### Conv3DTranspose
 
 ```python
@@ -712,7 +719,7 @@ said convolution.
 
 When using this layer as the first layer in a model,
 provide the keyword argument `input_shape`
-(tuple of integers, does not include the sample axis),
+(tuple of integers, does not include the batch axis),
 e.g. `input_shape=(128, 128, 128, 3)` for a 128x128x128 volume with 3 channels
 if `data_format="channels_last"`.
 
@@ -809,14 +816,14 @@ new_cols = ((cols - 1) * strides[2] + kernel_size[2]
 
 __References__
 
-- [A guide to convolution arithmetic for deep learning]
-  (https://arxiv.org/abs/1603.07285v1)
-- [Deconvolutional Networks]
-  (http://www.matthewzeiler.com/pubs/cvpr2010/cvpr2010.pdf)
+- [A guide to convolution arithmetic for deep learning](
+   https://arxiv.org/abs/1603.07285v1)
+- [Deconvolutional Networks](
+   https://www.matthewzeiler.com/mattzeiler/deconvolutionalnetworks.pdf)
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2375)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2377)</span>
 ### Cropping1D
 
 ```python
@@ -845,7 +852,7 @@ __Output shape__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2407)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2409)</span>
 ### Cropping2D
 
 ```python
@@ -911,7 +918,7 @@ model.add(Cropping2D(cropping=((2, 2), (2, 2))))
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2490)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2492)</span>
 ### Cropping3D
 
 ```python
@@ -926,7 +933,7 @@ __Arguments__
     - If int: the same symmetric cropping
         is applied to depth, height, and width.
     - If tuple of 3 ints:
-        interpreted as two different
+        interpreted as three different
         symmetric cropping values for depth, height, and width:
         `(symmetric_dim1_crop, symmetric_dim2_crop, symmetric_dim3_crop)`.
     - If tuple of 3 tuples of 2 ints:
@@ -967,7 +974,7 @@ __Output shape__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L1943)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L1945)</span>
 ### UpSampling1D
 
 ```python
@@ -992,7 +999,7 @@ __Output shape__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L1973)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L1975)</span>
 ### UpSampling2D
 
 ```python
@@ -1040,7 +1047,7 @@ __Output shape__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2031)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2033)</span>
 ### UpSampling3D
 
 ```python
@@ -1085,7 +1092,7 @@ __Output shape__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2123)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2125)</span>
 ### ZeroPadding1D
 
 ```python
@@ -1117,7 +1124,7 @@ __Output shape__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2158)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2160)</span>
 ### ZeroPadding2D
 
 ```python
@@ -1170,7 +1177,7 @@ __Output shape__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2234)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/convolutional.py#L2236)</span>
 ### ZeroPadding3D
 
 ```python
@@ -1185,8 +1192,8 @@ __Arguments__
     - If int: the same symmetric padding
         is applied to height and width.
     - If tuple of 3 ints:
-        interpreted as two different
-        symmetric padding values for height and width:
+        interpreted as three different
+        symmetric padding values for depth, height, and width:
         `(symmetric_dim1_pad, symmetric_dim2_pad, symmetric_dim3_pad)`.
     - If tuple of 3 tuples of 2 ints:
         interpreted as

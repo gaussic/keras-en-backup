@@ -1,7 +1,7 @@
 
 ### Text Preprocessing
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/preprocessing/text.py#L138)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/preprocessing/text.py#L139)</span>
 ### Tokenizer
 
 ```python
@@ -18,7 +18,7 @@ for each token could be binary, based on word count, based on tf-idf...
 __Arguments__
 
 - __num_words__: the maximum number of words to keep, based
-    on word frequency. Only the most common `num_words` words will
+    on word frequency. Only the most common `num_words-1` words will
     be kept.
 - __filters__: a string where each element is a character that will be
     filtered from the texts. The default is all punctuation, plus
@@ -58,11 +58,8 @@ __Arguments__
     it is not consistent across different runs, while 'md5'
     is a stable hashing function.
 - __filters__: list (or concatenation) of characters to filter out, such as
-    punctuation. Default: ``!"#$%&()*+,-./:;<=>?@[\]^_`{|}~	
-
-``,
+    punctuation. Default: ``!"#$%&()*+,-./:;<=>?@[\]^_`{|}~\t\n``,
     includes basic punctuation, tabs, and newlines.
-
 - __lower__: boolean. Whether to set the text to lowercase.
 - __split__: str. Separator for word splitting.
 
@@ -99,11 +96,8 @@ __Arguments__
 - __text__: Input text (string).
 - __n__: int. Size of vocabulary.
 - __filters__: list (or concatenation) of characters to filter out, such as
-    punctuation. Default: ``!"#$%&()*+,-./:;<=>?@[\]^_`{|}~	
-
-``,
+    punctuation. Default: ``!"#$%&()*+,-./:;<=>?@[\]^_`{|}~\t\n``,
     includes basic punctuation, tabs, and newlines.
-
 - __lower__: boolean. Whether to set the text to lowercase.
 - __split__: str. Separator for word splitting.
 
@@ -128,11 +122,8 @@ __Arguments__
 
 - __text__: Input text (string).
 - __filters__: list (or concatenation) of characters to filter out, such as
-    punctuation. Default: ``!"#$%&()*+,-./:;<=>?@[\]^_`{|}~	
-
-``,
+    punctuation. Default: ``!"#$%&()*+,-./:;<=>?@[\]^_`{|}~\t\n``,
     includes basic punctuation, tabs, and newlines.
-
 - __lower__: boolean. Whether to convert the input to lowercase.
 - __split__: str. Separator for word splitting.
 

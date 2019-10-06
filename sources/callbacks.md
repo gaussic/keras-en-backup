@@ -4,11 +4,80 @@ A callback is a set of functions to be applied at given stages of the training p
 
 ---
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L148)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks/tensorboard_v1.py#L20)</span>
+### TensorBoard
+
+```python
+keras.callbacks.tensorboard_v1.TensorBoard(log_dir='./logs', histogram_freq=0, batch_size=32, write_graph=True, write_grads=False, write_images=False, embeddings_freq=0, embeddings_layer_names=None, embeddings_metadata=None, embeddings_data=None, update_freq='epoch')
+```
+
+TensorBoard basic visualizations.
+
+[TensorBoard](https://www.tensorflow.org/guide/summaries_and_tensorboard)
+is a visualization tool provided with TensorFlow.
+
+This callback writes a log for TensorBoard, which allows
+you to visualize dynamic graphs of your training and test
+metrics, as well as activation histograms for the different
+layers in your model.
+
+If you have installed TensorFlow with pip, you should be able
+to launch TensorBoard from the command line:
+```sh
+tensorboard --logdir=/full_path_to_your_logs
+```
+
+When using a backend other than TensorFlow, TensorBoard will still work
+(if you have TensorFlow installed), but the only feature available will
+be the display of the losses and metrics plots.
+
+__Arguments__
+
+- __log_dir__: the path of the directory where to save the log
+    files to be parsed by TensorBoard.
+- __histogram_freq__: frequency (in epochs) at which to compute activation
+    and weight histograms for the layers of the model. If set to 0,
+    histograms won't be computed. Validation data (or split) must be
+    specified for histogram visualizations.
+- __batch_size__: size of batch of inputs to feed to the network
+    for histograms computation.
+- __write_graph__: whether to visualize the graph in TensorBoard.
+    The log file can become quite large when
+    write_graph is set to True.
+- __write_grads__: whether to visualize gradient histograms in TensorBoard.
+    `histogram_freq` must be greater than 0.
+- __write_images__: whether to write model weights to visualize as
+    image in TensorBoard.
+- __embeddings_freq__: frequency (in epochs) at which selected embedding
+    layers will be saved. If set to 0, embeddings won't be computed.
+    Data to be visualized in TensorBoard's Embedding tab must be passed
+    as `embeddings_data`.
+- __embeddings_layer_names__: a list of names of layers to keep eye on. If
+    None or empty list all the embedding layer will be watched.
+- __embeddings_metadata__: a dictionary which maps layer name to a file name
+    in which metadata for this embedding layer is saved. See the
+    [details](https://www.tensorflow.org/guide/embedding#metadata)
+    about metadata files format. In case if the same metadata file is
+    used for all embedding layers, string can be passed.
+- __embeddings_data__: data to be embedded at layers specified in
+    `embeddings_layer_names`. Numpy array (if the model has a single
+    input) or list of Numpy arrays (if the model has multiple inputs).
+    Learn [more about embeddings](
+    https://www.tensorflow.org/guide/embedding).
+- __update_freq__: `'batch'` or `'epoch'` or integer. When using `'batch'`, writes
+    the losses and metrics to TensorBoard after each batch. The same
+    applies for `'epoch'`. If using an integer, let's say `10000`,
+    the callback will write the metrics and losses to TensorBoard every
+    10000 samples. Note that writing too frequently to TensorBoard
+    can slow down your training.
+    
+----
+
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks/callbacks.py#L275)</span>
 ### Callback
 
 ```python
-keras.callbacks.Callback()
+keras.callbacks.callbacks.Callback()
 ```
 
 Abstract base class used to build new callbacks.
@@ -39,11 +108,11 @@ on_batch_end: logs include `loss`, and optionally `acc`
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L204)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks/callbacks.py#L477)</span>
 ### BaseLogger
 
 ```python
-keras.callbacks.BaseLogger(stateful_metrics=None)
+keras.callbacks.callbacks.BaseLogger(stateful_metrics=None)
 ```
 
 Callback that accumulates epoch averages of metrics.
@@ -59,22 +128,22 @@ __Arguments__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L251)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks/callbacks.py#L524)</span>
 ### TerminateOnNaN
 
 ```python
-keras.callbacks.TerminateOnNaN()
+keras.callbacks.callbacks.TerminateOnNaN()
 ```
 
 Callback that terminates training when a NaN loss is encountered.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L264)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks/callbacks.py#L537)</span>
 ### ProgbarLogger
 
 ```python
-keras.callbacks.ProgbarLogger(count_mode='samples', stateful_metrics=None)
+keras.callbacks.callbacks.ProgbarLogger(count_mode='samples', stateful_metrics=None)
 ```
 
 Callback that prints metrics to stdout.
@@ -95,11 +164,11 @@ __Raises__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L341)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks/callbacks.py#L614)</span>
 ### History
 
 ```python
-keras.callbacks.History()
+keras.callbacks.callbacks.History()
 ```
 
 Callback that records events into a `History` object.
@@ -110,17 +179,17 @@ gets returned by the `fit` method of models.
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L360)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks/callbacks.py#L633)</span>
 ### ModelCheckpoint
 
 ```python
-keras.callbacks.ModelCheckpoint(filepath, monitor='val_loss', verbose=0, save_best_only=False, save_weights_only=False, mode='auto', period=1)
+keras.callbacks.callbacks.ModelCheckpoint(filepath, monitor='val_loss', verbose=0, save_best_only=False, save_weights_only=False, mode='auto', period=1)
 ```
 
 Save the model after every epoch.
 
 `filepath` can contain named formatting options,
-which will be filled the value of `epoch` and
+which will be filled with the values of `epoch` and
 keys in `logs` (passed in `on_epoch_end`).
 
 For example: if `filepath` is `weights.{epoch:02d}-{val_loss:.2f}.hdf5`,
@@ -135,6 +204,9 @@ __Arguments__
 - __save_best_only__: if `save_best_only=True`,
     the latest best model according to
     the quantity monitored will not be overwritten.
+- __save_weights_only__: if True, then only the model's weights will be
+    saved (`model.save_weights(filepath)`), else the full model
+    is saved (`model.save(filepath)`).
 - __mode__: one of {auto, min, max}.
     If `save_best_only=True`, the decision
     to overwrite the current save file is made
@@ -143,18 +215,15 @@ __Arguments__
     this should be `max`, for `val_loss` this should
     be `min`, etc. In `auto` mode, the direction is
     automatically inferred from the name of the monitored quantity.
-- __save_weights_only__: if True, then only the model's weights will be
-    saved (`model.save_weights(filepath)`), else the full model
-    is saved (`model.save(filepath)`).
 - __period__: Interval (number of epochs) between checkpoints.
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L460)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks/callbacks.py#L733)</span>
 ### EarlyStopping
 
 ```python
-keras.callbacks.EarlyStopping(monitor='val_loss', min_delta=0, patience=0, verbose=0, mode='auto', baseline=None, restore_best_weights=False)
+keras.callbacks.callbacks.EarlyStopping(monitor='val_loss', min_delta=0, patience=0, verbose=0, mode='auto', baseline=None, restore_best_weights=False)
 ```
 
 Stop training when a monitored quantity has stopped improving.
@@ -166,8 +235,12 @@ __Arguments__
     to qualify as an improvement, i.e. an absolute
     change of less than min_delta, will count as no
     improvement.
-- __patience__: number of epochs with no improvement
-    after which training will be stopped.
+- __patience__: number of epochs that produced the monitored
+    quantity with no improvement after which training will
+    be stopped.
+    Validation quantities may not be produced for every
+    epoch, if the validation frequency
+    (`model.fit(validation_freq=5)`) is greater than one.
 - __verbose__: verbosity mode.
 - __mode__: one of {auto, min, max}. In `min` mode,
     training will stop when the quantity
@@ -186,11 +259,11 @@ __Arguments__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L574)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks/callbacks.py#L851)</span>
 ### RemoteMonitor
 
 ```python
-keras.callbacks.RemoteMonitor(root='http://localhost:9000', path='/publish/epoch/end/', field='data', headers=None, send_as_json=False)
+keras.callbacks.callbacks.RemoteMonitor(root='http://localhost:9000', path='/publish/epoch/end/', field='data', headers=None, send_as_json=False)
 ```
 
 Callback used to stream events to a server.
@@ -215,11 +288,11 @@ __Arguments__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L633)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks/callbacks.py#L910)</span>
 ### LearningRateScheduler
 
 ```python
-keras.callbacks.LearningRateScheduler(schedule, verbose=0)
+keras.callbacks.callbacks.LearningRateScheduler(schedule, verbose=0)
 ```
 
 Learning rate scheduler.
@@ -233,80 +306,11 @@ __Arguments__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L669)</span>
-### TensorBoard
-
-```python
-keras.callbacks.TensorBoard(log_dir='./logs', histogram_freq=0, batch_size=32, write_graph=True, write_grads=False, write_images=False, embeddings_freq=0, embeddings_layer_names=None, embeddings_metadata=None, embeddings_data=None, update_freq='epoch')
-```
-
-TensorBoard basic visualizations.
-
-[TensorBoard](https://www.tensorflow.org/get_started/summaries_and_tensorboard)
-is a visualization tool provided with TensorFlow.
-
-This callback writes a log for TensorBoard, which allows
-you to visualize dynamic graphs of your training and test
-metrics, as well as activation histograms for the different
-layers in your model.
-
-If you have installed TensorFlow with pip, you should be able
-to launch TensorBoard from the command line:
-```sh
-tensorboard --logdir=/full_path_to_your_logs
-```
-
-When using a backend other than TensorFlow, TensorBoard will still work
-(if you have TensorFlow installed), but the only feature available will
-be the display of the losses and metrics plots.
-
-__Arguments__
-
-- __log_dir__: the path of the directory where to save the log
-    files to be parsed by TensorBoard.
-- __histogram_freq__: frequency (in epochs) at which to compute activation
-    and weight histograms for the layers of the model. If set to 0,
-    histograms won't be computed. Validation data (or split) must be
-    specified for histogram visualizations.
-- __write_graph__: whether to visualize the graph in TensorBoard.
-    The log file can become quite large when
-    write_graph is set to True.
-- __write_grads__: whether to visualize gradient histograms in TensorBoard.
-    `histogram_freq` must be greater than 0.
-- __batch_size__: size of batch of inputs to feed to the network
-    for histograms computation.
-- __write_images__: whether to write model weights to visualize as
-    image in TensorBoard.
-- __embeddings_freq__: frequency (in epochs) at which selected embedding
-    layers will be saved. If set to 0, embeddings won't be computed.
-    Data to be visualized in TensorBoard's Embedding tab must be passed
-    as `embeddings_data`.
-- __embeddings_layer_names__: a list of names of layers to keep eye on. If
-    None or empty list all the embedding layer will be watched.
-- __embeddings_metadata__: a dictionary which maps layer name to a file name
-    in which metadata for this embedding layer is saved. See the
-    [details](https://www.tensorflow.org/how_tos/embedding_viz/#metadata_optional)
-    about metadata files format. In case if the same metadata file is
-    used for all embedding layers, string can be passed.
-- __embeddings_data__: data to be embedded at layers specified in
-    `embeddings_layer_names`. Numpy array (if the model has a single
-    input) or list of Numpy arrays (if the model has multiple inputs).
-    Learn [more about embeddings]
-    (https://www.tensorflow.org/programmers_guide/embedding).
-- __update_freq__: `'batch'` or `'epoch'` or integer. When using `'batch'`, writes
-    the losses and metrics to TensorBoard after each batch. The same
-    applies for `'epoch'`. If using an integer, let's say `10000`,
-    the callback will write the metrics and losses to TensorBoard every
-    10000 samples. Note that writing too frequently to TensorBoard
-    can slow down your training.
-    
-----
-
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L1017)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks/callbacks.py#L946)</span>
 ### ReduceLROnPlateau
 
 ```python
-keras.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=10, verbose=0, mode='auto', min_delta=0.0001, cooldown=0, min_lr=0)
+keras.callbacks.callbacks.ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=10, verbose=0, mode='auto', min_delta=0.0001, cooldown=0, min_lr=0)
 ```
 
 Reduce learning rate when a metric has stopped improving.
@@ -330,8 +334,12 @@ __Arguments__
 - __monitor__: quantity to be monitored.
 - __factor__: factor by which the learning rate will
     be reduced. new_lr = lr * factor
-- __patience__: number of epochs with no improvement
-    after which learning rate will be reduced.
+- __patience__: number of epochs that produced the monitored
+    quantity with no improvement after which training will
+    be stopped.
+    Validation quantities may not be produced for every
+    epoch, if the validation frequency
+    (`model.fit(validation_freq=5)`) is greater than one.
 - __verbose__: int. 0: quiet, 1: update messages.
 - __mode__: one of {auto, min, max}. In `min` mode,
     lr will be reduced when the quantity
@@ -348,11 +356,11 @@ __Arguments__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L1138)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks/callbacks.py#L1071)</span>
 ### CSVLogger
 
 ```python
-keras.callbacks.CSVLogger(filename, separator=',', append=False)
+keras.callbacks.callbacks.CSVLogger(filename, separator=',', append=False)
 ```
 
 Callback that streams epoch results to a csv file.
@@ -377,11 +385,11 @@ __Arguments__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks.py#L1226)</span>
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/callbacks/callbacks.py#L1163)</span>
 ### LambdaCallback
 
 ```python
-keras.callbacks.LambdaCallback(on_epoch_begin=None, on_epoch_end=None, on_batch_begin=None, on_batch_end=None, on_train_begin=None, on_train_end=None)
+keras.callbacks.callbacks.LambdaCallback(on_epoch_begin=None, on_epoch_end=None, on_batch_begin=None, on_batch_end=None, on_train_begin=None, on_train_end=None)
 ```
 
 Callback for creating simple, custom callbacks on-the-fly.

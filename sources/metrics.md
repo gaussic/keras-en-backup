@@ -34,11 +34,20 @@ You can either pass the name of an existing metric, or pass a Theano/TensorFlow 
 ## Available metrics
 
 
+### accuracy
+
+
+```python
+keras.metrics.accuracy(y_true, y_pred)
+```
+
+----
+
 ### binary_accuracy
 
 
 ```python
-keras.metrics.binary_accuracy(y_true, y_pred)
+keras.metrics.binary_accuracy(y_true, y_pred, threshold=0.5)
 ```
 
 ----
@@ -77,6 +86,37 @@ keras.metrics.top_k_categorical_accuracy(y_true, y_pred, k=5)
 keras.metrics.sparse_top_k_categorical_accuracy(y_true, y_pred, k=5)
 ```
 
+----
+
+### cosine_proximity
+
+
+```python
+keras.metrics.cosine_proximity(y_true, y_pred, axis=-1)
+```
+
+----
+
+### clone_metric
+
+
+```python
+keras.metrics.clone_metric(metric)
+```
+
+
+Returns a clone of the metric if stateful, otherwise returns it as is.
+----
+
+### clone_metrics
+
+
+```python
+keras.metrics.clone_metrics(metrics)
+```
+
+
+Clones the given metric list/dict.
 
 In addition to the metrics above, you may use any of the loss functions described in the [loss function](/losses) page as metrics.
 

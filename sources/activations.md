@@ -74,8 +74,7 @@ The exponential linear activation: `x` if `x > 0` and
 __References__
 
 - [Fast and Accurate Deep Network Learning by Exponential
-
-Linear Units (ELUs)](https://arxiv.org/abs/1511.07289)
+   Linear Units (ELUs)](https://arxiv.org/abs/1511.07289)
     
 ----
 
@@ -90,7 +89,7 @@ keras.activations.selu(x)
 Scaled Exponential Linear Unit (SELU).
 
 SELU is equal to: `scale * elu(x, alpha)`, where alpha and scale
-are pre-defined constants. The values of `alpha` and `scale` are
+are predefined constants. The values of `alpha` and `scale` are
 chosen so that the mean and variance of the inputs are preserved
 between two consecutive layers as long as the weights are initialized
 correctly (see `lecun_normal` initialization) and the number of inputs
@@ -151,7 +150,7 @@ __Arguments__
 
 __Returns__
 
-The softplus activation: `x / (abs(x) + 1)`.
+The softsign activation: `x / (abs(x) + 1)`.
     
 ----
 
@@ -195,6 +194,16 @@ keras.activations.tanh(x)
 
 Hyperbolic tangent activation function.
 
+__Arguments__
+
+- __x__: Input tensor.
+
+__Returns__
+
+The hyperbolic activation:
+`tanh(x) = (exp(x) - exp(-x)) / (exp(x) + exp(-x))`
+
+
 ----
 
 ### sigmoid
@@ -207,6 +216,14 @@ keras.activations.sigmoid(x)
 
 Sigmoid activation function.
 
+__Arguments__
+
+- __x__: Input tensor.
+
+__Returns__
+
+The sigmoid activation: `1 / (1 + exp(-x))`.
+    
 ----
 
 ### hard_sigmoid
@@ -245,6 +262,14 @@ keras.activations.exponential(x)
 
 Exponential (base e) activation function.
 
+__Arguments__
+
+- __x__: Input tensor.
+
+__Returns__
+
+Exponential activation: `exp(x)`.
+    
 ----
 
 ### linear
@@ -257,6 +282,14 @@ keras.activations.linear(x)
 
 Linear (i.e. identity) activation function.
 
+__Arguments__
+
+- __x__: Input tensor.
+
+__Returns__
+
+Input tensor, unchanged.
+    
 
 ## On "Advanced Activations"
 

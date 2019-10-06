@@ -1,7 +1,7 @@
-Train a recurrent convolutional network on the IMDB sentiment
-classification task.
 
-Gets to 0.8498 test accuracy after 2 epochs. 41s/epoch on K520 GPU.
+#Train a recurrent convolutional network on the IMDB sentiment classification task.
+
+Gets to 0.8498 test accuracy after 2 epochs. 41 s/epoch on K520 GPU.
 
 
 ```python

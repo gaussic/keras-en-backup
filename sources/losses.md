@@ -24,15 +24,6 @@ For a few examples of such functions, check out the [losses source](https://gith
 
 ## Available loss functions
 
-### mean_squared_error
-
-
-```python
-keras.losses.mean_squared_error(y_true, y_pred)
-```
-
-----
-
 ### mean_absolute_error
 
 
@@ -113,11 +104,20 @@ Tensor with one scalar loss entry per sample.
     
 ----
 
+### huber_loss
+
+
+```python
+keras.losses.huber_loss(y_true, y_pred, delta=1.0)
+```
+
+----
+
 ### categorical_crossentropy
 
 
 ```python
-keras.losses.categorical_crossentropy(y_true, y_pred)
+keras.losses.categorical_crossentropy(y_true, y_pred, from_logits=False, label_smoothing=0)
 ```
 
 ----
@@ -126,7 +126,7 @@ keras.losses.categorical_crossentropy(y_true, y_pred)
 
 
 ```python
-keras.losses.sparse_categorical_crossentropy(y_true, y_pred)
+keras.losses.sparse_categorical_crossentropy(y_true, y_pred, from_logits=False, axis=-1)
 ```
 
 ----
@@ -135,7 +135,7 @@ keras.losses.sparse_categorical_crossentropy(y_true, y_pred)
 
 
 ```python
-keras.losses.binary_crossentropy(y_true, y_pred)
+keras.losses.binary_crossentropy(y_true, y_pred, from_logits=False, label_smoothing=0)
 ```
 
 ----
@@ -162,7 +162,25 @@ keras.losses.poisson(y_true, y_pred)
 
 
 ```python
-keras.losses.cosine_proximity(y_true, y_pred)
+keras.losses.cosine_proximity(y_true, y_pred, axis=-1)
+```
+
+----
+
+### is_categorical_crossentropy
+
+
+```python
+keras.losses.is_categorical_crossentropy(loss)
+```
+
+----
+
+### mean_squared_error
+
+
+```python
+keras.losses.mean_squared_error(y_true, y_pred)
 ```
 
 

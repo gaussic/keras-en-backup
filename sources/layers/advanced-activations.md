@@ -1,3 +1,37 @@
+<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/advanced_activations.py#L153)</span>
+### ELU
+
+```python
+keras.layers.ELU(alpha=1.0)
+```
+
+Exponential Linear Unit.
+
+It follows:
+`f(x) =  alpha * (exp(x) - 1.) for x < 0`,
+`f(x) = x for x >= 0`.
+
+__Input shape__
+
+Arbitrary. Use the keyword argument `input_shape`
+(tuple of integers, does not include the samples axis)
+when using this layer as the first layer in a model.
+
+__Output shape__
+
+Same shape as the input.
+
+__Arguments__
+
+- __alpha__: scale for the negative factor.
+
+__References__
+
+- [Fast and Accurate Deep Network Learning by Exponential Linear Units
+   (ELUs)](https://arxiv.org/abs/1511.07289v1)
+    
+----
+
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/advanced_activations.py#L19)</span>
 ### LeakyReLU
 
@@ -27,8 +61,8 @@ __Arguments__
 
 __References__
 
-- [Rectifier Nonlinearities Improve Neural Network Acoustic Models]
-  (https://ai.stanford.edu/~amaas/papers/relu_hybrid_icml2013_final.pdf)
+- [Rectifier Nonlinearities Improve Neural Network Acoustic Models](
+   https://ai.stanford.edu/~amaas/papers/relu_hybrid_icml2013_final.pdf)
     
 ----
 
@@ -77,40 +111,6 @@ __References__
     
 ----
 
-<span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/advanced_activations.py#L153)</span>
-### ELU
-
-```python
-keras.layers.ELU(alpha=1.0)
-```
-
-Exponential Linear Unit.
-
-It follows:
-`f(x) =  alpha * (exp(x) - 1.) for x < 0`,
-`f(x) = x for x >= 0`.
-
-__Input shape__
-
-Arbitrary. Use the keyword argument `input_shape`
-(tuple of integers, does not include the samples axis)
-when using this layer as the first layer in a model.
-
-__Output shape__
-
-Same shape as the input.
-
-__Arguments__
-
-- __alpha__: scale for the negative factor.
-
-__References__
-
-- [Fast and Accurate Deep Network Learning by Exponential Linear Units
-   (ELUs)](https://arxiv.org/abs/1511.07289v1)
-    
-----
-
 <span style="float:right;">[[source]](https://github.com/keras-team/keras/blob/master/keras/layers/advanced_activations.py#L193)</span>
 ### ThresholdedReLU
 
@@ -140,8 +140,8 @@ __Arguments__
 
 __References__
 
-- [Zero-Bias Autoencoders and the Benefits of Co-Adapting Features]
-  (https://arxiv.org/abs/1402.3337)
+- [Zero-Bias Autoencoders and the Benefits of Co-Adapting Features](
+   https://arxiv.org/abs/1402.3337)
     
 ----
 
